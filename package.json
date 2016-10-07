@@ -9,6 +9,6 @@
   "author": "Jason Olson",
   "license": "ISC",
   "dependencies": {
-    "whatwg-fetch": "^1.0.0"
+    "node-fetch": "^1.6.3"
   }
 }
