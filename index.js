@@ -111,4 +111,26 @@ Atrium.prototype.checkMemberStatus = function(guid) {
   return this._fetch(`users/${userGuid}/members/${guid}/status`, 'GET');
 };
 
+//Accounts
+Atrium.prototype.listAccounts = function() {
+  return this._fetch(`users/${userGuid}/accounts`, 'GET');
+};
+
+Atrium.prototype.readAccount = function(guid) {
+  return this._fetch(`users/${userGuid}/accounts/${guid}`, 'GET');
+};
+
+Atrium.prototype.listAccountTransactions = function(guid) {
+  return this._fetch(`users/${userGuid}/accounts/${guid}/transactions`, 'GET');
+};
+
+//Holdings
+Atrium.prototype.listHoldings = function() {
+  return this._fetch(`users/${userGuid}/holdings`, 'GET');
+};
+
+Atrium.prototype.readHolding = function(guid) {
+  return this._fetch(`users/${userGuid}/holdings/${guid}`, 'GET');
+};
+
 module.exports = Atrium;
