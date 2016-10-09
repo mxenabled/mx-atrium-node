@@ -84,7 +84,7 @@ Atrium.prototype.createMember = function(user) {
 };
 
 Atrium.prototype.readMember = function(guid) {
-  return this._fetch(`users/${userGuid}/members/` + guid, 'GET');
+  return this._fetch(`users/${userGuid}/members/${guid}`, 'GET');
 };
 
 Atrium.prototype.updateMember = function(member) {
@@ -93,6 +93,22 @@ Atrium.prototype.updateMember = function(member) {
 
 Atrium.prototype.deleteMember = function(member) {
   return this._fetch(`users/${userGuid}/members/${member.guid}`, 'DELETE');
+};
+
+Atrium.prototype.aggregateMember = function(guid) {
+  return this._fetch(`users/${userGuid}/members/${guid}/aggregate`, 'GET');
+};
+
+Atrium.prototype.resumeMemberAggregation = function(guid) {
+  return this._fetch(`users/${userGuid}/members/${guid}/resume`, 'GET');
+};
+
+Atrium.prototype.listMemberChallenges = function(guid) {
+  return this._fetch(`users/${userGuid}/members/${guid}/challenges`, 'GET');
+};
+
+Atrium.prototype.checkMemberStatus = function(guid) {
+  return this._fetch(`users/${userGuid}/members/${guid}/status`, 'GET');
 };
 
 module.exports = Atrium;
