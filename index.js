@@ -1,22 +1,23 @@
 var fetch = require('node-fetch');
 
-var Atrium  = function(apiKey, clientID) {
+var Atrium  = function(apiKey, clientID, url = 'https://sand-harvey.moneydesktop.com/api/') {
   this.credentials = {
       clientID,
       apiKey
   };
+
+  this.url = url;
 }
 
-var LOCAL_URL = 'http://localhost:3000/api/';
-var SAND_URL = 'https://sand-harvey.moneydesktop.com/api/';
 
 Atrium.prototype._fetch = function(endpoint, method, params = null) {
   var body = params ? JSON.stringify(params) : null;
 
-  return (fetch(LOCAL_URL + endpoint, {
+  return (fetch(this.url + endpoint, {
     method,
     body,
     headers: {
+      'Accept': 'application/vnd.mx.atrium.v1+json',
       'Content-Type': 'application/json',
       'MX-API-KEY': this.credentials.apiKey,
       'MX-CLIENT-ID': this.credentials.clientID
