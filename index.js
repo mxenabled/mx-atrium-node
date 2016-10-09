@@ -7,13 +7,15 @@ var Atrium  = function(apiKey, clientID) {
   };
 }
 
-var BASE_URL = 'http://localhost:3000/api/';
+var LOCAL_URL = 'http://localhost:3000/api/';
 var SAND_URL = 'https://sand-harvey.moneydesktop.com/api/';
 
 Atrium.prototype._fetch = function(endpoint, method, params = null) {
   var body = params ? JSON.stringify(params) : null;
 
-  return (fetch(SAND_URL + endpoint, {
+  console.log('body', body);
+
+  return (fetch(LOCAL_URL + endpoint, {
     method,
     body,
     headers: {
@@ -38,7 +40,7 @@ Atrium.prototype._fetch = function(endpoint, method, params = null) {
 };
 
 //Users
-Atrium.prototype.getUsers = function() {
+Atrium.prototype.listUsers = function() {
   return this._fetch('users', 'GET');
 };
 
@@ -46,8 +48,51 @@ Atrium.prototype.createUser = function(user) {
   return this._fetch('users', 'POST', user);
 };
 
-Atrium.prototype.getUser = function(guid) {
+Atrium.prototype.readUser = function(guid) {
   return this._fetch('users/' + guid, 'GET');
+};
+
+Atrium.prototype.updateUser = function(user) {
+  return this._fetch('users/' + user.guid, 'PUT', { user });
+};
+
+Atrium.prototype.deleteUser = function(user) {
+  return this._fetch('users/' + user.guid, 'DELETE');
+};
+
+//Institutions
+Atrium.prototype.listInstitutions = function() {
+  return this._fetch('institutions', 'GET');
+};
+
+Atrium.prototype.readInstitution = function(guid) {
+  return this._fetch('institutions/' + guid, 'GET');
+};
+
+//Credentials
+Atrium.prototype.listCredentials = function(guid) {
+  return this._fetch(`institutions/${guid}/credentials`, 'GET');
+};
+
+//Members
+Atrium.prototype.listMember = function() {
+  return this._fetch(`users/${userGuid}/members`, 'GET');
+};
+
+Atrium.prototype.createMember = function(user) {
+  return this._fetch(`users/${userGuid}/members`, 'POST', member);
+};
+
+Atrium.prototype.readMember = function(guid) {
+  return this._fetch(`users/${userGuid}/members/` + guid, 'GET');
+};
+
+Atrium.prototype.updateMember = function(member) {
+  return this._fetch(`users/${userGuid}/members/${member.guid}`, 'PUT', { member });
+};
+
+Atrium.prototype.deleteMember = function(member) {
+  return this._fetch(`users/${userGuid}/members/${member.guid}`, 'DELETE');
 };
 
 module.exports = Atrium;
