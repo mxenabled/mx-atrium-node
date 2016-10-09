@@ -13,8 +13,6 @@ var SAND_URL = 'https://sand-harvey.moneydesktop.com/api/';
 Atrium.prototype._fetch = function(endpoint, method, params = null) {
   var body = params ? JSON.stringify(params) : null;
 
-  console.log('body', body);
-
   return (fetch(LOCAL_URL + endpoint, {
     method,
     body,
@@ -75,62 +73,71 @@ Atrium.prototype.listCredentials = function(guid) {
 };
 
 //Members
-Atrium.prototype.listMember = function() {
+Atrium.prototype.listMember = function(userGuid) {
   return this._fetch(`users/${userGuid}/members`, 'GET');
 };
 
-Atrium.prototype.createMember = function(user) {
+Atrium.prototype.createMember = function(userGuid, user) {
   return this._fetch(`users/${userGuid}/members`, 'POST', member);
 };
 
-Atrium.prototype.readMember = function(guid) {
+Atrium.prototype.readMember = function(userGuid, guid) {
   return this._fetch(`users/${userGuid}/members/${guid}`, 'GET');
 };
 
-Atrium.prototype.updateMember = function(member) {
+Atrium.prototype.updateMember = function(userGuid, member) {
   return this._fetch(`users/${userGuid}/members/${member.guid}`, 'PUT', { member });
 };
 
-Atrium.prototype.deleteMember = function(member) {
+Atrium.prototype.deleteMember = function(userGuid, member) {
   return this._fetch(`users/${userGuid}/members/${member.guid}`, 'DELETE');
 };
 
-Atrium.prototype.aggregateMember = function(guid) {
+Atrium.prototype.aggregateMember = function(userGuid, guid) {
   return this._fetch(`users/${userGuid}/members/${guid}/aggregate`, 'GET');
 };
 
-Atrium.prototype.resumeMemberAggregation = function(guid) {
+Atrium.prototype.resumeMemberAggregation = function(userGuid, guid) {
   return this._fetch(`users/${userGuid}/members/${guid}/resume`, 'GET');
 };
 
-Atrium.prototype.listMemberChallenges = function(guid) {
+Atrium.prototype.listMemberChallenges = function(userGuid, guid) {
   return this._fetch(`users/${userGuid}/members/${guid}/challenges`, 'GET');
 };
 
-Atrium.prototype.checkMemberStatus = function(guid) {
+Atrium.prototype.checkMemberStatus = function(userGuid, guid) {
   return this._fetch(`users/${userGuid}/members/${guid}/status`, 'GET');
 };
 
 //Accounts
-Atrium.prototype.listAccounts = function() {
+Atrium.prototype.listAccounts = function(userGuid) {
   return this._fetch(`users/${userGuid}/accounts`, 'GET');
 };
 
-Atrium.prototype.readAccount = function(guid) {
+Atrium.prototype.readAccount = function(userGuid, guid) {
   return this._fetch(`users/${userGuid}/accounts/${guid}`, 'GET');
 };
 
-Atrium.prototype.listAccountTransactions = function(guid) {
+Atrium.prototype.listAccountTransactions = function(userGuid, guid) {
   return this._fetch(`users/${userGuid}/accounts/${guid}/transactions`, 'GET');
 };
 
 //Holdings
-Atrium.prototype.listHoldings = function() {
+Atrium.prototype.listHoldings = function(userGuid) {
   return this._fetch(`users/${userGuid}/holdings`, 'GET');
 };
 
-Atrium.prototype.readHolding = function(guid) {
+Atrium.prototype.readHolding = function(userGuid, guid) {
   return this._fetch(`users/${userGuid}/holdings/${guid}`, 'GET');
+};
+
+//Transactions
+Atrium.prototype.listTransactions = function(userGuid) {
+  return this._fetch(`users/${userGuid}/transactions`, 'GET');
+};
+
+Atrium.prototype.readTransaction = function(userGuid, guid) {
+  return this._fetch(`users/${userGuid}/transactions/${guid}`, 'GET');
 };
 
 module.exports = Atrium;
