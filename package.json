@@ -1,5 +1,5 @@
 {
-  "name": "atrium",
+  "name": "mx-atrium",
   "version": "1.0.0",
   "description": "Node wrapper for the MX Atrium API",
   "main": "index.js",
