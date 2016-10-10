@@ -1,12 +1,11 @@
 var fetch = require('node-fetch');
 
 var Atrium  = function(apiKey, clientID, url = 'https://sand-harvey.moneydesktop.com/api/') {
+  this.url = url;
   this.credentials = {
       clientID,
       apiKey
   };
-
-  this.url = url;
 }
 
 
@@ -33,8 +32,9 @@ Atrium.prototype._fetch = function(endpoint, method, params = null) {
       throw error;
     }
   })
-  .catch(function(err) {
-    return err
+  .catch(function(error) {
+    console.log('catch', error);
+    return error
   });
 };
 
@@ -44,19 +44,20 @@ Atrium.prototype.listUsers = function() {
 };
 
 Atrium.prototype.createUser = function(user) {
-  return this._fetch('users', 'POST', user);
+  return this._fetch('users', 'POST', { user });
 };
 
-Atrium.prototype.readUser = function(guid) {
-  return this._fetch('users/' + guid, 'GET');
+Atrium.prototype.readUser = function(userGuid) {
+  return this._fetch('users/' + userGuid, 'GET');
 };
 
+//TODO: Fix
 Atrium.prototype.updateUser = function(user) {
   return this._fetch('users/' + user.guid, 'PUT', { user });
 };
 
-Atrium.prototype.deleteUser = function(user) {
-  return this._fetch('users/' + user.guid, 'DELETE');
+Atrium.prototype.deleteUser = function(userGuid) {
+  return this._fetch('users/' + userGuid, 'DELETE');
 };
 
 //Institutions
@@ -64,50 +65,51 @@ Atrium.prototype.listInstitutions = function() {
   return this._fetch('institutions', 'GET');
 };
 
-Atrium.prototype.readInstitution = function(guid) {
-  return this._fetch('institutions/' + guid, 'GET');
+Atrium.prototype.readInstitution = function(institutionGuid) {
+  return this._fetch('institutions/' + institutionGuid, 'GET');
 };
 
 //Credentials
-Atrium.prototype.listCredentials = function(guid) {
-  return this._fetch(`institutions/${guid}/credentials`, 'GET');
+Atrium.prototype.listCredentials = function(institutionGuid) {
+  return this._fetch(`institutions/${institutionGuid}/credentials`, 'GET');
 };
 
 //Members
-Atrium.prototype.listMember = function(userGuid) {
+Atrium.prototype.listMembers = function(userGuid) {
   return this._fetch(`users/${userGuid}/members`, 'GET');
 };
 
-Atrium.prototype.createMember = function(userGuid, user) {
-  return this._fetch(`users/${userGuid}/members`, 'POST', member);
+Atrium.prototype.createMember = function(userGuid, member) {
+  return this._fetch(`users/${userGuid}/members`, 'POST', { member });
 };
 
-Atrium.prototype.readMember = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/members/${guid}`, 'GET');
+Atrium.prototype.readMember = function(userGuid, memberGuid) {
+  return this._fetch(`users/${userGuid}/members/${memberGuid}`, 'GET');
 };
 
 Atrium.prototype.updateMember = function(userGuid, member) {
   return this._fetch(`users/${userGuid}/members/${member.guid}`, 'PUT', { member });
 };
 
-Atrium.prototype.deleteMember = function(userGuid, member) {
-  return this._fetch(`users/${userGuid}/members/${member.guid}`, 'DELETE');
+Atrium.prototype.deleteMember = function(userGuid, memberGuid) {
+  return this._fetch(`users/${userGuid}/members/${memberGuid}`, 'DELETE');
 };
 
-Atrium.prototype.aggregateMember = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/members/${guid}/aggregate`, 'GET');
+Atrium.prototype.aggregateMember = function(userGuid, memberGuid) {
+  return this._fetch(`users/${userGuid}/members/${memberGuid}/aggregate`, 'POST');
 };
 
-Atrium.prototype.resumeMemberAggregation = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/members/${guid}/resume`, 'GET');
+//TODO: Fix
+Atrium.prototype.resumeMemberAggregation = function(userGuid, member) {
+  return this._fetch(`users/${userGuid}/members/${member.guid}/resume`, 'PUT', { member });
 };
 
-Atrium.prototype.listMemberChallenges = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/members/${guid}/challenges`, 'GET');
+Atrium.prototype.listMemberChallenges = function(userGuid, memberGuid) {
+  return this._fetch(`users/${userGuid}/members/${memberGuid}/challenges`, 'GET');
 };
 
-Atrium.prototype.checkMemberStatus = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/members/${guid}/status`, 'GET');
+Atrium.prototype.checkMemberStatus = function(userGuid, memberGuid) {
+  return this._fetch(`users/${userGuid}/members/${memberGuid}/status`, 'GET');
 };
 
 //Accounts
@@ -115,12 +117,12 @@ Atrium.prototype.listAccounts = function(userGuid) {
   return this._fetch(`users/${userGuid}/accounts`, 'GET');
 };
 
-Atrium.prototype.readAccount = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/accounts/${guid}`, 'GET');
+Atrium.prototype.readAccount = function(userGuid, accountGuid) {
+  return this._fetch(`users/${userGuid}/accounts/${accountGuid}`, 'GET');
 };
 
-Atrium.prototype.listAccountTransactions = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/accounts/${guid}/transactions`, 'GET');
+Atrium.prototype.listAccountTransactions = function(userGuid, accountGuid) {
+  return this._fetch(`users/${userGuid}/accounts/${accountGuid}/transactions`, 'GET');
 };
 
 //Holdings
@@ -128,8 +130,8 @@ Atrium.prototype.listHoldings = function(userGuid) {
   return this._fetch(`users/${userGuid}/holdings`, 'GET');
 };
 
-Atrium.prototype.readHolding = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/holdings/${guid}`, 'GET');
+Atrium.prototype.readHolding = function(userGuid, holdingGuid) {
+  return this._fetch(`users/${userGuid}/holdings/${holdingGuid}`, 'GET');
 };
 
 //Transactions
@@ -137,8 +139,8 @@ Atrium.prototype.listTransactions = function(userGuid) {
   return this._fetch(`users/${userGuid}/transactions`, 'GET');
 };
 
-Atrium.prototype.readTransaction = function(userGuid, guid) {
-  return this._fetch(`users/${userGuid}/transactions/${guid}`, 'GET');
+Atrium.prototype.readTransaction = function(userGuid, transactionGuid) {
+  return this._fetch(`users/${userGuid}/transactions/${transactionGuid}`, 'GET');
 };
 
 module.exports = Atrium;
