@@ -1,16 +1,16 @@
-var fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
-var Atrium  = function(apiKey, clientID, url = 'https://sand-harvey.moneydesktop.com/api/') {
+const Atrium  = function(apiKey, clientID, url = 'https://sand-harvey.moneydesktop.com/api/') {
   this.url = url;
   this.credentials = {
-      clientID,
-      apiKey
+    apiKey,
+    clientID
   };
-}
+};
 
 
 Atrium.prototype._fetch = function(endpoint, method, params = null) {
-  var body = params ? JSON.stringify(params) : null;
+  const body = params ? JSON.stringify(params) : null;
 
   return (fetch(this.url + endpoint, {
     method,
@@ -26,15 +26,14 @@ Atrium.prototype._fetch = function(endpoint, method, params = null) {
     if (response.status >= 200 && response.status < 300) {
       return response.json();
     } else {
-      var error = new Error(response.statusText);
+      const error = new Error(response.statusText);
 
       error.response = response;
       throw error;
     }
   })
   .catch(function(error) {
-    console.log('catch', error);
-    return error
+    return error;
   });
 };
 
