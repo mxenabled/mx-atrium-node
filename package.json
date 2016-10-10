@@ -1,13 +1,17 @@
 {
   "name": "mx-atrium",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Node wrapper for the MX Atrium API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jason Olson",
-  "license": "ISC",
+  "author": "MX",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moneydesktop/mx-react-node/issues"
+  },
+  "homepage": "http://moneydesktop.github.io/mx-atrium-node/",
   "dependencies": {
     "node-fetch": "^1.6.3"
   },
