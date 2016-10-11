@@ -57,16 +57,16 @@ const Atrium = function(apiKey, clientID, url) {
   };
 
   //Institutions
-  this.listInstitutions = function() {
+  this.listInstitutions = () => {
     return this._fetchUtility('institutions', 'GET');
   };
 
-  this.readInstitution = function(institutionGuid) {
+  this.readInstitution = institutionGuid => {
     return this._fetchUtility('institutions/' + institutionGuid, 'GET');
   };
 
   //Credentials
-  this.listCredentials = function(institutionGuid) {
+  this.listCredentials = institutionGuid => {
     return this._fetchUtility(`institutions/${institutionGuid}/credentials`, 'GET');
   };
 
