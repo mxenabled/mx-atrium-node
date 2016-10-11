@@ -108,15 +108,15 @@ const Atrium = function(apiKey, clientID, url) {
   };
 
   //Accounts
-  this.listAccounts = function(userGuid) {
+  this.listAccounts = userGuid => {
     return this._fetchUtility(`users/${userGuid}/accounts`, 'GET');
   };
 
-  this.readAccount = function(userGuid, accountGuid) {
+  this.readAccount = (userGuid, accountGuid) => {
     return this._fetchUtility(`users/${userGuid}/accounts/${accountGuid}`, 'GET');
   };
 
-  this.listAccountTransactions = function(userGuid, accountGuid) {
+  this.listAccountTransactions = (userGuid, accountGuid) => {
     return this._fetchUtility(`users/${userGuid}/accounts/${accountGuid}/transactions`, 'GET');
   };
 
