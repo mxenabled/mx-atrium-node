@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const Atrium  = function(apiKey, clientID, url) {
+const Atrium = function(apiKey, clientID, url) {
   this.url = url;
   this.credentials = {
     apiKey,
