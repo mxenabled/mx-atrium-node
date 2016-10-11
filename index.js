@@ -71,39 +71,39 @@ const Atrium = function(apiKey, clientID, url) {
   };
 
   //Members
-  this.listMembers = function(userGuid) {
+  this.listMembers = userGuid => {
     return this._fetchUtility(`users/${userGuid}/members`, 'GET');
   };
 
-  this.createMember = function(userGuid, member) {
+  this.createMember = (userGuid, member) => {
     return this._fetchUtility(`users/${userGuid}/members`, 'POST', { member });
   };
 
-  this.readMember = function(userGuid, memberGuid) {
+  this.readMember = (userGuid, memberGuid) => {
     return this._fetchUtility(`users/${userGuid}/members/${memberGuid}`, 'GET');
   };
 
-  this.updateMember = function(userGuid, member) {
+  this.updateMember = (userGuid, member) => {
     return this._fetchUtility(`users/${userGuid}/members/${member.guid}`, 'PUT', { member });
   };
 
-  this.deleteMember = function(userGuid, memberGuid) {
+  this.deleteMember = (userGuid, memberGuid) => {
     return this._fetchUtility(`users/${userGuid}/members/${memberGuid}`, 'DELETE');
   };
 
-  this.aggregateMember = function(userGuid, memberGuid) {
+  this.aggregateMember = (userGuid, memberGuid) => {
     return this._fetchUtility(`users/${userGuid}/members/${memberGuid}/aggregate`, 'POST');
   };
 
-  this.resumeMemberAggregation = function(userGuid, member) {
+  this.resumeMemberAggregation = (userGuid, member) => {
     return this._fetchUtility(`users/${userGuid}/members/${member.guid}/resume`, 'PUT', { member });
   };
 
-  this.listMemberChallenges = function(userGuid, memberGuid) {
+  this.listMemberChallenges = (userGuid, memberGuid) => {
     return this._fetchUtility(`users/${userGuid}/members/${memberGuid}/challenges`, 'GET');
   };
 
-  this.checkMemberStatus = function(userGuid, memberGuid) {
+  this.checkMemberStatus = (userGuid, memberGuid) => {
     return this._fetchUtility(`users/${userGuid}/members/${memberGuid}/status`, 'GET');
   };
 
