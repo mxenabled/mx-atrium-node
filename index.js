@@ -121,20 +121,20 @@ const Atrium = function(apiKey, clientID, url) {
   };
 
   //Holdings
-  this.listHoldings = function(userGuid) {
+  this.listHoldings = userGuid => {
     return this._fetchUtility(`users/${userGuid}/holdings`, 'GET');
   };
 
-  this.readHolding = function(userGuid, holdingGuid) {
+  this.readHolding = (userGuid, holdingGuid) => {
     return this._fetchUtility(`users/${userGuid}/holdings/${holdingGuid}`, 'GET');
   };
 
   //Transactions
-  this.listTransactions = function(userGuid) {
+  this.listTransactions = userGuid => {
     return this._fetchUtility(`users/${userGuid}/transactions`, 'GET');
   };
 
-  this.readTransaction = function(userGuid, transactionGuid) {
+  this.readTransaction = (userGuid, transactionGuid) => {
     return this._fetchUtility(`users/${userGuid}/transactions/${transactionGuid}`, 'GET');
   };
 };
