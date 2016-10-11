@@ -9,7 +9,7 @@ const Atrium = function(apiKey, clientID, url) {
   };
 
   // Fetch utility
-  this._fetchUtility = function(endpoint, method, params = null) {
+  this._fetchUtility = (endpoint, method, params = null) => {
     const body = params ? JSON.stringify(params) : null;
 
     return (fetch(this.url + endpoint, {
@@ -22,7 +22,7 @@ const Atrium = function(apiKey, clientID, url) {
         'MX-CLIENT-ID': this.credentials.clientID
       }
     }))
-    .then(function(response) {
+    .then(response => {
       if (response.status >= 200 && response.status < 300) {
         return response.json();
       } else {
@@ -32,7 +32,7 @@ const Atrium = function(apiKey, clientID, url) {
         throw error;
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       return error;
     });
   };
