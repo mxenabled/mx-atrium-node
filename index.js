@@ -7,137 +7,136 @@ const Atrium = function(apiKey, clientID, url) {
     apiKey,
     clientID
   };
-};
 
-Atrium.prototype._fetch = function(endpoint, method, params = null) {
-  const body = params ? JSON.stringify(params) : null;
+  // Fetch utility
+  this._fetchUtility = function(endpoint, method, params = null) {
+    const body = params ? JSON.stringify(params) : null;
 
-  return (fetch(this.url + endpoint, {
-    method,
-    body,
-    headers: {
-      'Accept': 'application/vnd.mx.atrium.v1+json',
-      'Content-Type': 'application/json',
-      'MX-API-KEY': this.credentials.apiKey,
-      'MX-CLIENT-ID': this.credentials.clientID
-    }
-  }))
-  .then(function(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response.json();
-    } else {
-      const error = new Error(response.statusText);
+    return (fetch(this.url + endpoint, {
+      method,
+      body,
+      headers: {
+        'Accept': 'application/vnd.mx.atrium.v1+json',
+        'Content-Type': 'application/json',
+        'MX-API-KEY': this.credentials.apiKey,
+        'MX-CLIENT-ID': this.credentials.clientID
+      }
+    }))
+    .then(function(response) {
+      if (response.status >= 200 && response.status < 300) {
+        return response.json();
+      } else {
+        const error = new Error(response.statusText);
 
-      error.response = response;
-      throw error;
-    }
-  })
-  .catch(function(error) {
-    return error;
-  });
-};
+        error.response = response;
+        throw error;
+      }
+    })
+    .catch(function(error) {
+      return error;
+    });
+  };
 
-//Users
-Atrium.prototype.createUser = function(user) {
-  return this._fetch('users', 'POST', { user });
-};
+  //Users
+  this.createUser = user => {
+    return this._fetchUtility('users', 'POST', { user });
+  };
 
-Atrium.prototype.readUser = function(userGuid) {
-  return this._fetch('users/' + userGuid, 'GET');
-};
+  this.readUser = userGuid => {
+    return this._fetchUtility('users/' + userGuid, 'GET');
+  };
 
-//TODO: Fix
-Atrium.prototype.updateUser = function(updatedUser) {
-  const user = Object.assign({}, updatedUser, { guid: undefined });
+  this.updateUser = updatedUser => {
+    const user = Object.assign({}, updatedUser, { guid: undefined });
 
-  return this._fetch('users/' + updatedUser.guid, 'PUT', { user });
-};
+    return this._fetchUtility('users/' + updatedUser.guid, 'PUT', { user });
+  };
 
-Atrium.prototype.deleteUser = function(userGuid) {
-  return this._fetch('users/' + userGuid, 'DELETE');
-};
+  this.deleteUser = userGuid => {
+    return this._fetchUtility('users/' + userGuid, 'DELETE');
+  };
 
-//Institutions
-Atrium.prototype.listInstitutions = function() {
-  return this._fetch('institutions', 'GET');
-};
+  //Institutions
+  this.listInstitutions = function() {
+    return this._fetchUtility('institutions', 'GET');
+  };
 
-Atrium.prototype.readInstitution = function(institutionGuid) {
-  return this._fetch('institutions/' + institutionGuid, 'GET');
-};
+  this.readInstitution = function(institutionGuid) {
+    return this._fetchUtility('institutions/' + institutionGuid, 'GET');
+  };
 
-//Credentials
-Atrium.prototype.listCredentials = function(institutionGuid) {
-  return this._fetch(`institutions/${institutionGuid}/credentials`, 'GET');
-};
+  //Credentials
+  this.listCredentials = function(institutionGuid) {
+    return this._fetchUtility(`institutions/${institutionGuid}/credentials`, 'GET');
+  };
 
-//Members
-Atrium.prototype.listMembers = function(userGuid) {
-  return this._fetch(`users/${userGuid}/members`, 'GET');
-};
+  //Members
+  this.listMembers = function(userGuid) {
+    return this._fetchUtility(`users/${userGuid}/members`, 'GET');
+  };
 
-Atrium.prototype.createMember = function(userGuid, member) {
-  return this._fetch(`users/${userGuid}/members`, 'POST', { member });
-};
+  this.createMember = function(userGuid, member) {
+    return this._fetchUtility(`users/${userGuid}/members`, 'POST', { member });
+  };
 
-Atrium.prototype.readMember = function(userGuid, memberGuid) {
-  return this._fetch(`users/${userGuid}/members/${memberGuid}`, 'GET');
-};
+  this.readMember = function(userGuid, memberGuid) {
+    return this._fetchUtility(`users/${userGuid}/members/${memberGuid}`, 'GET');
+  };
 
-Atrium.prototype.updateMember = function(userGuid, member) {
-  return this._fetch(`users/${userGuid}/members/${member.guid}`, 'PUT', { member });
-};
+  this.updateMember = function(userGuid, member) {
+    return this._fetchUtility(`users/${userGuid}/members/${member.guid}`, 'PUT', { member });
+  };
 
-Atrium.prototype.deleteMember = function(userGuid, memberGuid) {
-  return this._fetch(`users/${userGuid}/members/${memberGuid}`, 'DELETE');
-};
+  this.deleteMember = function(userGuid, memberGuid) {
+    return this._fetchUtility(`users/${userGuid}/members/${memberGuid}`, 'DELETE');
+  };
 
-Atrium.prototype.aggregateMember = function(userGuid, memberGuid) {
-  return this._fetch(`users/${userGuid}/members/${memberGuid}/aggregate`, 'POST');
-};
+  this.aggregateMember = function(userGuid, memberGuid) {
+    return this._fetchUtility(`users/${userGuid}/members/${memberGuid}/aggregate`, 'POST');
+  };
 
-//TODO: Fix
-Atrium.prototype.resumeMemberAggregation = function(userGuid, member) {
-  return this._fetch(`users/${userGuid}/members/${member.guid}/resume`, 'PUT', { member });
-};
+  this.resumeMemberAggregation = function(userGuid, member) {
+    return this._fetchUtility(`users/${userGuid}/members/${member.guid}/resume`, 'PUT', { member });
+  };
 
-Atrium.prototype.listMemberChallenges = function(userGuid, memberGuid) {
-  return this._fetch(`users/${userGuid}/members/${memberGuid}/challenges`, 'GET');
-};
+  this.listMemberChallenges = function(userGuid, memberGuid) {
+    return this._fetchUtility(`users/${userGuid}/members/${memberGuid}/challenges`, 'GET');
+  };
 
-Atrium.prototype.checkMemberStatus = function(userGuid, memberGuid) {
-  return this._fetch(`users/${userGuid}/members/${memberGuid}/status`, 'GET');
-};
+  this.checkMemberStatus = function(userGuid, memberGuid) {
+    return this._fetchUtility(`users/${userGuid}/members/${memberGuid}/status`, 'GET');
+  };
 
-//Accounts
-Atrium.prototype.listAccounts = function(userGuid) {
-  return this._fetch(`users/${userGuid}/accounts`, 'GET');
-};
+  //Accounts
+  this.listAccounts = function(userGuid) {
+    return this._fetchUtility(`users/${userGuid}/accounts`, 'GET');
+  };
 
-Atrium.prototype.readAccount = function(userGuid, accountGuid) {
-  return this._fetch(`users/${userGuid}/accounts/${accountGuid}`, 'GET');
-};
+  this.readAccount = function(userGuid, accountGuid) {
+    return this._fetchUtility(`users/${userGuid}/accounts/${accountGuid}`, 'GET');
+  };
 
-Atrium.prototype.listAccountTransactions = function(userGuid, accountGuid) {
-  return this._fetch(`users/${userGuid}/accounts/${accountGuid}/transactions`, 'GET');
-};
+  this.listAccountTransactions = function(userGuid, accountGuid) {
+    return this._fetchUtility(`users/${userGuid}/accounts/${accountGuid}/transactions`, 'GET');
+  };
 
-//Holdings
-Atrium.prototype.listHoldings = function(userGuid) {
-  return this._fetch(`users/${userGuid}/holdings`, 'GET');
-};
+  //Holdings
+  this.listHoldings = function(userGuid) {
+    return this._fetchUtility(`users/${userGuid}/holdings`, 'GET');
+  };
 
-Atrium.prototype.readHolding = function(userGuid, holdingGuid) {
-  return this._fetch(`users/${userGuid}/holdings/${holdingGuid}`, 'GET');
-};
+  this.readHolding = function(userGuid, holdingGuid) {
+    return this._fetchUtility(`users/${userGuid}/holdings/${holdingGuid}`, 'GET');
+  };
 
-//Transactions
-Atrium.prototype.listTransactions = function(userGuid) {
-  return this._fetch(`users/${userGuid}/transactions`, 'GET');
-};
+  //Transactions
+  this.listTransactions = function(userGuid) {
+    return this._fetchUtility(`users/${userGuid}/transactions`, 'GET');
+  };
 
-Atrium.prototype.readTransaction = function(userGuid, transactionGuid) {
-  return this._fetch(`users/${userGuid}/transactions/${transactionGuid}`, 'GET');
+  this.readTransaction = function(userGuid, transactionGuid) {
+    return this._fetchUtility(`users/${userGuid}/transactions/${transactionGuid}`, 'GET');
+  };
 };
 
 module.exports = Atrium;
