@@ -9,8 +9,6 @@ const Atrium = function(apiKey, clientID, url) {
   };
 };
 
-
-
 Atrium.prototype._fetch = function(endpoint, method, params = null) {
   const body = params ? JSON.stringify(params) : null;
 
@@ -40,10 +38,6 @@ Atrium.prototype._fetch = function(endpoint, method, params = null) {
 };
 
 //Users
-Atrium.prototype.listUsers = function() {
-  return this._fetch('users', 'GET');
-};
-
 Atrium.prototype.createUser = function(user) {
   return this._fetch('users', 'POST', { user });
 };
@@ -53,8 +47,10 @@ Atrium.prototype.readUser = function(userGuid) {
 };
 
 //TODO: Fix
-Atrium.prototype.updateUser = function(user) {
-  return this._fetch('users/' + user.guid, 'PUT', { user });
+Atrium.prototype.updateUser = function(updatedUser) {
+  const user = Object.assign({}, updatedUser, { guid: undefined });
+
+  return this._fetch('users/' + updatedUser.guid, 'PUT', { user });
 };
 
 Atrium.prototype.deleteUser = function(userGuid) {
