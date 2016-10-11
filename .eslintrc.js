@@ -6,6 +6,7 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "rules": {
+        "no-multi-spaces": "error",
         "no-var": [
           "error"
         ],

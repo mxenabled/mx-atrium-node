@@ -1,4 +1,5 @@
-const fetch = require('node-fetch');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 const Atrium = function(apiKey, clientID, url) {
   this.url = url;
@@ -7,6 +8,7 @@ const Atrium = function(apiKey, clientID, url) {
     clientID
   };
 };
+
 
 
 Atrium.prototype._fetch = function(endpoint, method, params = null) {

@@ -13,7 +13,8 @@
   },
   "homepage": "http://moneydesktop.github.io/mx-atrium-node/",
   "dependencies": {
-    "node-fetch": "^1.6.3"
+    "es6-promise": "^4.0.5",
+    "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
     "eslint": "^3.7.1"
