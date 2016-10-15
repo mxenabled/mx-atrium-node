@@ -212,8 +212,6 @@ Atrium.Client.prototype.updateUser = function (request) {
   delete user.id;
   delete user.logged_in_at;
 
-  console.log('user', user);
-
   return this._fetchUtility('users/' + request.body.user.guid, 'PUT', { user });
 };
 
