@@ -5,7 +5,8 @@ const Atrium = module.exports = {};
 
 Atrium.environments = {
   local: 'http://localhost:3000',
-  sand: 'https://sand-harvey.moneydesktop.com'
+  sand: 'https://sand-harvey.moneydesktop.com',
+  qa: 'https://qa-harvey.moneydesktop.com'
 };
 
 Atrium.endpoints = [
@@ -13,139 +14,117 @@ Atrium.endpoints = [
   {
     method: 'post',
     url: '/users',
-    clientMethod: 'createUser',
-    key: 'user'
+    clientMethod: 'createUser'
   },
   {
     method: 'get',
     url: '/users/:userGuid',
-    clientMethod: 'readUser',
-    key: 'user'
+    clientMethod: 'readUser'
   },
   {
     method: 'put',
     url: '/users/:userGuid',
-    clientMethod: 'updateUser',
-    key: 'user'
+    clientMethod: 'updateUser'
   },
   {
     method: 'delete',
     url: '/users/:userGuid',
-    clientMethod: 'deleteUser',
-    key: null
+    clientMethod: 'deleteUser'
   },
   //Institutions
   {
     method: 'get',
     url: '/institutions',
-    clientMethod: 'listInstitutions',
-    key: 'institutions'
+    clientMethod: 'listInstitutions'
   },
   //Credentials
   {
     method: 'get',
     url: '/institutions/:institutionCode/credentials',
-    clientMethod: 'listCredentials',
-    key: 'credentials'
+    clientMethod: 'listCredentials'
   },
   //Members
   {
     method: 'get',
     url: '/users/:userGuid/members',
-    clientMethod: 'listMembers',
-    key: 'members'
+    clientMethod: 'listMembers'
   },
   {
     method: 'post',
     url: '/users/:userGuid/members',
-    clientMethod: 'createMember',
-    key: 'member'
+    clientMethod: 'createMember'
   },
   {
     method: 'get',
     url: '/users/:userGuid/members/:memberGuid',
-    clientMethod: 'readMember',
-    key: 'member'
+    clientMethod: 'readMember'
   },
   {
     method: 'put',
     url: '/users/:userGuid/members/:memberGuid',
-    clientMethod: 'updateMember',
-    key: 'member'
+    clientMethod: 'updateMember'
   },
   {
     method: 'delete',
     url: '/users/:userGuid/members/:memberGuid',
-    clientMethod: 'deleteMember',
-    key: 'member'
+    clientMethod: 'deleteMember'
   },
   {
     method: 'post',
     url: '/users/:userGuid/members/:memberGuid/aggregate',
-    clientMethod: 'aggregateMember',
-    key: null
+    clientMethod: 'aggregateMember'
   },
   {
     method: 'put',
     url: '/users/:userGuid/members/:memberGuid/resume',
-    clientMethod: 'resumeMemberAggregation',
-    key: null
+    clientMethod: 'resumeMemberAggregation'
   },
   {
     method: 'get',
     url: '/users/:userGuid/members/:memberGuid/challenges',
-    clientMethod: 'listMemberChallenges',
-    key: 'credentials'
+    clientMethod: 'listMemberChallenges'
   },
   {
     method: 'get',
     url: '/users/:userGuid/members/:memberGuid/status',
-    clientMethod: 'checkMemberStatus',
-    key: 'member'
+    clientMethod: 'checkMemberStatus'
   },
   {
     method: 'get',
     url: '/users/:userGuid/accounts',
-    clientMethod: 'listAccounts',
-    key: 'accounts'
+    clientMethod: 'listAccounts'
   },
   {
     method: 'get',
     url: '/users/:userGuid/accounts/:accountGuid',
-    clientMethod: 'readAccount',
-    key: 'account'
+    clientMethod: 'readAccount'
   },
   {
     method: 'get',
     url: '/users/:userGuid/accounts/:accountGuid/transactions',
-    clientMethod: 'listAccountTransactions',
-    key: 'transactions'
+    clientMethod: 'listAccountTransactions'
   },
   //Holdings
   {
     method: 'get',
     url: '/users/:userGuid/holdings',
-    clientMethod: 'listHoldings',
-    key: 'holdings'
+    clientMethod: 'listHoldings'
   },
   {
     method: 'get',
     url: '/users/:userGuid/holdings/:holdingGuid',
-    clientMethod: 'readHolding',
-    key: 'holding'
+    clientMethod: 'readHolding'
   },
   //Transactions
   {
     method: 'get',
     url: '/users/:userGuid/transactions',
-    clientMethod: 'listTransactions',
-    key: 'transactions'
+    clientMethod: 'listTransactions'
   },
   {
     method: 'get',
     url: '/users/:userGuid/transactions/:transactionGuid',
-    clientMethod: 'readTransaction',
-    key: 'transaction'
+    clientMethod: 'readTransaction'
   },
 
 ];
@@ -159,7 +138,7 @@ Atrium.Client = function(apiKey, clientID, url) {
     throw new Error('Missing API key');
   }
 
-  if (url !== Atrium.environments.sand && url !== Atrium.environments.local) {
+  if (url !== Atrium.environments.qa && url !== Atrium.environments.sand && url !== Atrium.environments.local) {
     throw new Error('Invalid environment');
   }
 
@@ -183,17 +162,11 @@ Atrium.Client.prototype._fetchUtility = function(endpoint, method, params = null
     }
   }))
   .then(response => {
-    if (response.status >= 200 && response.status < 300) {
+    if (response.ok) {
       return response.json();
     } else {
-      const error = new Error(response.statusText);
-
-      error.response = response;
-      throw error;
+      return response;
     }
-  })
-  .catch(error => {
-    return error;
   });
 };
 
