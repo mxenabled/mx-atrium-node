@@ -5,7 +5,8 @@ const Atrium = module.exports = {};
 
 Atrium.environments = {
   local: 'http://localhost:3000',
-  sand: 'https://sand-harvey.moneydesktop.com'
+  sand: 'https://sand-harvey.moneydesktop.com',
+  qa: 'https://qa-harvey.moneydesktop.com'
 };
 
 Atrium.endpoints = [
@@ -159,7 +160,7 @@ Atrium.Client = function(apiKey, clientID, url) {
     throw new Error('Missing API key');
   }
 
-  if (url !== Atrium.environments.sand && url !== Atrium.environments.local) {
+  if (url !== Atrium.environments.qa && url !== Atrium.environments.sand && url !== Atrium.environments.local) {
     throw new Error('Invalid environment');
   }
 
@@ -183,17 +184,11 @@ Atrium.Client.prototype._fetchUtility = function(endpoint, method, params = null
     }
   }))
   .then(response => {
-    if (response.status >= 200 && response.status < 300) {
+    if (response.ok) {
       return response.json();
     } else {
-      const error = new Error(response.statusText);
-
-      error.response = response;
-      throw error;
+      return response;
     }
-  })
-  .catch(error => {
-    return error;
   });
 };
 
