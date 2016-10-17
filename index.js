@@ -125,11 +125,10 @@ Atrium.endpoints = [
     method: 'get',
     url: '/users/:userGuid/transactions/:transactionGuid',
     clientMethod: 'readTransaction'
-  },
-
+  }
 ];
 
-Atrium.Client = function(apiKey, clientID, url) {
+Atrium.Client = function (apiKey, clientID, url) {
   if (!clientID) {
     throw new Error('Missing client ID');
   }
@@ -148,7 +147,7 @@ Atrium.Client = function(apiKey, clientID, url) {
 };
 
 //Fetch utility
-Atrium.Client.prototype._fetchUtility = function(endpoint, method, params = null) {
+Atrium.Client.prototype._fetchUtility = function (endpoint, method, params = null) {
   const body = params ? JSON.stringify(params) : null;
 
   return (fetch(this.url + '/' + endpoint, {
@@ -171,100 +170,104 @@ Atrium.Client.prototype._fetchUtility = function(endpoint, method, params = null
 };
 
 //Users
-Atrium.Client.prototype.createUser = function(request) {
+Atrium.Client.prototype.createUser = function (request) {
   return this._fetchUtility('users', 'POST', request.body);
 };
 
-Atrium.Client.prototype.readUser = function(request) {
+Atrium.Client.prototype.readUser = function (request) {
   return this._fetchUtility('users/' + request.params.userGuid, 'GET');
 };
 
-Atrium.Client.prototype.updateUser = function(request) {
-  const user = Object.assign({}, request.body.user, { guid: undefined, id: undefined, logged_in_at: undefined });
+Atrium.Client.prototype.updateUser = function (request) {
+  const user = Object.assign({}, request.body.user);
+
+  delete user.guid;
+  delete user.id;
+  delete user.logged_in_at;
 
   return this._fetchUtility('users/' + request.body.user.guid, 'PUT', { user });
 };
 
-Atrium.Client.prototype.deleteUser = function(request) {
+Atrium.Client.prototype.deleteUser = function (request) {
   return this._fetchUtility('users/' + request.params.userGuid, 'DELETE');
 };
 
 //Institutions
-Atrium.Client.prototype.listInstitutions = function() {
+Atrium.Client.prototype.listInstitutions = function () {
   return this._fetchUtility('institutions', 'GET');
 };
 
 //Credentials
 //Fix Institution param
-Atrium.Client.prototype.listCredentials = function(request) {
+Atrium.Client.prototype.listCredentials = function (request) {
   return this._fetchUtility(`institutions/${request.params.institutionCode}/credentials`, 'GET');
 };
 
 //Members
 //Fix pagination error
-Atrium.Client.prototype.listMembers = function(request) {
+Atrium.Client.prototype.listMembers = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members`, 'GET');
 };
 
-Atrium.Client.prototype.createMember = function(request) {
+Atrium.Client.prototype.createMember = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members`, 'POST', request.body);
 };
 
-Atrium.Client.prototype.readMember = function(request) {
+Atrium.Client.prototype.readMember = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}`, 'GET');
 };
 
-Atrium.Client.prototype.updateMember = function(request) {
+Atrium.Client.prototype.updateMember = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}`, 'PUT', request.body);
 };
 
-Atrium.Client.prototype.deleteMember = function(request) {
+Atrium.Client.prototype.deleteMember = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}`, 'DELETE');
 };
 
-Atrium.Client.prototype.aggregateMember = function(request) {
+Atrium.Client.prototype.aggregateMember = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/aggregate`, 'POST');
 };
 
-Atrium.Client.prototype.resumeMemberAggregation = function(request) {
+Atrium.Client.prototype.resumeMemberAggregation = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/resume`, 'PUT', request.body);
 };
 
-Atrium.Client.prototype.listMemberChallenges = function(request) {
+Atrium.Client.prototype.listMemberChallenges = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/challenges`, 'GET');
 };
 
-Atrium.Client.prototype.checkMemberStatus = function(request) {
+Atrium.Client.prototype.checkMemberStatus = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/status`, 'GET');
 };
 
 //Accounts
-Atrium.Client.prototype.listAccounts = function(request) {
+Atrium.Client.prototype.listAccounts = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/accounts`, 'GET');
 };
 
-Atrium.Client.prototype.readAccount = function(request) {
+Atrium.Client.prototype.readAccount = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/accounts/${request.params.accountGuid}`, 'GET');
 };
 
-Atrium.Client.prototype.listAccountTransactions = function(request) {
+Atrium.Client.prototype.listAccountTransactions = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/accounts/${request.params.accountGuid}/transactions`, 'GET');
 };
 
 //Holdings
-Atrium.Client.prototype.listHoldings = function(request) {
+Atrium.Client.prototype.listHoldings = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/holdings`, 'GET');
 };
 
-Atrium.Client.prototype.readHolding = function(request) {
+Atrium.Client.prototype.readHolding = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/holdings/${request.params.holdingGuid}`, 'GET');
 };
 
 //Transactions
-Atrium.Client.prototype.listTransactions = function(request) {
+Atrium.Client.prototype.listTransactions = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/transactions`, 'GET');
 };
 
-Atrium.Client.prototype.readTransaction = function(request) {
+Atrium.Client.prototype.readTransaction = function (request) {
   return this._fetchUtility(`users/${request.params.userGuid}/transactions/${request.params.transactionGuid}`, 'GET');
 };
