@@ -4,8 +4,8 @@ require('isomorphic-fetch');
 const Atrium = module.exports = {};
 
 Atrium.environments = {
-  local: 'http://localhost:3000/api',
-  sand: 'https://sand-harvey.moneydesktop.com/api'
+  local: 'http://localhost:3000',
+  sand: 'https://sand-harvey.moneydesktop.com'
 };
 
 Atrium.endpoints = [
