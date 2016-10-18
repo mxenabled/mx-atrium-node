@@ -1,5 +1,5 @@
 # MX Atrium
-[![npm version](https://badge.fury.io/js/mx-atrium.svg)](http://badge.fury.io/js/mx-atrium)
+[![npm version](https://badge.fury.io/js/mx-atrium.svg)](http://badge.fury.io/js/mx-atrium) [![Build Status](https://travis-ci.org/mxenabled/mx-atrium-node.svg?branch=master)](https://travis-ci.org/mxenabled/mx-atrium-node)
 
 ## Description
 This is a Node wrapper for the [MX Atrium API](https://atrium.mx.com). It is intended to be used as a helper for the implementation of a proxy server. To get an API key and Client ID, [click here](https://atrium.mx.com/developers/sign_up).
