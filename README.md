@@ -2,7 +2,7 @@
 [![npm version](https://badge.fury.io/js/mx-atrium.svg)](http://badge.fury.io/js/mx-atrium)
 
 ## Description
-This is a Node wrapper for the MX Atrium API. It is intended to be used as a helper for the implementation of a proxy server.
+This is a Node wrapper for the [MX Atrium API](https://atrium.mx.com). It is intended to be used as a helper for the implementation of a proxy server. To get an API key and Client ID, [click here](https://atrium.mx.com/developers/sign_up).
 
 ## Installation
 ```
