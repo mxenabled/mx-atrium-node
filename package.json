@@ -9,9 +9,9 @@
   "author": "MX",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/moneydesktop/mx-react-node/issues"
+    "url": "https://github.com/mxenabled/mx-atrium-node/issues"
   },
-  "homepage": "http://moneydesktop.github.io/mx-atrium-node/",
+  "homepage": "https://github.com/mxenabled/mx-atrium-node",
   "dependencies": {
     "es6-promise": "^4.0.5",
     "isomorphic-fetch": "^2.2.1"
