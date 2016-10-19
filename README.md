@@ -26,6 +26,10 @@ app.get('/institutions', (request, response) => {
 });
 ```
 
+For a complete express.js server example, [click here](https://github.com/mxenabled/mx-atrium-express).
+
+## Helpers
+
 There are two constants returned with the Atrium instance, `endpoints` and `environments`.
 
 #### Atrium.environments
