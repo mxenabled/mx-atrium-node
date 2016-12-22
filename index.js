@@ -5,11 +5,17 @@ const Atrium = module.exports = {};
 
 Atrium.environments = {
   local: 'http://localhost:3000',
-  sand: 'https://sand-harvey.moneydesktop.com',
-  qa: 'https://qa-harvey.moneydesktop.com'
+  sand: 'https://vestibule.mx.com/',
+  qa: 'https://atrium.mx.com/'
 };
 
 Atrium.endpoints = [
+  //MX Connect
+  {
+    method: 'post',
+    url: '/users/:userGuid/connect_widget_url',
+    clientMethod: 'createUser'
+  },
   //Users
   {
     method: 'post',
