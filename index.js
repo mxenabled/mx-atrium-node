@@ -175,6 +175,11 @@ Atrium.Client.prototype._fetchUtility = function (endpoint, method, params = nul
   });
 };
 
+//MX Connect
+Atrium.Client.prototype.getConnectWidgetUrl = function (request) {
+  return this._fetchUtility(`users/${request.params.userGuid}/connect_widget_url`, 'POST');
+};
+
 //Users
 Atrium.Client.prototype.createUser = function (request) {
   return this._fetchUtility('users', 'POST', request.body);
