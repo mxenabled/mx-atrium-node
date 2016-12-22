@@ -5,8 +5,8 @@ const Atrium = module.exports = {};
 
 Atrium.environments = {
   local: 'http://localhost:3000',
-  sand: 'https://vestibule.mx.com/',
-  qa: 'https://atrium.mx.com/'
+  development: 'https://vestibule.mx.com/',
+  production: 'https://atrium.mx.com/'
 };
 
 Atrium.endpoints = [
@@ -14,7 +14,7 @@ Atrium.endpoints = [
   {
     method: 'post',
     url: '/users/:userGuid/connect_widget_url',
-    clientMethod: 'createUser'
+    clientMethod: 'getConnectWidgetUrl'
   },
   //Users
   {
@@ -143,7 +143,7 @@ Atrium.Client = function (apiKey, clientID, url) {
     throw new Error('Missing API key');
   }
 
-  if (url !== Atrium.environments.qa && url !== Atrium.environments.sand && url !== Atrium.environments.local) {
+  if (url !== Atrium.environments.production && url !== Atrium.environments.development && url !== Atrium.environments.local) {
     throw new Error('Invalid environment');
   }
 
