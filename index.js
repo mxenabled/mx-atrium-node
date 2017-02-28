@@ -208,6 +208,10 @@ Atrium.Client.prototype.listInstitutions = function () {
   return this._fetchUtility('institutions', 'GET');
 };
 
+Atrium.Client.prototype.searchInstitutions = function (request) {
+  return this._fetchUtility('institutions?name=' + request.params.institutionName, 'GET');
+};
+
 //Credentials
 //Fix Institution param
 Atrium.Client.prototype.listCredentials = function (request) {
