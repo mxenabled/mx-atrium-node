@@ -168,10 +168,14 @@ Atrium.Client.prototype._fetchUtility = function (endpoint, method, params = nul
   }))
   .then(response => {
     if (response.ok) {
-      return response.json();
-    } else {
-      return response;
+      if ((/^application\/.*?json/).test(response.headers.get('Content-Type'))) {
+        return response.json();
+      }
+      if (response.size === 0) {
+        return null;
+      }
     }
+    return response;
   });
 };
 
