@@ -1,5 +1,6 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+const qs = require('qs');
 
 const Atrium = module.exports = {};
 
@@ -153,10 +154,11 @@ Atrium.Client = function (apiKey, clientID, url) {
 };
 
 //Fetch utility
-Atrium.Client.prototype._fetchUtility = function (endpoint, method, params = null) {
+Atrium.Client.prototype._fetchUtility = function (endpoint, method, params = null, query = null) {
   const body = params ? JSON.stringify(params) : null;
+  const querystring = query ? qs.stringify(query) : '';
 
-  return (fetch(this.url + '/' + endpoint, {
+  return (fetch(this.url + '/' + endpoint + (querystring ? '?' + querystring : ''), {
     method,
     body,
     headers: {
@@ -168,16 +170,20 @@ Atrium.Client.prototype._fetchUtility = function (endpoint, method, params = nul
   }))
   .then(response => {
     if (response.ok) {
-      return response.json();
-    } else {
-      return response;
+      if ((/^application\/.*?json/).test(response.headers.get('Content-Type'))) {
+        return response.json();
+      }
+      if (response.size === 0) {
+        return null;
+      }
     }
+    return response;
   });
 };
 
 //MX Connect
 Atrium.Client.prototype.getConnectWidgetUrl = function (request) {
-  return this._fetchUtility(`users/${request.params.userGuid}/connect_widget_url`, 'POST');
+  return this._fetchUtility(`users/${request.params.userGuid}/connect_widget_url`, 'POST', request.body);
 };
 
 //Users
@@ -204,12 +210,19 @@ Atrium.Client.prototype.deleteUser = function (request) {
 };
 
 //Institutions
-Atrium.Client.prototype.listInstitutions = function () {
-  return this._fetchUtility('institutions', 'GET');
+Atrium.Client.prototype.listInstitutions = function (request) {
+  return this._fetchUtility('institutions', 'GET', null, request && request.params && {
+    page: request.params.page,
+    records_per_page: request.params.recordsPerPage
+  });
 };
 
 Atrium.Client.prototype.searchInstitutions = function (request) {
-  return this._fetchUtility('institutions?name=' + request.params.institutionName, 'GET');
+  return this._fetchUtility('institutions', 'GET', null, {
+    name: request.params.institutionName,
+    page: request.params.page,
+    records_per_page: request.params.recordsPerPage
+  });
 };
 
 //Credentials
@@ -221,7 +234,10 @@ Atrium.Client.prototype.listCredentials = function (request) {
 //Members
 //Fix pagination error
 Atrium.Client.prototype.listMembers = function (request) {
-  return this._fetchUtility(`users/${request.params.userGuid}/members`, 'GET');
+  return this._fetchUtility(`users/${request.params.userGuid}/members`, 'GET', null, {
+    page: request.params.page,
+    records_per_page: request.params.recordsPerPage
+  });
 };
 
 Atrium.Client.prototype.createMember = function (request) {
@@ -258,7 +274,10 @@ Atrium.Client.prototype.checkMemberStatus = function (request) {
 
 //Accounts
 Atrium.Client.prototype.listAccounts = function (request) {
-  return this._fetchUtility(`users/${request.params.userGuid}/accounts`, 'GET');
+  return this._fetchUtility(`users/${request.params.userGuid}/accounts`, 'GET', null, {
+    page: request.params.page,
+    records_per_page: request.params.recordsPerPage
+  });
 };
 
 Atrium.Client.prototype.readAccount = function (request) {
@@ -266,12 +285,18 @@ Atrium.Client.prototype.readAccount = function (request) {
 };
 
 Atrium.Client.prototype.listAccountTransactions = function (request) {
-  return this._fetchUtility(`users/${request.params.userGuid}/accounts/${request.params.accountGuid}/transactions`, 'GET');
+  return this._fetchUtility(`users/${request.params.userGuid}/accounts/${request.params.accountGuid}/transactions`, 'GET', null, {
+    page: request.params.page,
+    records_per_page: request.params.recordsPerPage
+  });
 };
 
 //Holdings
 Atrium.Client.prototype.listHoldings = function (request) {
-  return this._fetchUtility(`users/${request.params.userGuid}/holdings`, 'GET');
+  return this._fetchUtility(`users/${request.params.userGuid}/holdings`, 'GET', null, {
+    page: request.params.page,
+    records_per_page: request.params.recordsPerPage
+  });
 };
 
 Atrium.Client.prototype.readHolding = function (request) {
@@ -280,7 +305,10 @@ Atrium.Client.prototype.readHolding = function (request) {
 
 //Transactions
 Atrium.Client.prototype.listTransactions = function (request) {
-  return this._fetchUtility(`users/${request.params.userGuid}/transactions`, 'GET');
+  return this._fetchUtility(`users/${request.params.userGuid}/transactions`, 'GET', null, {
+    page: request.params.page,
+    records_per_page: request.params.recordsPerPage
+  });
 };
 
 Atrium.Client.prototype.readTransaction = function (request) {
