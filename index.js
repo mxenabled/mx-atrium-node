@@ -363,5 +363,9 @@ Atrium.Client.prototype.listTransactions = function (request) {
 
 //MX Connect
 Atrium.Client.prototype.getConnectWidgetUrl = function (request) {
-  return this._fetchUtility(`users/${request.params.userGuid}/connect_widget_url`, 'POST');
+  var params = null;
+  if (request.params.hasOwnProperty("options")) {
+    params = request.params.options;
+  }
+  return this._fetchUtility(`users/${request.params.userGuid}/connect_widget_url`, 'POST', params);
 };
