@@ -197,7 +197,7 @@ Atrium.Client.prototype._fetchUtility = function (endpoint, method, params = nul
     }
   }))
   .then(response => {
-    if (response.ok) {
+    if (response.ok && response.status != 204) {
       return response.json();
     } else {
       return response;
@@ -206,22 +206,25 @@ Atrium.Client.prototype._fetchUtility = function (endpoint, method, params = nul
 };
 
 //Parameters utility
-Atrium.Client.prototype.optionalParameters = function (name, fromDate, toDate, pageNumber, recordsPerPage) {
+Atrium.Client.prototype.optionalParameters = function (request) {
   var params = "?";
-  if (name != null) {
-    params += "name=" + name + "&";
-  }
-  if (fromDate != null) {
-    params += "from_date=" + fromDate + "&";
-  }
-  if (toDate != null) {
-    params += "to_date=" + toDate + "&";
-  }
-  if (pageNumber != null) {
-    params += "page=" + pageNumber + "&";
-  }
-  if (recordsPerPage != null) {
-    params += "records_per_page=" + recordsPerPage + "&";
+  if ("params" in request) {
+    var passedParams = request.params;
+    if ("name" in passedParams && request.params.name != null) {
+      params += "name=" + request.params.name + "&";
+    }
+    if ("from_date" in passedParams && request.params.from_date != null) {
+      params += "from_date=" + request.params.from_date + "&";
+    }
+    if ("to_date" in passedParams && request.params.to_date != null) {
+      params += "to_date=" + request.params.to_date + "&";
+    }
+    if ("page" in passedParams && request.params.page != null) {
+      params += "page=" + request.params.page + "&";
+    }
+    if ("records_per_page" in passedParams && request.params.records_per_page != null) {
+      params += "records_per_page=" + request.params.records_per_page + "&";
+    }
   }
   params = params.slice(0, -1);
 
@@ -229,15 +232,15 @@ Atrium.Client.prototype.optionalParameters = function (name, fromDate, toDate, p
 };
 
 //Users
-Atrium.Client.prototype.createUser = function (request) {
+Atrium.Client.prototype.createUser = function (request = {}) {
   return this._fetchUtility('users', 'POST', request.body);
 };
 
-Atrium.Client.prototype.readUser = function (request) {
+Atrium.Client.prototype.readUser = function (request = {}) {
   return this._fetchUtility('users/' + request.params.userGuid, 'GET');
 };
 
-Atrium.Client.prototype.updateUser = function (request) {
+Atrium.Client.prototype.updateUser = function (request = {}) {
   const user = Object.assign({}, request.body.user);
 
   delete user.guid;
@@ -247,116 +250,116 @@ Atrium.Client.prototype.updateUser = function (request) {
   return this._fetchUtility('users/' + request.body.user.guid, 'PUT', { user });
 };
 
-Atrium.Client.prototype.listUsers = function (request) {
-  var params = this.optionalParameters(null, null, null, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listUsers = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility('users' + params, 'GET');
 };
 
-Atrium.Client.prototype.deleteUser = function (request) {
+Atrium.Client.prototype.deleteUser = function (request = {}) {
   return this._fetchUtility('users/' + request.params.userGuid, 'DELETE');
 };
 
 //Institutions
-Atrium.Client.prototype.listInstitutions = function (request) {
-  var params = this.optionalParameters(request.params.name, null, null, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listInstitutions = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility('institutions' + params, 'GET');
 };
 
-Atrium.Client.prototype.readInstitution = function (request) {
+Atrium.Client.prototype.readInstitution = function (request = {}) {
   return this._fetchUtility('institutions/' + request.params.institutionCode, 'GET');
 };
 
-Atrium.Client.prototype.listCredentials = function (request) {
-  var params = this.optionalParameters(null, null, null, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listCredentials = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`institutions/${request.params.institutionCode}/credentials` + params, 'GET');
 };
 
 //Members
-Atrium.Client.prototype.createMember = function (request) {
+Atrium.Client.prototype.createMember = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members`, 'POST', request.body);
 };
 
-Atrium.Client.prototype.readMember = function (request) {
+Atrium.Client.prototype.readMember = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}`, 'GET');
 };
 
-Atrium.Client.prototype.updateMember = function (request) {
+Atrium.Client.prototype.updateMember = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}`, 'PUT', request.body);
 };
 
-Atrium.Client.prototype.deleteMember = function (request) {
+Atrium.Client.prototype.deleteMember = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}`, 'DELETE');
 };
 
-Atrium.Client.prototype.listMembers = function (request) {
-  var params = this.optionalParameters(null, null, null, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listMembers = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/members` + params, 'GET');
 };
 
-Atrium.Client.prototype.aggregateMember = function (request) {
+Atrium.Client.prototype.aggregateMember = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/aggregate`, 'POST');
 };
 
-Atrium.Client.prototype.checkMemberStatus = function (request) {
+Atrium.Client.prototype.checkMemberStatus = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/status`, 'GET');
 };
 
-Atrium.Client.prototype.listMemberChallenges = function (request) {
-  var params = this.optionalParameters(null, null, null, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listMemberChallenges = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/challenges` + params, 'GET');
 };
 
-Atrium.Client.prototype.resumeMemberAggregation = function (request) {
+Atrium.Client.prototype.resumeMemberAggregation = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/resume`, 'PUT', request.body);
 };
 
-Atrium.Client.prototype.listMemberCredentials = function (request) {
-  var params = this.optionalParameters(null, null, null, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listMemberCredentials = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/credentials` + params, 'GET');
 };
 
-Atrium.Client.prototype.listMemberAccounts = function (request) {
-  var params = this.optionalParameters(null, null, null, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listMemberAccounts = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/accounts` + params, 'GET');
 };
 
-Atrium.Client.prototype.listMemberTransactions = function (request) {
-  var params = this.optionalParameters(null, request.params.fromDate, request.params.toDate, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listMemberTransactions = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/transactions` + params, 'GET');
 };
 
 //Accounts
-Atrium.Client.prototype.readAccount = function (request) {
+Atrium.Client.prototype.readAccount = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/accounts/${request.params.accountGuid}`, 'GET');
 };
 
-Atrium.Client.prototype.listAccounts = function (request) {
-  var params = this.optionalParameters(null, null, null, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listAccounts = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/accounts` + params, 'GET');
 };
 
-Atrium.Client.prototype.listAccountTransactions = function (request) {
-  var params = this.optionalParameters(null, request.params.fromDate, request.params.toDate, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listAccountTransactions = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/accounts/${request.params.accountGuid}/transactions` + params, 'GET');
 };
 
 //Transactions
-Atrium.Client.prototype.readTransaction = function (request) {
+Atrium.Client.prototype.readTransaction = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/transactions/${request.params.transactionGuid}`, 'GET');
 };
 
-Atrium.Client.prototype.listTransactions = function (request) {
-  var params = this.optionalParameters(null, request.params.fromDate, request.params.toDate, request.params.pageNumber, request.params.recordsPerPage);
+Atrium.Client.prototype.listTransactions = function (request = {}) {
+  var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/transactions` + params, 'GET');
 };
