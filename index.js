@@ -147,8 +147,13 @@ Atrium.endpoints = [
   },
   {
     method: 'get',
-    url: '/users/:userGuid/members/:accountOrMemberGuid/account_numbers',
-    clientMethod: 'listAccountNumbers'
+    url: '/users/:userGuid/members/:memberGuid/account_numbers',
+    clientMethod: 'listMemberAccountNumbers'
+  },
+  {
+    method: 'get',
+    url: '/users/:userGuid/accounts/:accountGuid/account_numbers',
+    clientMethod: 'listAccountAccountNumbers'
   },
   {
     method: 'post',
@@ -360,14 +365,12 @@ Atrium.Client.prototype.verifyMember = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/verify`, 'POST');
 };
 
-Atrium.Client.prototype.listAccountNumbers = function (request = {}) {
-  if (request.params.accountOrMemberGuid.substring(0,3) == "ACT") {
-    var endpoint = `users/${request.params.userGuid}/accounts/${request.params.accountOrMemberGuid}/account_numbers`
-  } else {
-    var endpoint = `users/${request.params.userGuid}/members/${request.params.accountOrMemberGuid}/account_numbers`
-  }
+Atrium.Client.prototype.listMemberAccountNumbers = function (request = {}) {
+  return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/account_numbers`, 'GET');
+};
 
-  return this._fetchUtility(endpoint, 'GET');
+Atrium.Client.prototype.listAccountAccountNumbers = function (request = {}) {
+  return this._fetchUtility(`users/${request.params.userGuid}/accounts/${request.params.accountGuid}/account_numbers`, 'GET');
 };
 
 Atrium.Client.prototype.identifyMember = function (request = {}) {
