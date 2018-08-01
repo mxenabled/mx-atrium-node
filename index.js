@@ -163,7 +163,7 @@ Atrium.endpoints = [
   {
     method: 'get',
     url: '/users/:userGuid/members/:memberGuid/account_owners',
-    clientMethod: 'listAccountOwners'
+    clientMethod: 'listMemberAccountOwners'
   },
   //Holdings
   {
@@ -377,7 +377,7 @@ Atrium.Client.prototype.identifyMember = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/identify`, 'POST');
 };
 
-Atrium.Client.prototype.listAccountOwners = function (request = {}) {
+Atrium.Client.prototype.listMemberAccountOwners = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/account_owners`, 'GET');
 };
 
