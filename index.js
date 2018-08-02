@@ -140,6 +140,31 @@ Atrium.endpoints = [
     url: '/users/:userGuid/accounts/:accountGuid/transactions',
     clientMethod: 'listAccountTransactions'
   },
+  {
+    method: 'post',
+    url: '/users/:userGuid/members/:memberGuid/verify',
+    clientMethod: 'verifyMember'
+  },
+  {
+    method: 'get',
+    url: '/users/:userGuid/members/:memberGuid/account_numbers',
+    clientMethod: 'listMemberAccountNumbers'
+  },
+  {
+    method: 'get',
+    url: '/users/:userGuid/accounts/:accountGuid/account_numbers',
+    clientMethod: 'listAccountAccountNumbers'
+  },
+  {
+    method: 'post',
+    url: '/users/:userGuid/members/:memberGuid/identify',
+    clientMethod: 'identifyMember'
+  },
+  {
+    method: 'get',
+    url: '/users/:userGuid/members/:memberGuid/account_owners',
+    clientMethod: 'listMemberAccountOwners'
+  },
   //Holdings
   {
     method: 'get',
@@ -334,6 +359,26 @@ Atrium.Client.prototype.listMemberTransactions = function (request = {}) {
   var params = this.optionalParameters(request);
 
   return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/transactions` + params, 'GET');
+};
+
+Atrium.Client.prototype.verifyMember = function (request = {}) {
+  return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/verify`, 'POST');
+};
+
+Atrium.Client.prototype.listMemberAccountNumbers = function (request = {}) {
+  return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/account_numbers`, 'GET');
+};
+
+Atrium.Client.prototype.listAccountAccountNumbers = function (request = {}) {
+  return this._fetchUtility(`users/${request.params.userGuid}/accounts/${request.params.accountGuid}/account_numbers`, 'GET');
+};
+
+Atrium.Client.prototype.identifyMember = function (request = {}) {
+  return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/identify`, 'POST');
+};
+
+Atrium.Client.prototype.listMemberAccountOwners = function (request = {}) {
+  return this._fetchUtility(`users/${request.params.userGuid}/members/${request.params.memberGuid}/account_owners`, 'GET');
 };
 
 //Accounts
