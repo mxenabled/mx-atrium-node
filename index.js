@@ -178,6 +178,11 @@ Atrium.endpoints = [
   },
   //Transactions
   {
+    method: 'post',
+    url: '/categorize_and_describe',
+    clientMethod: 'categorizeAndDescribeTransactions'
+  },
+  {
     method: 'get',
     url: '/users/:userGuid/transactions',
     clientMethod: 'listTransactions'
@@ -399,6 +404,10 @@ Atrium.Client.prototype.listAccountTransactions = function (request = {}) {
 };
 
 //Transactions
+Atrium.Client.prototype.categorizeAndDescribeTransactions = function (request = {}) {
+  return this._fetchUtility(`/categorize_and_describe`, 'POST', request.body);
+};
+
 Atrium.Client.prototype.readTransaction = function (request = {}) {
   return this._fetchUtility(`users/${request.params.userGuid}/transactions/${request.params.transactionGuid}`, 'GET');
 };
