@@ -134,7 +134,7 @@ class ObjectSerializer {
 }
 
 export class Account {
-    'account'?: any;
+    'account'?: AccountAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -142,7 +142,7 @@ export class Account {
         {
             "name": "account",
             "baseName": "account",
-            "type": "any"
+            "type": "AccountAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -371,7 +371,7 @@ export class AccountNumberAttributes {
 }
 
 export class AccountNumbers {
-    'accountNumbers'?: Array<any>;
+    'accountNumbers'?: Array<AccountNumberAttributes>;
 
     static discriminator: string | undefined = undefined;
 
@@ -379,7 +379,7 @@ export class AccountNumbers {
         {
             "name": "accountNumbers",
             "baseName": "account_numbers",
-            "type": "Array<any>"
+            "type": "Array<AccountNumberAttributes>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -465,7 +465,7 @@ export class AccountOwnerAttributes {
 }
 
 export class AccountOwners {
-    'accountOwners'?: Array<any>;
+    'accountOwners'?: Array<AccountOwnerAttributes>;
 
     static discriminator: string | undefined = undefined;
 
@@ -473,7 +473,7 @@ export class AccountOwners {
         {
             "name": "accountOwners",
             "baseName": "account_owners",
-            "type": "Array<any>"
+            "type": "Array<AccountOwnerAttributes>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -482,8 +482,8 @@ export class AccountOwners {
 }
 
 export class Accounts {
-    'accounts'?: Array<any>;
-    'pagination'?: any;
+    'accounts'?: Array<AccountAttributes>;
+    'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
 
@@ -491,12 +491,12 @@ export class Accounts {
         {
             "name": "accounts",
             "baseName": "accounts",
-            "type": "Array<any>"
+            "type": "Array<AccountAttributes>"
         },
         {
             "name": "pagination",
             "baseName": "pagination",
-            "type": "any"
+            "type": "Pagination"
         }    ];
 
     static getAttributeTypeMap() {
@@ -509,7 +509,7 @@ export class ChallengeAttributes {
     'guid'?: string;
     'imageData'?: string;
     'label'?: string;
-    'options'?: Array<ChallengeAttributesOptions>;
+    'options'?: Array<ChallengeOptionAttributes>;
 
     static discriminator: string | undefined = undefined;
 
@@ -537,7 +537,7 @@ export class ChallengeAttributes {
         {
             "name": "options",
             "baseName": "options",
-            "type": "Array<ChallengeAttributesOptions>"
+            "type": "Array<ChallengeOptionAttributes>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -545,7 +545,7 @@ export class ChallengeAttributes {
     }
 }
 
-export class ChallengeAttributesOptions {
+export class ChallengeOptionAttributes {
     'imageData'?: string;
     'label'?: string;
     'value'?: string;
@@ -570,12 +570,12 @@ export class ChallengeAttributesOptions {
         }    ];
 
     static getAttributeTypeMap() {
-        return ChallengeAttributesOptions.attributeTypeMap;
+        return ChallengeOptionAttributes.attributeTypeMap;
     }
 }
 
 export class Challenges {
-    'challenges'?: Array<any>;
+    'challenges'?: Array<ChallengeAttributes>;
 
     static discriminator: string | undefined = undefined;
 
@@ -583,7 +583,7 @@ export class Challenges {
         {
             "name": "challenges",
             "baseName": "challenges",
-            "type": "Array<any>"
+            "type": "Array<ChallengeAttributes>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -592,7 +592,7 @@ export class Challenges {
 }
 
 export class ConnectWidget {
-    'user'?: any;
+    'user'?: ConnectWidgetAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -600,7 +600,7 @@ export class ConnectWidget {
         {
             "name": "user",
             "baseName": "user",
-            "type": "any"
+            "type": "ConnectWidgetAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -670,7 +670,7 @@ export class CredentialAttributes {
     'fieldName'?: string;
     'guid'?: string;
     'label'?: string;
-    'options'?: Array<any>;
+    'options'?: Array<CredentialOptionAttributes>;
     'type'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -694,7 +694,7 @@ export class CredentialAttributes {
         {
             "name": "options",
             "baseName": "options",
-            "type": "Array<any>"
+            "type": "Array<CredentialOptionAttributes>"
         },
         {
             "name": "type",
@@ -754,7 +754,7 @@ export class CredentialResponseAttributes {
 }
 
 export class Credentials {
-    'credentials'?: Array<any>;
+    'credentials'?: Array<CredentialAttributes>;
 
     static discriminator: string | undefined = undefined;
 
@@ -762,7 +762,7 @@ export class Credentials {
         {
             "name": "credentials",
             "baseName": "credentials",
-            "type": "Array<any>"
+            "type": "Array<CredentialAttributes>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -771,7 +771,7 @@ export class Credentials {
 }
 
 export class Institution {
-    'institution'?: any;
+    'institution'?: InstitutionAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -779,7 +779,7 @@ export class Institution {
         {
             "name": "institution",
             "baseName": "institution",
-            "type": "any"
+            "type": "InstitutionAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -841,8 +841,8 @@ export class InstitutionAttributes {
 }
 
 export class Institutions {
-    'institutions'?: Array<any>;
-    'pagination'?: any;
+    'institutions'?: Array<InstitutionAttributes>;
+    'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
 
@@ -850,12 +850,12 @@ export class Institutions {
         {
             "name": "institutions",
             "baseName": "institutions",
-            "type": "Array<any>"
+            "type": "Array<InstitutionAttributes>"
         },
         {
             "name": "pagination",
             "baseName": "pagination",
-            "type": "any"
+            "type": "Pagination"
         }    ];
 
     static getAttributeTypeMap() {
@@ -864,7 +864,7 @@ export class Institutions {
 }
 
 export class Member {
-    'member'?: any;
+    'member'?: MemberAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -872,7 +872,7 @@ export class Member {
         {
             "name": "member",
             "baseName": "member",
-            "type": "any"
+            "type": "MemberAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -958,7 +958,7 @@ export class MemberAttributes {
 }
 
 export class MemberConnectionStatus {
-    'member'?: any;
+    'member'?: MemberConnectionStatusAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -966,7 +966,7 @@ export class MemberConnectionStatus {
         {
             "name": "member",
             "baseName": "member",
-            "type": "any"
+            "type": "MemberConnectionStatusAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -976,7 +976,7 @@ export class MemberConnectionStatus {
 
 export class MemberConnectionStatusAttributes {
     'aggregatedAt'?: string;
-    'challenges'?: Array<any>;
+    'challenges'?: Array<ChallengeAttributes>;
     'connectionStatus'?: string;
     'guid'?: boolean;
     'hasProcessedAccounts'?: boolean;
@@ -996,7 +996,7 @@ export class MemberConnectionStatusAttributes {
         {
             "name": "challenges",
             "baseName": "challenges",
-            "type": "Array<any>"
+            "type": "Array<ChallengeAttributes>"
         },
         {
             "name": "connectionStatus",
@@ -1040,7 +1040,7 @@ export class MemberConnectionStatusAttributes {
 }
 
 export class MemberCreateRequestBody {
-    'member'?: any;
+    'member'?: MemberCreateRequestBodyAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -1048,7 +1048,7 @@ export class MemberCreateRequestBody {
         {
             "name": "member",
             "baseName": "member",
-            "type": "any"
+            "type": "MemberCreateRequestBodyAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1057,7 +1057,7 @@ export class MemberCreateRequestBody {
 }
 
 export class MemberCreateRequestBodyAttributes {
-    'credentials': Array<any>;
+    'credentials': Array<CredentialResponseAttributes>;
     'identifier'?: string;
     'institutionCode': string;
     'metadata'?: string;
@@ -1068,7 +1068,7 @@ export class MemberCreateRequestBodyAttributes {
         {
             "name": "credentials",
             "baseName": "credentials",
-            "type": "Array<any>"
+            "type": "Array<CredentialResponseAttributes>"
         },
         {
             "name": "identifier",
@@ -1092,7 +1092,7 @@ export class MemberCreateRequestBodyAttributes {
 }
 
 export class MemberResumeRequestBody {
-    'member'?: any;
+    'member'?: MemberResumeRequestBodyAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -1100,7 +1100,7 @@ export class MemberResumeRequestBody {
         {
             "name": "member",
             "baseName": "member",
-            "type": "any"
+            "type": "MemberResumeRequestBodyAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1109,7 +1109,7 @@ export class MemberResumeRequestBody {
 }
 
 export class MemberResumeRequestBodyAttributes {
-    'challenges'?: Array<any>;
+    'challenges'?: Array<CredentialResponseAttributes>;
 
     static discriminator: string | undefined = undefined;
 
@@ -1117,7 +1117,7 @@ export class MemberResumeRequestBodyAttributes {
         {
             "name": "challenges",
             "baseName": "challenges",
-            "type": "Array<any>"
+            "type": "Array<CredentialResponseAttributes>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1126,7 +1126,7 @@ export class MemberResumeRequestBodyAttributes {
 }
 
 export class MemberUpdateRequestBody {
-    'member'?: any;
+    'member'?: MemberUpdateRequestBodyAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -1134,7 +1134,7 @@ export class MemberUpdateRequestBody {
         {
             "name": "member",
             "baseName": "member",
-            "type": "any"
+            "type": "MemberUpdateRequestBodyAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1143,7 +1143,7 @@ export class MemberUpdateRequestBody {
 }
 
 export class MemberUpdateRequestBodyAttributes {
-    'credentials'?: Array<any>;
+    'credentials'?: Array<CredentialResponseAttributes>;
     'identifier'?: string;
     'metadata'?: string;
 
@@ -1153,7 +1153,7 @@ export class MemberUpdateRequestBodyAttributes {
         {
             "name": "credentials",
             "baseName": "credentials",
-            "type": "Array<any>"
+            "type": "Array<CredentialResponseAttributes>"
         },
         {
             "name": "identifier",
@@ -1172,8 +1172,8 @@ export class MemberUpdateRequestBodyAttributes {
 }
 
 export class Members {
-    'members'?: Array<any>;
-    'pagination'?: any;
+    'members'?: Array<MemberAttributes>;
+    'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
 
@@ -1181,12 +1181,12 @@ export class Members {
         {
             "name": "members",
             "baseName": "members",
-            "type": "Array<any>"
+            "type": "Array<MemberAttributes>"
         },
         {
             "name": "pagination",
             "baseName": "pagination",
-            "type": "any"
+            "type": "Pagination"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1230,7 +1230,7 @@ export class Pagination {
 }
 
 export class Transaction {
-    'transaction'?: any;
+    'transaction'?: TransactionAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -1238,7 +1238,7 @@ export class Transaction {
         {
             "name": "transaction",
             "baseName": "transaction",
-            "type": "any"
+            "type": "TransactionAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1444,8 +1444,8 @@ export class TransactionAttributes {
 }
 
 export class Transactions {
-    'transactions'?: Array<any>;
-    'pagination'?: any;
+    'transactions'?: Array<TransactionAttributes>;
+    'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
 
@@ -1453,12 +1453,12 @@ export class Transactions {
         {
             "name": "transactions",
             "baseName": "transactions",
-            "type": "Array<any>"
+            "type": "Array<TransactionAttributes>"
         },
         {
             "name": "pagination",
             "baseName": "pagination",
-            "type": "any"
+            "type": "Pagination"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1467,7 +1467,7 @@ export class Transactions {
 }
 
 export class TransactionsCleanseAndCategorize {
-    'transactions'?: Array<any>;
+    'transactions'?: Array<TransactionsCleanseAndCategorizeAttributes>;
 
     static discriminator: string | undefined = undefined;
 
@@ -1475,7 +1475,7 @@ export class TransactionsCleanseAndCategorize {
         {
             "name": "transactions",
             "baseName": "transactions",
-            "type": "Array<any>"
+            "type": "Array<TransactionsCleanseAndCategorizeAttributes>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1573,7 +1573,7 @@ export class TransactionsCleanseAndCategorizeAttributes {
 }
 
 export class TransactionsCleanseAndCategorizeRequestBody {
-    'transactions'?: Array<any>;
+    'transactions'?: Array<TransactionsCleanseAndCategorizeRequestBodyAttributes>;
 
     static discriminator: string | undefined = undefined;
 
@@ -1581,7 +1581,7 @@ export class TransactionsCleanseAndCategorizeRequestBody {
         {
             "name": "transactions",
             "baseName": "transactions",
-            "type": "Array<any>"
+            "type": "Array<TransactionsCleanseAndCategorizeRequestBodyAttributes>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1625,7 +1625,7 @@ export class TransactionsCleanseAndCategorizeRequestBodyAttributes {
 }
 
 export class User {
-    'user'?: any;
+    'user'?: UserAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -1633,7 +1633,7 @@ export class User {
         {
             "name": "user",
             "baseName": "user",
-            "type": "any"
+            "type": "UserAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1677,7 +1677,7 @@ export class UserAttributes {
 }
 
 export class UserCreateRequestBody {
-    'user'?: any;
+    'user'?: UserAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -1685,7 +1685,7 @@ export class UserCreateRequestBody {
         {
             "name": "user",
             "baseName": "user",
-            "type": "any"
+            "type": "UserAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1694,7 +1694,7 @@ export class UserCreateRequestBody {
 }
 
 export class UserUpdateRequestBody {
-    'user'?: any;
+    'user'?: UserAttributes;
 
     static discriminator: string | undefined = undefined;
 
@@ -1702,7 +1702,7 @@ export class UserUpdateRequestBody {
         {
             "name": "user",
             "baseName": "user",
-            "type": "any"
+            "type": "UserAttributes"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1711,8 +1711,8 @@ export class UserUpdateRequestBody {
 }
 
 export class Users {
-    'users'?: Array<any>;
-    'pagination'?: any;
+    'users'?: Array<UserAttributes>;
+    'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
 
@@ -1720,12 +1720,12 @@ export class Users {
         {
             "name": "users",
             "baseName": "users",
-            "type": "Array<any>"
+            "type": "Array<UserAttributes>"
         },
         {
             "name": "pagination",
             "baseName": "pagination",
-            "type": "any"
+            "type": "Pagination"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1746,7 +1746,7 @@ let typeMap: {[index: string]: any} = {
     "AccountOwners": AccountOwners,
     "Accounts": Accounts,
     "ChallengeAttributes": ChallengeAttributes,
-    "ChallengeAttributesOptions": ChallengeAttributesOptions,
+    "ChallengeOptionAttributes": ChallengeOptionAttributes,
     "Challenges": Challenges,
     "ConnectWidget": ConnectWidget,
     "ConnectWidgetAttributes": ConnectWidgetAttributes,
