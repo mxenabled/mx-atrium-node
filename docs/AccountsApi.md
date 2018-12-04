@@ -21,8 +21,8 @@ var api = require('./api.js');
 
 var client = new api.AccountsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
@@ -68,8 +68,8 @@ var api = require('./api.js');
 
 var client = new api.AccountsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var page = 12; // number | Specify current page. (optional)
@@ -109,8 +109,8 @@ var api = require('./api.js');
 
 var client = new api.AccountsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
@@ -148,8 +148,8 @@ var api = require('./api.js');
 
 var client = new api.AccountsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.

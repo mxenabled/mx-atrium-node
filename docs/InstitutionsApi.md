@@ -20,8 +20,8 @@ var api = require('./api.js');
 
 var client = new api.InstitutionsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var name = "name_example"; // string | This will list only institutions in which the appended string appears. (optional)
 var page = 12; // number | Specify current page. (optional)
@@ -61,8 +61,8 @@ var api = require('./api.js');
 
 var client = new api.InstitutionsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var institutionCode = "institutionCode_example"; // string | The institution_code of the institution.
 
@@ -98,8 +98,8 @@ var api = require('./api.js');
 
 var client = new api.InstitutionsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var institutionCode = "institutionCode_example"; // string | The institution_code of the institution.
 

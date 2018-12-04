@@ -22,8 +22,8 @@ var api = require('./api.js');
 
 var client = new api.UsersApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var body = {json object}; // UserCreateRequestBody | User object to be created with optional parameters (identifier, is_disabled, metadata)
 
@@ -59,8 +59,8 @@ var api = require('./api.js');
 
 var client = new api.UsersApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
@@ -96,8 +96,8 @@ var api = require('./api.js');
 
 var client = new api.UsersApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
@@ -135,8 +135,8 @@ var api = require('./api.js');
 
 var client = new api.UsersApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
@@ -172,8 +172,8 @@ var api = require('./api.js');
 
 var client = new api.UsersApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var body = {json object}; // UserUpdateRequestBody | User object to be updated with optional parameters (identifier, is_disabled, metadata) (optional)

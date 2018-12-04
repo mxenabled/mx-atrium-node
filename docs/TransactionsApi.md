@@ -20,8 +20,8 @@ var api = require('./api.js');
 
 var client = new api.TransactionsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var body = {json object}; // TransactionsCleanseAndCategorizeRequestBody | User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
 
@@ -57,8 +57,8 @@ var api = require('./api.js');
 
 var client = new api.TransactionsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var page = 12; // number | Specify current page. (optional)
@@ -102,8 +102,8 @@ var api = require('./api.js');
 
 var client = new api.TransactionsApi();
 
-client.setApiKey(0, "YOUR API-KEY");
-client.setApiKey(1, "YOUR CLIENT-ID");
+client.setApiKey(0, "YOUR_API_KEY");
+client.setApiKey(1, "YOUR_CLIENT_ID");
 
 var transactionGuid = "transactionGuid_example"; // string | The unique identifier for a `transaction`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
