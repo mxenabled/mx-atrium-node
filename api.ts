@@ -510,6 +510,7 @@ export class ChallengeAttributes {
     'imageData'?: string;
     'label'?: string;
     'options'?: Array<ChallengeOptionAttributes>;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -538,6 +539,11 @@ export class ChallengeAttributes {
             "name": "options",
             "baseName": "options",
             "type": "Array<ChallengeOptionAttributes>"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
