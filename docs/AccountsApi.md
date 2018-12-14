@@ -19,10 +19,7 @@ This endpoint allows you to see every transaction that belongs to a specific acc
 ```javascript
 var api = require('./api.js');
 
-var client = new api.AccountsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
@@ -31,7 +28,7 @@ var toDate = "toDate_example"; // string | Filter transactions to this date. (op
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.listAccountTransactions(accountGuid, userGuid, fromDate, toDate, page, recordsPerPage);
+var response = client.accounts.listAccountTransactions(accountGuid, userGuid, fromDate, toDate, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -66,16 +63,13 @@ Use this endpoint to view information about every account that belongs to a user
 ```javascript
 var api = require('./api.js');
 
-var client = new api.AccountsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.listUserAccounts(userGuid, page, recordsPerPage);
+var response = client.accounts.listUserAccounts(userGuid, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -107,15 +101,12 @@ Reading an account allows you to get information about a specific account that b
 ```javascript
 var api = require('./api.js');
 
-var client = new api.AccountsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.readAccount(accountGuid, userGuid);
+var response = client.accounts.readAccount(accountGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -146,16 +137,13 @@ Reading an account allows you to get information about a specific account that b
 ```javascript
 var api = require('./api.js');
 
-var client = new api.AccountsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.readAccountByMemberGUID(accountGuid, memberGuid, userGuid);
+var response = client.accounts.readAccountByMemberGUID(accountGuid, memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);

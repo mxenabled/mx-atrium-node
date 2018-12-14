@@ -18,16 +18,13 @@ This endpoint allows you to see what institutions are available for connection. 
 ```javascript
 var api = require('./api.js');
 
-var client = new api.InstitutionsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var name = "name_example"; // string | This will list only institutions in which the appended string appears. (optional)
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.listInstitutions(name, page, recordsPerPage);
+var response = client.institutions.listInstitutions(name, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -59,14 +56,11 @@ This endpoint allows you to see information for a specific institution.
 ```javascript
 var api = require('./api.js');
 
-var client = new api.InstitutionsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var institutionCode = "institutionCode_example"; // string | The institution_code of the institution.
 
-var response = client.readInstitution(institutionCode);
+var response = client.institutions.readInstitution(institutionCode);
 
 response.then(function(value) {
   console.log(value);
@@ -96,14 +90,11 @@ Use this endpoint to see which credentials will be needed to create a member for
 ```javascript
 var api = require('./api.js');
 
-var client = new api.InstitutionsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var institutionCode = "institutionCode_example"; // string | The institution_code of the institution.
 
-var response = client.readInstitutionCredentials(institutionCode);
+var response = client.institutions.readInstitutionCredentials(institutionCode);
 
 response.then(function(value) {
   console.log(value);

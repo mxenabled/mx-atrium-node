@@ -16,15 +16,12 @@ This endpoint will return a URL for an embeddable version of MX Connect.
 ```javascript
 var api = require('./api.js');
 
-var client = new api.ConnectWidgetApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var body = {json object}; // ConnectWidgetRequestBody | Optional config options for WebView (is_mobile_webview, current_institution_code, current_member_guid, update_credentials)
 
-var response = client.getConnectWidget(userGuid, body);
+var response = client.connectWidget.getConnectWidget(userGuid, body);
 
 response.then(function(value) {
   console.log(value);

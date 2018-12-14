@@ -27,15 +27,12 @@ Calling this endpoint initiates an aggregation event for the member. This brings
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.aggregateMember(memberGuid, userGuid);
+var response = client.members.aggregateMember(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -66,15 +63,12 @@ This endpoint allows you to create a new member. Members are created with the re
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var body = {json object}; // MemberCreateRequestBody | Member object to be created with optional parameters (identifier and metadata) and required parameters (credentials and institution_code)
 
-var response = client.createMember(userGuid, body);
+var response = client.members.createMember(userGuid, body);
 
 response.then(function(value) {
   console.log(value);
@@ -105,15 +99,12 @@ Accessing this endpoint will permanently delete a member.
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.deleteMember(memberGuid, userGuid);
+var response = client.members.deleteMember(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -144,17 +135,14 @@ This endpoint returns an array with information about every account associated w
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.listMemberAccounts(memberGuid, userGuid, page, recordsPerPage);
+var response = client.members.listMemberAccounts(memberGuid, userGuid, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -187,15 +175,12 @@ This endpoint returns an array which contains information on every non-MFA crede
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.listMemberCredentials(memberGuid, userGuid);
+var response = client.members.listMemberCredentials(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -226,15 +211,12 @@ Use this endpoint for information on what multi-factor authentication challenges
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.listMemberMFAChallenges(memberGuid, userGuid);
+var response = client.members.listMemberMFAChallenges(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -265,10 +247,7 @@ Use this endpoint to get all transactions from all accounts associated with a sp
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
@@ -277,7 +256,7 @@ var toDate = "toDate_example"; // string | Filter transactions to this date. (op
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.listMemberTransactions(memberGuid, userGuid, fromDate, toDate, page, recordsPerPage);
+var response = client.members.listMemberTransactions(memberGuid, userGuid, fromDate, toDate, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -312,16 +291,13 @@ This endpoint returns an array which contains information on every member associ
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.listMembers(userGuid, page, recordsPerPage);
+var response = client.members.listMembers(userGuid, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -353,15 +329,12 @@ Use this endpoint to read the attributes of a specific member.
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.readMember(memberGuid, userGuid);
+var response = client.members.readMember(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -392,15 +365,12 @@ This endpoint provides the status of the member's most recent aggregation event.
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.readMemberStatus(memberGuid, userGuid);
+var response = client.members.readMemberStatus(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -431,16 +401,13 @@ This endpoint answers the challenges needed when a member has been challenged by
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var body = {json object}; // MemberResumeRequestBody | Member object with MFA challenge answers
 
-var response = client.resumeMember(memberGuid, userGuid, body);
+var response = client.members.resumeMember(memberGuid, userGuid, body);
 
 response.then(function(value) {
   console.log(value);
@@ -472,16 +439,13 @@ Use this endpoint to update a member's attributes. Only the credentials, identif
 ```javascript
 var api = require('./api.js');
 
-var client = new api.MembersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var body = {json object}; // MemberUpdateRequestBody | Member object to be updated with optional parameters (credentials, identifier, metadata) (optional)
 
-var response = client.updateMember(memberGuid, userGuid, body);
+var response = client.members.updateMember(memberGuid, userGuid, body);
 
 response.then(function(value) {
   console.log(value);

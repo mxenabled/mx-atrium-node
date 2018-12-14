@@ -22,10 +22,7 @@ Please see `docs` directory for additional endpoint examples
 ```javascript
 var api = require('./api.js');
 
-var client = new api.AccountsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
@@ -34,7 +31,7 @@ var toDate = "toDate_example"; // string | Filter transactions to this date. (op
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.listAccountTransactions(accountGuid, userGuid, fromDate, toDate, page, recordsPerPage);
+var response = client.accounts.listAccountTransactions(accountGuid, userGuid, fromDate, toDate, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);

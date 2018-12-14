@@ -17,15 +17,12 @@ The identify endpoint begins an identification process for an already-existing m
 ```javascript
 var api = require('./api.js');
 
-var client = new api.IdentityApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.identifyMember(memberGuid, userGuid);
+var response = client.identity.identifyMember(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -56,15 +53,12 @@ This endpoint returns an array with information about every account associated w
 ```javascript
 var api = require('./api.js');
 
-var client = new api.IdentityApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.listAccountOwners(memberGuid, userGuid);
+var response = client.identity.listAccountOwners(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);

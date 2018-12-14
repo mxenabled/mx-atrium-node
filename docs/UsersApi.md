@@ -20,14 +20,11 @@ Call this endpoint to create a new user. Atrium will respond with the newly-crea
 ```javascript
 var api = require('./api.js');
 
-var client = new api.UsersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var body = {json object}; // UserCreateRequestBody | User object to be created with optional parameters (identifier, is_disabled, metadata)
 
-var response = client.createUser(body);
+var response = client.users.createUser(body);
 
 response.then(function(value) {
   console.log(value);
@@ -57,14 +54,11 @@ Calling this endpoint will permanently delete a user from Atrium. If successful,
 ```javascript
 var api = require('./api.js');
 
-var client = new api.UsersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.deleteUser(userGuid);
+var response = client.users.deleteUser(userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -94,15 +88,12 @@ Use this endpoint to list every user you've created in Atrium.
 ```javascript
 var api = require('./api.js');
 
-var client = new api.UsersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var page = 12; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.listUsers(page, recordsPerPage);
+var response = client.users.listUsers(page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -133,14 +124,11 @@ Use this endpoint to read the attributes of a specific user.
 ```javascript
 var api = require('./api.js');
 
-var client = new api.UsersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.readUser(userGuid);
+var response = client.users.readUser(userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -170,15 +158,12 @@ Use this endpoint to update the attributes of a specific user. Atrium will respo
 ```javascript
 var api = require('./api.js');
 
-var client = new api.UsersApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var body = {json object}; // UserUpdateRequestBody | User object to be updated with optional parameters (identifier, is_disabled, metadata) (optional)
 
-var response = client.updateUser(userGuid, body);
+var response = client.users.updateUser(userGuid, body);
 
 response.then(function(value) {
   console.log(value);

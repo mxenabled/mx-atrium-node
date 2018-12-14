@@ -4379,3 +4379,22 @@ export class VerificationApi {
         });
     }
 }
+
+export class Client {
+    constructor(apiKey, clientID) { 
+        this.mount('accounts', new AccountsApi(), apiKey, clientID);
+        this.mount('connectWidget', new ConnectWidgetApi(), apiKey, clientID);
+        this.mount('identity', new IdentityApi(), apiKey, clientID);
+        this.mount('institutions', new InstitutionsApi(), apiKey, clientID);
+        this.mount('members', new MembersApi(), apiKey, clientID);
+        this.mount('transactions', new TransactionsApi(), apiKey, clientID);
+        this.mount('users', new UsersApi(), apiKey, clientID);
+        this.mount('verification', new VerificationApi(), apiKey, clientID);
+    }
+
+    mount(label, val, apiKey, clientID) {
+        val.setApiKey(0, apiKey);
+        val.setApiKey(1, clientID);
+        this[label] = val;
+    }
+}

@@ -18,15 +18,12 @@ Use this endpoint to check whether account and routing numbers are available for
 ```javascript
 var api = require('./api.js');
 
-var client = new api.VerificationApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.listAccountNumbers(memberGuid, userGuid);
+var response = client.verification.listAccountNumbers(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -57,15 +54,12 @@ Use this endpoint to check whether account and routing numbers are available for
 ```javascript
 var api = require('./api.js');
 
-var client = new api.VerificationApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.listAccountNumbersByAccount(accountGuid, userGuid);
+var response = client.verification.listAccountNumbersByAccount(accountGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -96,15 +90,12 @@ The verify endpoint begins a verification process for a member.
 ```javascript
 var api = require('./api.js');
 
-var client = new api.VerificationApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.verifyMember(memberGuid, userGuid);
+var response = client.verification.verifyMember(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);

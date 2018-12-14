@@ -18,14 +18,11 @@ Use this endpoint to categorize, cleanse, and classify transactions. These trans
 ```javascript
 var api = require('./api.js');
 
-var client = new api.TransactionsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var body = {json object}; // TransactionsCleanseAndCategorizeRequestBody | User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
 
-var response = client.cleanseAndCategorizeTransactions(body);
+var response = client.transactions.cleanseAndCategorizeTransactions(body);
 
 response.then(function(value) {
   console.log(value);
@@ -55,10 +52,7 @@ Use this endpoint to get all transactions that belong to a specific user, across
 ```javascript
 var api = require('./api.js');
 
-var client = new api.TransactionsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 var page = 12; // number | Specify current page. (optional)
@@ -66,7 +60,7 @@ var fromDate = "fromDate_example"; // string | Filter transactions from this dat
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 var toDate = "toDate_example"; // string | Filter transactions to this date. (optional)
 
-var response = client.listUserTransactions(userGuid, page, fromDate, recordsPerPage, toDate);
+var response = client.transactions.listUserTransactions(userGuid, page, fromDate, recordsPerPage, toDate);
 
 response.then(function(value) {
   console.log(value);
@@ -100,15 +94,12 @@ This endpoint allows you to view information about a specific transaction that b
 ```javascript
 var api = require('./api.js');
 
-var client = new api.TransactionsApi();
-
-client.setApiKey(0, "YOUR_API_KEY");
-client.setApiKey(1, "YOUR_CLIENT_ID");
+var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var transactionGuid = "transactionGuid_example"; // string | The unique identifier for a `transaction`.
 var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
 
-var response = client.readTransaction(transactionGuid, userGuid);
+var response = client.transactions.readTransaction(transactionGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
