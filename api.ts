@@ -134,23 +134,6 @@ class ObjectSerializer {
 }
 
 export class Account {
-    'account'?: AccountAttributes;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "account",
-            "baseName": "account",
-            "type": "AccountAttributes"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Account.attributeTypeMap;
-    }
-}
-
-export class AccountAttributes {
     'apr'?: number;
     'apy'?: number;
     'availableBalance'?: number;
@@ -325,11 +308,11 @@ export class AccountAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountAttributes.attributeTypeMap;
+        return Account.attributeTypeMap;
     }
 }
 
-export class AccountNumberAttributes {
+export class AccountNumber {
     'accountGuid'?: string;
     'accountNumber'?: string;
     'memberGuid'?: string;
@@ -366,12 +349,12 @@ export class AccountNumberAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountNumberAttributes.attributeTypeMap;
+        return AccountNumber.attributeTypeMap;
     }
 }
 
-export class AccountNumbers {
-    'accountNumbers'?: Array<AccountNumberAttributes>;
+export class AccountNumbersResponseBody {
+    'accountNumbers'?: Array<AccountNumber>;
 
     static discriminator: string | undefined = undefined;
 
@@ -379,15 +362,15 @@ export class AccountNumbers {
         {
             "name": "accountNumbers",
             "baseName": "account_numbers",
-            "type": "Array<AccountNumberAttributes>"
+            "type": "Array<AccountNumber>"
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountNumbers.attributeTypeMap;
+        return AccountNumbersResponseBody.attributeTypeMap;
     }
 }
 
-export class AccountOwnerAttributes {
+export class AccountOwner {
     'accountGuid'?: string;
     'address'?: string;
     'city'?: string;
@@ -460,12 +443,12 @@ export class AccountOwnerAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountOwnerAttributes.attributeTypeMap;
+        return AccountOwner.attributeTypeMap;
     }
 }
 
-export class AccountOwners {
-    'accountOwners'?: Array<AccountOwnerAttributes>;
+export class AccountOwnersResponseBody {
+    'accountOwners'?: Array<AccountOwner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -473,16 +456,33 @@ export class AccountOwners {
         {
             "name": "accountOwners",
             "baseName": "account_owners",
-            "type": "Array<AccountOwnerAttributes>"
+            "type": "Array<AccountOwner>"
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountOwners.attributeTypeMap;
+        return AccountOwnersResponseBody.attributeTypeMap;
     }
 }
 
-export class Accounts {
-    'accounts'?: Array<AccountAttributes>;
+export class AccountResponseBody {
+    'account'?: Account;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "account",
+            "baseName": "account",
+            "type": "Account"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AccountResponseBody.attributeTypeMap;
+    }
+}
+
+export class AccountsResponseBody {
+    'accounts'?: Array<Account>;
     'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
@@ -491,7 +491,7 @@ export class Accounts {
         {
             "name": "accounts",
             "baseName": "accounts",
-            "type": "Array<AccountAttributes>"
+            "type": "Array<Account>"
         },
         {
             "name": "pagination",
@@ -500,16 +500,16 @@ export class Accounts {
         }    ];
 
     static getAttributeTypeMap() {
-        return Accounts.attributeTypeMap;
+        return AccountsResponseBody.attributeTypeMap;
     }
 }
 
-export class ChallengeAttributes {
+export class Challenge {
     'fieldName'?: string;
     'guid'?: string;
     'imageData'?: string;
     'label'?: string;
-    'options'?: Array<ChallengeOptionAttributes>;
+    'options'?: Array<ChallengeOption>;
     'type'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -538,7 +538,7 @@ export class ChallengeAttributes {
         {
             "name": "options",
             "baseName": "options",
-            "type": "Array<ChallengeOptionAttributes>"
+            "type": "Array<ChallengeOption>"
         },
         {
             "name": "type",
@@ -547,11 +547,11 @@ export class ChallengeAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return ChallengeAttributes.attributeTypeMap;
+        return Challenge.attributeTypeMap;
     }
 }
 
-export class ChallengeOptionAttributes {
+export class ChallengeOption {
     'imageData'?: string;
     'label'?: string;
     'value'?: string;
@@ -576,12 +576,12 @@ export class ChallengeOptionAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return ChallengeOptionAttributes.attributeTypeMap;
+        return ChallengeOption.attributeTypeMap;
     }
 }
 
-export class Challenges {
-    'challenges'?: Array<ChallengeAttributes>;
+export class ChallengesResponseBody {
+    'challenges'?: Array<Challenge>;
 
     static discriminator: string | undefined = undefined;
 
@@ -589,32 +589,15 @@ export class Challenges {
         {
             "name": "challenges",
             "baseName": "challenges",
-            "type": "Array<ChallengeAttributes>"
+            "type": "Array<Challenge>"
         }    ];
 
     static getAttributeTypeMap() {
-        return Challenges.attributeTypeMap;
+        return ChallengesResponseBody.attributeTypeMap;
     }
 }
 
 export class ConnectWidget {
-    'user'?: ConnectWidgetAttributes;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "user",
-            "baseName": "user",
-            "type": "ConnectWidgetAttributes"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ConnectWidget.attributeTypeMap;
-    }
-}
-
-export class ConnectWidgetAttributes {
     'connectWidgetUrl'?: string;
     'guid'?: string;
 
@@ -633,7 +616,7 @@ export class ConnectWidgetAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return ConnectWidgetAttributes.attributeTypeMap;
+        return ConnectWidget.attributeTypeMap;
     }
 }
 
@@ -672,11 +655,74 @@ export class ConnectWidgetRequestBody {
     }
 }
 
-export class CredentialAttributes {
+export class ConnectWidgetResponseBody {
+    'user'?: ConnectWidget;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "ConnectWidget"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ConnectWidgetResponseBody.attributeTypeMap;
+    }
+}
+
+export class CredentialOption {
+    'label'?: string;
+    'value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "label",
+            "baseName": "label",
+            "type": "string"
+        },
+        {
+            "name": "value",
+            "baseName": "value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CredentialOption.attributeTypeMap;
+    }
+}
+
+export class CredentialRequest {
+    'guid'?: string;
+    'value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "guid",
+            "baseName": "guid",
+            "type": "string"
+        },
+        {
+            "name": "value",
+            "baseName": "value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CredentialRequest.attributeTypeMap;
+    }
+}
+
+export class CredentialResponse {
     'fieldName'?: string;
     'guid'?: string;
     'label'?: string;
-    'options'?: Array<CredentialOptionAttributes>;
+    'options'?: Array<CredentialOption>;
     'type'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -700,7 +746,7 @@ export class CredentialAttributes {
         {
             "name": "options",
             "baseName": "options",
-            "type": "Array<CredentialOptionAttributes>"
+            "type": "Array<CredentialOption>"
         },
         {
             "name": "type",
@@ -709,58 +755,12 @@ export class CredentialAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return CredentialAttributes.attributeTypeMap;
+        return CredentialResponse.attributeTypeMap;
     }
 }
 
-export class CredentialOptionAttributes {
-    'label'?: string;
-    'value'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "label",
-            "baseName": "label",
-            "type": "string"
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CredentialOptionAttributes.attributeTypeMap;
-    }
-}
-
-export class CredentialResponseAttributes {
-    'guid'?: string;
-    'value'?: string;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "guid",
-            "baseName": "guid",
-            "type": "string"
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CredentialResponseAttributes.attributeTypeMap;
-    }
-}
-
-export class Credentials {
-    'credentials'?: Array<CredentialAttributes>;
+export class CredentialsResponseBody {
+    'credentials'?: Array<CredentialResponse>;
 
     static discriminator: string | undefined = undefined;
 
@@ -768,32 +768,15 @@ export class Credentials {
         {
             "name": "credentials",
             "baseName": "credentials",
-            "type": "Array<CredentialAttributes>"
+            "type": "Array<CredentialResponse>"
         }    ];
 
     static getAttributeTypeMap() {
-        return Credentials.attributeTypeMap;
+        return CredentialsResponseBody.attributeTypeMap;
     }
 }
 
 export class Institution {
-    'institution'?: InstitutionAttributes;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "institution",
-            "baseName": "institution",
-            "type": "InstitutionAttributes"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Institution.attributeTypeMap;
-    }
-}
-
-export class InstitutionAttributes {
     'code'?: string;
     'mediumLogoUrl'?: string;
     'name'?: string;
@@ -842,12 +825,29 @@ export class InstitutionAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return InstitutionAttributes.attributeTypeMap;
+        return Institution.attributeTypeMap;
     }
 }
 
-export class Institutions {
-    'institutions'?: Array<InstitutionAttributes>;
+export class InstitutionResponseBody {
+    'institution'?: Institution;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "institution",
+            "baseName": "institution",
+            "type": "Institution"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return InstitutionResponseBody.attributeTypeMap;
+    }
+}
+
+export class InstitutionsResponseBody {
+    'institutions'?: Array<Institution>;
     'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
@@ -856,7 +856,7 @@ export class Institutions {
         {
             "name": "institutions",
             "baseName": "institutions",
-            "type": "Array<InstitutionAttributes>"
+            "type": "Array<Institution>"
         },
         {
             "name": "pagination",
@@ -865,28 +865,11 @@ export class Institutions {
         }    ];
 
     static getAttributeTypeMap() {
-        return Institutions.attributeTypeMap;
+        return InstitutionsResponseBody.attributeTypeMap;
     }
 }
 
 export class Member {
-    'member'?: MemberAttributes;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "member",
-            "baseName": "member",
-            "type": "MemberAttributes"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Member.attributeTypeMap;
-    }
-}
-
-export class MemberAttributes {
     'aggregatedAt'?: string;
     'connectionStatus'?: string;
     'guid'?: boolean;
@@ -959,30 +942,13 @@ export class MemberAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return MemberAttributes.attributeTypeMap;
+        return Member.attributeTypeMap;
     }
 }
 
 export class MemberConnectionStatus {
-    'member'?: MemberConnectionStatusAttributes;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "member",
-            "baseName": "member",
-            "type": "MemberConnectionStatusAttributes"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return MemberConnectionStatus.attributeTypeMap;
-    }
-}
-
-export class MemberConnectionStatusAttributes {
     'aggregatedAt'?: string;
-    'challenges'?: Array<ChallengeAttributes>;
+    'challenges'?: Array<Challenge>;
     'connectionStatus'?: string;
     'guid'?: boolean;
     'hasProcessedAccounts'?: boolean;
@@ -1002,7 +968,7 @@ export class MemberConnectionStatusAttributes {
         {
             "name": "challenges",
             "baseName": "challenges",
-            "type": "Array<ChallengeAttributes>"
+            "type": "Array<Challenge>"
         },
         {
             "name": "connectionStatus",
@@ -1041,12 +1007,12 @@ export class MemberConnectionStatusAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return MemberConnectionStatusAttributes.attributeTypeMap;
+        return MemberConnectionStatus.attributeTypeMap;
     }
 }
 
-export class MemberCreateRequestBody {
-    'member'?: MemberCreateRequestBodyAttributes;
+export class MemberConnectionStatusResponseBody {
+    'member'?: MemberConnectionStatus;
 
     static discriminator: string | undefined = undefined;
 
@@ -1054,16 +1020,16 @@ export class MemberCreateRequestBody {
         {
             "name": "member",
             "baseName": "member",
-            "type": "MemberCreateRequestBodyAttributes"
+            "type": "MemberConnectionStatus"
         }    ];
 
     static getAttributeTypeMap() {
-        return MemberCreateRequestBody.attributeTypeMap;
+        return MemberConnectionStatusResponseBody.attributeTypeMap;
     }
 }
 
-export class MemberCreateRequestBodyAttributes {
-    'credentials': Array<CredentialResponseAttributes>;
+export class MemberCreateRequest {
+    'credentials': Array<CredentialRequest>;
     'identifier'?: string;
     'institutionCode': string;
     'metadata'?: string;
@@ -1074,7 +1040,7 @@ export class MemberCreateRequestBodyAttributes {
         {
             "name": "credentials",
             "baseName": "credentials",
-            "type": "Array<CredentialResponseAttributes>"
+            "type": "Array<CredentialRequest>"
         },
         {
             "name": "identifier",
@@ -1093,12 +1059,12 @@ export class MemberCreateRequestBodyAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return MemberCreateRequestBodyAttributes.attributeTypeMap;
+        return MemberCreateRequest.attributeTypeMap;
     }
 }
 
-export class MemberResumeRequestBody {
-    'member'?: MemberResumeRequestBodyAttributes;
+export class MemberCreateRequestBody {
+    'member'?: MemberCreateRequest;
 
     static discriminator: string | undefined = undefined;
 
@@ -1106,16 +1072,33 @@ export class MemberResumeRequestBody {
         {
             "name": "member",
             "baseName": "member",
-            "type": "MemberResumeRequestBodyAttributes"
+            "type": "MemberCreateRequest"
         }    ];
 
     static getAttributeTypeMap() {
-        return MemberResumeRequestBody.attributeTypeMap;
+        return MemberCreateRequestBody.attributeTypeMap;
     }
 }
 
-export class MemberResumeRequestBodyAttributes {
-    'challenges'?: Array<CredentialResponseAttributes>;
+export class MemberResponseBody {
+    'member'?: Member;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "member",
+            "baseName": "member",
+            "type": "Member"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MemberResponseBody.attributeTypeMap;
+    }
+}
+
+export class MemberResumeRequest {
+    'challenges'?: Array<CredentialRequest>;
 
     static discriminator: string | undefined = undefined;
 
@@ -1123,16 +1106,16 @@ export class MemberResumeRequestBodyAttributes {
         {
             "name": "challenges",
             "baseName": "challenges",
-            "type": "Array<CredentialResponseAttributes>"
+            "type": "Array<CredentialRequest>"
         }    ];
 
     static getAttributeTypeMap() {
-        return MemberResumeRequestBodyAttributes.attributeTypeMap;
+        return MemberResumeRequest.attributeTypeMap;
     }
 }
 
-export class MemberUpdateRequestBody {
-    'member'?: MemberUpdateRequestBodyAttributes;
+export class MemberResumeRequestBody {
+    'member'?: MemberResumeRequest;
 
     static discriminator: string | undefined = undefined;
 
@@ -1140,16 +1123,16 @@ export class MemberUpdateRequestBody {
         {
             "name": "member",
             "baseName": "member",
-            "type": "MemberUpdateRequestBodyAttributes"
+            "type": "MemberResumeRequest"
         }    ];
 
     static getAttributeTypeMap() {
-        return MemberUpdateRequestBody.attributeTypeMap;
+        return MemberResumeRequestBody.attributeTypeMap;
     }
 }
 
-export class MemberUpdateRequestBodyAttributes {
-    'credentials'?: Array<CredentialResponseAttributes>;
+export class MemberUpdateRequest {
+    'credentials'?: Array<CredentialRequest>;
     'identifier'?: string;
     'metadata'?: string;
 
@@ -1159,7 +1142,7 @@ export class MemberUpdateRequestBodyAttributes {
         {
             "name": "credentials",
             "baseName": "credentials",
-            "type": "Array<CredentialResponseAttributes>"
+            "type": "Array<CredentialRequest>"
         },
         {
             "name": "identifier",
@@ -1173,12 +1156,29 @@ export class MemberUpdateRequestBodyAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return MemberUpdateRequestBodyAttributes.attributeTypeMap;
+        return MemberUpdateRequest.attributeTypeMap;
     }
 }
 
-export class Members {
-    'members'?: Array<MemberAttributes>;
+export class MemberUpdateRequestBody {
+    'member'?: MemberUpdateRequest;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "member",
+            "baseName": "member",
+            "type": "MemberUpdateRequest"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MemberUpdateRequestBody.attributeTypeMap;
+    }
+}
+
+export class MembersResponseBody {
+    'members'?: Array<Member>;
     'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
@@ -1187,7 +1187,7 @@ export class Members {
         {
             "name": "members",
             "baseName": "members",
-            "type": "Array<MemberAttributes>"
+            "type": "Array<Member>"
         },
         {
             "name": "pagination",
@@ -1196,7 +1196,7 @@ export class Members {
         }    ];
 
     static getAttributeTypeMap() {
-        return Members.attributeTypeMap;
+        return MembersResponseBody.attributeTypeMap;
     }
 }
 
@@ -1236,23 +1236,6 @@ export class Pagination {
 }
 
 export class Transaction {
-    'transaction'?: TransactionAttributes;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "transaction",
-            "baseName": "transaction",
-            "type": "TransactionAttributes"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Transaction.attributeTypeMap;
-    }
-}
-
-export class TransactionAttributes {
     'accountGuid'?: string;
     'amount'?: number;
     'category'?: string;
@@ -1445,51 +1428,46 @@ export class TransactionAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionAttributes.attributeTypeMap;
+        return Transaction.attributeTypeMap;
     }
 }
 
-export class Transactions {
-    'transactions'?: Array<TransactionAttributes>;
-    'pagination'?: Pagination;
+export class TransactionCleanseAndCategorizeRequest {
+    'amount'?: number;
+    'description'?: string;
+    'identifier'?: string;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "transactions",
-            "baseName": "transactions",
-            "type": "Array<TransactionAttributes>"
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number"
         },
         {
-            "name": "pagination",
-            "baseName": "pagination",
-            "type": "Pagination"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return Transactions.attributeTypeMap;
-    }
-}
-
-export class TransactionsCleanseAndCategorize {
-    'transactions'?: Array<TransactionsCleanseAndCategorizeAttributes>;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
         {
-            "name": "transactions",
-            "baseName": "transactions",
-            "type": "Array<TransactionsCleanseAndCategorizeAttributes>"
+            "name": "identifier",
+            "baseName": "identifier",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionsCleanseAndCategorize.attributeTypeMap;
+        return TransactionCleanseAndCategorizeRequest.attributeTypeMap;
     }
 }
 
-export class TransactionsCleanseAndCategorizeAttributes {
+export class TransactionCleanseAndCategorizeResponse {
     'amount'?: number;
     'category'?: string;
     'description'?: string;
@@ -1574,12 +1552,29 @@ export class TransactionsCleanseAndCategorizeAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionsCleanseAndCategorizeAttributes.attributeTypeMap;
+        return TransactionCleanseAndCategorizeResponse.attributeTypeMap;
+    }
+}
+
+export class TransactionResponseBody {
+    'transaction'?: Transaction;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "transaction",
+            "baseName": "transaction",
+            "type": "Transaction"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TransactionResponseBody.attributeTypeMap;
     }
 }
 
 export class TransactionsCleanseAndCategorizeRequestBody {
-    'transactions'?: Array<TransactionsCleanseAndCategorizeRequestBodyAttributes>;
+    'transactions'?: Array<TransactionCleanseAndCategorizeRequest>;
 
     static discriminator: string | undefined = undefined;
 
@@ -1587,7 +1582,7 @@ export class TransactionsCleanseAndCategorizeRequestBody {
         {
             "name": "transactions",
             "baseName": "transactions",
-            "type": "Array<TransactionsCleanseAndCategorizeRequestBodyAttributes>"
+            "type": "Array<TransactionCleanseAndCategorizeRequest>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1595,59 +1590,47 @@ export class TransactionsCleanseAndCategorizeRequestBody {
     }
 }
 
-export class TransactionsCleanseAndCategorizeRequestBodyAttributes {
-    'amount'?: number;
-    'description'?: string;
-    'identifier'?: string;
-    'type'?: string;
+export class TransactionsCleanseAndCategorizeResponseBody {
+    'transactions'?: Array<TransactionCleanseAndCategorizeResponse>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "amount",
-            "baseName": "amount",
-            "type": "number"
-        },
-        {
-            "name": "description",
-            "baseName": "description",
-            "type": "string"
-        },
-        {
-            "name": "identifier",
-            "baseName": "identifier",
-            "type": "string"
-        },
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "string"
+            "name": "transactions",
+            "baseName": "transactions",
+            "type": "Array<TransactionCleanseAndCategorizeResponse>"
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionsCleanseAndCategorizeRequestBodyAttributes.attributeTypeMap;
+        return TransactionsCleanseAndCategorizeResponseBody.attributeTypeMap;
+    }
+}
+
+export class TransactionsResponseBody {
+    'transactions'?: Array<Transaction>;
+    'pagination'?: Pagination;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "transactions",
+            "baseName": "transactions",
+            "type": "Array<Transaction>"
+        },
+        {
+            "name": "pagination",
+            "baseName": "pagination",
+            "type": "Pagination"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TransactionsResponseBody.attributeTypeMap;
     }
 }
 
 export class User {
-    'user'?: UserAttributes;
-
-    static discriminator: string | undefined = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "user",
-            "baseName": "user",
-            "type": "UserAttributes"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return User.attributeTypeMap;
-    }
-}
-
-export class UserAttributes {
     'guid'?: string;
     'identifier'?: string;
     'isDisabled'?: boolean;
@@ -1678,12 +1661,12 @@ export class UserAttributes {
         }    ];
 
     static getAttributeTypeMap() {
-        return UserAttributes.attributeTypeMap;
+        return User.attributeTypeMap;
     }
 }
 
 export class UserCreateRequestBody {
-    'user'?: UserAttributes;
+    'user'?: User;
 
     static discriminator: string | undefined = undefined;
 
@@ -1691,7 +1674,7 @@ export class UserCreateRequestBody {
         {
             "name": "user",
             "baseName": "user",
-            "type": "UserAttributes"
+            "type": "User"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1699,8 +1682,8 @@ export class UserCreateRequestBody {
     }
 }
 
-export class UserUpdateRequestBody {
-    'user'?: UserAttributes;
+export class UserResponseBody {
+    'user'?: User;
 
     static discriminator: string | undefined = undefined;
 
@@ -1708,7 +1691,24 @@ export class UserUpdateRequestBody {
         {
             "name": "user",
             "baseName": "user",
-            "type": "UserAttributes"
+            "type": "User"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UserResponseBody.attributeTypeMap;
+    }
+}
+
+export class UserUpdateRequestBody {
+    'user'?: User;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "User"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1716,8 +1716,8 @@ export class UserUpdateRequestBody {
     }
 }
 
-export class Users {
-    'users'?: Array<UserAttributes>;
+export class UsersResponseBody {
+    'users'?: Array<User>;
     'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
@@ -1726,7 +1726,7 @@ export class Users {
         {
             "name": "users",
             "baseName": "users",
-            "type": "Array<UserAttributes>"
+            "type": "Array<User>"
         },
         {
             "name": "pagination",
@@ -1735,7 +1735,7 @@ export class Users {
         }    ];
 
     static getAttributeTypeMap() {
-        return Users.attributeTypeMap;
+        return UsersResponseBody.attributeTypeMap;
     }
 }
 
@@ -1745,49 +1745,49 @@ let enumsMap: {[index: string]: any} = {
 
 let typeMap: {[index: string]: any} = {
     "Account": Account,
-    "AccountAttributes": AccountAttributes,
-    "AccountNumberAttributes": AccountNumberAttributes,
-    "AccountNumbers": AccountNumbers,
-    "AccountOwnerAttributes": AccountOwnerAttributes,
-    "AccountOwners": AccountOwners,
-    "Accounts": Accounts,
-    "ChallengeAttributes": ChallengeAttributes,
-    "ChallengeOptionAttributes": ChallengeOptionAttributes,
-    "Challenges": Challenges,
+    "AccountNumber": AccountNumber,
+    "AccountNumbersResponseBody": AccountNumbersResponseBody,
+    "AccountOwner": AccountOwner,
+    "AccountOwnersResponseBody": AccountOwnersResponseBody,
+    "AccountResponseBody": AccountResponseBody,
+    "AccountsResponseBody": AccountsResponseBody,
+    "Challenge": Challenge,
+    "ChallengeOption": ChallengeOption,
+    "ChallengesResponseBody": ChallengesResponseBody,
     "ConnectWidget": ConnectWidget,
-    "ConnectWidgetAttributes": ConnectWidgetAttributes,
     "ConnectWidgetRequestBody": ConnectWidgetRequestBody,
-    "CredentialAttributes": CredentialAttributes,
-    "CredentialOptionAttributes": CredentialOptionAttributes,
-    "CredentialResponseAttributes": CredentialResponseAttributes,
-    "Credentials": Credentials,
+    "ConnectWidgetResponseBody": ConnectWidgetResponseBody,
+    "CredentialOption": CredentialOption,
+    "CredentialRequest": CredentialRequest,
+    "CredentialResponse": CredentialResponse,
+    "CredentialsResponseBody": CredentialsResponseBody,
     "Institution": Institution,
-    "InstitutionAttributes": InstitutionAttributes,
-    "Institutions": Institutions,
+    "InstitutionResponseBody": InstitutionResponseBody,
+    "InstitutionsResponseBody": InstitutionsResponseBody,
     "Member": Member,
-    "MemberAttributes": MemberAttributes,
     "MemberConnectionStatus": MemberConnectionStatus,
-    "MemberConnectionStatusAttributes": MemberConnectionStatusAttributes,
+    "MemberConnectionStatusResponseBody": MemberConnectionStatusResponseBody,
+    "MemberCreateRequest": MemberCreateRequest,
     "MemberCreateRequestBody": MemberCreateRequestBody,
-    "MemberCreateRequestBodyAttributes": MemberCreateRequestBodyAttributes,
+    "MemberResponseBody": MemberResponseBody,
+    "MemberResumeRequest": MemberResumeRequest,
     "MemberResumeRequestBody": MemberResumeRequestBody,
-    "MemberResumeRequestBodyAttributes": MemberResumeRequestBodyAttributes,
+    "MemberUpdateRequest": MemberUpdateRequest,
     "MemberUpdateRequestBody": MemberUpdateRequestBody,
-    "MemberUpdateRequestBodyAttributes": MemberUpdateRequestBodyAttributes,
-    "Members": Members,
+    "MembersResponseBody": MembersResponseBody,
     "Pagination": Pagination,
     "Transaction": Transaction,
-    "TransactionAttributes": TransactionAttributes,
-    "Transactions": Transactions,
-    "TransactionsCleanseAndCategorize": TransactionsCleanseAndCategorize,
-    "TransactionsCleanseAndCategorizeAttributes": TransactionsCleanseAndCategorizeAttributes,
+    "TransactionCleanseAndCategorizeRequest": TransactionCleanseAndCategorizeRequest,
+    "TransactionCleanseAndCategorizeResponse": TransactionCleanseAndCategorizeResponse,
+    "TransactionResponseBody": TransactionResponseBody,
     "TransactionsCleanseAndCategorizeRequestBody": TransactionsCleanseAndCategorizeRequestBody,
-    "TransactionsCleanseAndCategorizeRequestBodyAttributes": TransactionsCleanseAndCategorizeRequestBodyAttributes,
+    "TransactionsCleanseAndCategorizeResponseBody": TransactionsCleanseAndCategorizeResponseBody,
+    "TransactionsResponseBody": TransactionsResponseBody,
     "User": User,
-    "UserAttributes": UserAttributes,
     "UserCreateRequestBody": UserCreateRequestBody,
+    "UserResponseBody": UserResponseBody,
     "UserUpdateRequestBody": UserUpdateRequestBody,
-    "Users": Users,
+    "UsersResponseBody": UsersResponseBody,
 }
 
 export interface Authentication {
@@ -1900,7 +1900,7 @@ export class AccountsApi {
      * @param page Specify current page.
      * @param recordsPerPage Specify records per page.
      */
-    public listAccountTransactions (accountGuid: string, userGuid: string, fromDate?: string, toDate?: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public listAccountTransactions (accountGuid: string, userGuid: string, fromDate?: string, toDate?: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: TransactionsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/accounts/{account_guid}/transactions'
             .replace('{' + 'account_guid' + '}', encodeURIComponent(String(accountGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -1959,12 +1959,12 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Transactions;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: TransactionsResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Transactions");
+                    body = ObjectSerializer.deserialize(body, "TransactionsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -1981,7 +1981,7 @@ export class AccountsApi {
      * @param page Specify current page.
      * @param recordsPerPage Specify records per page.
      */
-    public listUserAccounts (userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: Accounts;  }> {
+    public listUserAccounts (userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: AccountsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/accounts'
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
         let localVarQueryParameters: any = {};
@@ -2026,12 +2026,12 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Accounts;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AccountsResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Accounts");
+                    body = ObjectSerializer.deserialize(body, "AccountsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2047,7 +2047,7 @@ export class AccountsApi {
      * @param accountGuid The unique identifier for an &#x60;account&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public readAccount (accountGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Account;  }> {
+    public readAccount (accountGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: AccountResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/accounts/{account_guid}'
             .replace('{' + 'account_guid' + '}', encodeURIComponent(String(accountGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -2090,12 +2090,12 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Account;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AccountResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Account");
+                    body = ObjectSerializer.deserialize(body, "AccountResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2112,7 +2112,7 @@ export class AccountsApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public readAccountByMemberGUID (accountGuid: string, memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Account;  }> {
+    public readAccountByMemberGUID (accountGuid: string, memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: AccountResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/accounts/{account_guid}'
             .replace('{' + 'account_guid' + '}', encodeURIComponent(String(accountGuid)))
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
@@ -2161,12 +2161,12 @@ export class AccountsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Account;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AccountResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Account");
+                    body = ObjectSerializer.deserialize(body, "AccountResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2231,7 +2231,7 @@ export class ConnectWidgetApi {
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      * @param body Optional config options for WebView (is_mobile_webview, current_institution_code, current_member_guid, update_credentials)
      */
-    public getConnectWidget (userGuid: string, body: ConnectWidgetRequestBody) : Promise<{ response: http.IncomingMessage; body: ConnectWidget;  }> {
+    public getConnectWidget (userGuid: string, body: ConnectWidgetRequestBody) : Promise<{ response: http.IncomingMessage; body: ConnectWidgetResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/connect_widget_url'
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
         let localVarQueryParameters: any = {};
@@ -2274,12 +2274,12 @@ export class ConnectWidgetApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: ConnectWidget;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: ConnectWidgetResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "ConnectWidget");
+                    body = ObjectSerializer.deserialize(body, "ConnectWidgetResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2344,7 +2344,7 @@ export class IdentityApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public identifyMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Member;  }> {
+    public identifyMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/identify'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -2387,12 +2387,12 @@ export class IdentityApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Member;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Member");
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2408,7 +2408,7 @@ export class IdentityApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public listAccountOwners (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: AccountOwners;  }> {
+    public listAccountOwners (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: AccountOwnersResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/account_owners'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -2451,12 +2451,12 @@ export class IdentityApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: AccountOwners;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AccountOwnersResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "AccountOwners");
+                    body = ObjectSerializer.deserialize(body, "AccountOwnersResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2522,7 +2522,7 @@ export class InstitutionsApi {
      * @param page Specify current page.
      * @param recordsPerPage Specify records per page.
      */
-    public listInstitutions (name?: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: Institutions;  }> {
+    public listInstitutions (name?: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: InstitutionsResponseBody;  }> {
         const localVarPath = this.basePath + '/institutions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -2565,12 +2565,12 @@ export class InstitutionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Institutions;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: InstitutionsResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Institutions");
+                    body = ObjectSerializer.deserialize(body, "InstitutionsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2585,7 +2585,7 @@ export class InstitutionsApi {
      * @summary Read institution
      * @param institutionCode The institution_code of the institution.
      */
-    public readInstitution (institutionCode: string) : Promise<{ response: http.IncomingMessage; body: Institution;  }> {
+    public readInstitution (institutionCode: string) : Promise<{ response: http.IncomingMessage; body: InstitutionResponseBody;  }> {
         const localVarPath = this.basePath + '/institutions/{institution_code}'
             .replace('{' + 'institution_code' + '}', encodeURIComponent(String(institutionCode)));
         let localVarQueryParameters: any = {};
@@ -2622,12 +2622,12 @@ export class InstitutionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Institution;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: InstitutionResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Institution");
+                    body = ObjectSerializer.deserialize(body, "InstitutionResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2642,7 +2642,7 @@ export class InstitutionsApi {
      * @summary Read institution credentials
      * @param institutionCode The institution_code of the institution.
      */
-    public readInstitutionCredentials (institutionCode: string) : Promise<{ response: http.IncomingMessage; body: Credentials;  }> {
+    public readInstitutionCredentials (institutionCode: string) : Promise<{ response: http.IncomingMessage; body: CredentialsResponseBody;  }> {
         const localVarPath = this.basePath + '/institutions/{institution_code}/credentials'
             .replace('{' + 'institution_code' + '}', encodeURIComponent(String(institutionCode)));
         let localVarQueryParameters: any = {};
@@ -2679,12 +2679,12 @@ export class InstitutionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Credentials;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: CredentialsResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Credentials");
+                    body = ObjectSerializer.deserialize(body, "CredentialsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2749,7 +2749,7 @@ export class MembersApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public aggregateMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Member;  }> {
+    public aggregateMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/aggregate'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -2792,12 +2792,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Member;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Member");
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2813,7 +2813,7 @@ export class MembersApi {
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      * @param body Member object to be created with optional parameters (identifier and metadata) and required parameters (credentials and institution_code)
      */
-    public createMember (userGuid: string, body: MemberCreateRequestBody) : Promise<{ response: http.IncomingMessage; body: Member;  }> {
+    public createMember (userGuid: string, body: MemberCreateRequestBody) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members'
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
         let localVarQueryParameters: any = {};
@@ -2856,12 +2856,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Member;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Member");
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -2942,7 +2942,7 @@ export class MembersApi {
      * @param page Specify current page.
      * @param recordsPerPage Specify records per page.
      */
-    public listMemberAccounts (memberGuid: string, userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: Accounts;  }> {
+    public listMemberAccounts (memberGuid: string, userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: AccountsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/accounts'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -2993,12 +2993,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Accounts;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AccountsResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Accounts");
+                    body = ObjectSerializer.deserialize(body, "AccountsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3014,7 +3014,7 @@ export class MembersApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public listMemberCredentials (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Credentials;  }> {
+    public listMemberCredentials (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: CredentialsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/credentials'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3057,12 +3057,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Credentials;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: CredentialsResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Credentials");
+                    body = ObjectSerializer.deserialize(body, "CredentialsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3078,7 +3078,7 @@ export class MembersApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public listMemberMFAChallenges (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Challenges;  }> {
+    public listMemberMFAChallenges (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: ChallengesResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/challenges'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3121,12 +3121,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Challenges;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: ChallengesResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Challenges");
+                    body = ObjectSerializer.deserialize(body, "ChallengesResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3146,7 +3146,7 @@ export class MembersApi {
      * @param page Specify current page.
      * @param recordsPerPage Specify records per page.
      */
-    public listMemberTransactions (memberGuid: string, userGuid: string, fromDate?: string, toDate?: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public listMemberTransactions (memberGuid: string, userGuid: string, fromDate?: string, toDate?: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: TransactionsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/transactions'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3205,12 +3205,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Transactions;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: TransactionsResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Transactions");
+                    body = ObjectSerializer.deserialize(body, "TransactionsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3227,7 +3227,7 @@ export class MembersApi {
      * @param page Specify current page.
      * @param recordsPerPage Specify records per page.
      */
-    public listMembers (userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: Members;  }> {
+    public listMembers (userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: MembersResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members'
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
         let localVarQueryParameters: any = {};
@@ -3272,12 +3272,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Members;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MembersResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Members");
+                    body = ObjectSerializer.deserialize(body, "MembersResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3293,7 +3293,7 @@ export class MembersApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public readMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Member;  }> {
+    public readMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3336,12 +3336,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Member;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Member");
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3357,7 +3357,7 @@ export class MembersApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public readMemberStatus (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberConnectionStatus;  }> {
+    public readMemberStatus (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberConnectionStatusResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/status'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3400,12 +3400,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: MemberConnectionStatus;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MemberConnectionStatusResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "MemberConnectionStatus");
+                    body = ObjectSerializer.deserialize(body, "MemberConnectionStatusResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3422,7 +3422,7 @@ export class MembersApi {
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      * @param body Member object with MFA challenge answers
      */
-    public resumeMember (memberGuid: string, userGuid: string, body: MemberResumeRequestBody) : Promise<{ response: http.IncomingMessage; body: Member;  }> {
+    public resumeMember (memberGuid: string, userGuid: string, body: MemberResumeRequestBody) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/resume'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3471,12 +3471,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Member;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Member");
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3493,7 +3493,7 @@ export class MembersApi {
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      * @param body Member object to be updated with optional parameters (credentials, identifier, metadata)
      */
-    public updateMember (memberGuid: string, userGuid: string, body?: MemberUpdateRequestBody) : Promise<{ response: http.IncomingMessage; body: Member;  }> {
+    public updateMember (memberGuid: string, userGuid: string, body?: MemberUpdateRequestBody) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3537,12 +3537,12 @@ export class MembersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Member;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Member");
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3606,7 +3606,7 @@ export class TransactionsApi {
      * @summary Categorize transactions
      * @param body User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
      */
-    public cleanseAndCategorizeTransactions (body: TransactionsCleanseAndCategorizeRequestBody) : Promise<{ response: http.IncomingMessage; body: TransactionsCleanseAndCategorize;  }> {
+    public cleanseAndCategorizeTransactions (body: TransactionsCleanseAndCategorizeRequestBody) : Promise<{ response: http.IncomingMessage; body: TransactionsCleanseAndCategorizeResponseBody;  }> {
         const localVarPath = this.basePath + '/cleanse_and_categorize';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3643,12 +3643,12 @@ export class TransactionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: TransactionsCleanseAndCategorize;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: TransactionsCleanseAndCategorizeResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "TransactionsCleanseAndCategorize");
+                    body = ObjectSerializer.deserialize(body, "TransactionsCleanseAndCategorizeResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3667,7 +3667,7 @@ export class TransactionsApi {
      * @param recordsPerPage Specify records per page.
      * @param toDate Filter transactions to this date.
      */
-    public listUserTransactions (userGuid: string, page?: number, fromDate?: string, recordsPerPage?: number, toDate?: string) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public listUserTransactions (userGuid: string, page?: number, fromDate?: string, recordsPerPage?: number, toDate?: string) : Promise<{ response: http.IncomingMessage; body: TransactionsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/transactions'
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
         let localVarQueryParameters: any = {};
@@ -3720,12 +3720,12 @@ export class TransactionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Transactions;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: TransactionsResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Transactions");
+                    body = ObjectSerializer.deserialize(body, "TransactionsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3741,7 +3741,7 @@ export class TransactionsApi {
      * @param transactionGuid The unique identifier for a &#x60;transaction&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public readTransaction (transactionGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Transaction;  }> {
+    public readTransaction (transactionGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: TransactionResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/transactions/{transaction_guid}'
             .replace('{' + 'transaction_guid' + '}', encodeURIComponent(String(transactionGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3784,12 +3784,12 @@ export class TransactionsApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Transaction;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: TransactionResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Transaction");
+                    body = ObjectSerializer.deserialize(body, "TransactionResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3853,7 +3853,7 @@ export class UsersApi {
      * @summary Create user
      * @param body User object to be created with optional parameters (identifier, is_disabled, metadata)
      */
-    public createUser (body: UserCreateRequestBody) : Promise<{ response: http.IncomingMessage; body: User;  }> {
+    public createUser (body: UserCreateRequestBody) : Promise<{ response: http.IncomingMessage; body: UserResponseBody;  }> {
         const localVarPath = this.basePath + '/users';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3890,12 +3890,12 @@ export class UsersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: UserResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "User");
+                    body = ObjectSerializer.deserialize(body, "UserResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -3967,7 +3967,7 @@ export class UsersApi {
      * @param page Specify current page.
      * @param recordsPerPage Specify records per page.
      */
-    public listUsers (page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: Users;  }> {
+    public listUsers (page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: UsersResponseBody;  }> {
         const localVarPath = this.basePath + '/users';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4006,12 +4006,12 @@ export class UsersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Users;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: UsersResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Users");
+                    body = ObjectSerializer.deserialize(body, "UsersResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -4026,7 +4026,7 @@ export class UsersApi {
      * @summary Read user
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public readUser (userGuid: string) : Promise<{ response: http.IncomingMessage; body: User;  }> {
+    public readUser (userGuid: string) : Promise<{ response: http.IncomingMessage; body: UserResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}'
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
         let localVarQueryParameters: any = {};
@@ -4063,12 +4063,12 @@ export class UsersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: UserResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "User");
+                    body = ObjectSerializer.deserialize(body, "UserResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -4084,7 +4084,7 @@ export class UsersApi {
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      * @param body User object to be updated with optional parameters (identifier, is_disabled, metadata)
      */
-    public updateUser (userGuid: string, body?: UserUpdateRequestBody) : Promise<{ response: http.IncomingMessage; body: User;  }> {
+    public updateUser (userGuid: string, body?: UserUpdateRequestBody) : Promise<{ response: http.IncomingMessage; body: UserResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}'
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
         let localVarQueryParameters: any = {};
@@ -4122,12 +4122,12 @@ export class UsersApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: UserResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "User");
+                    body = ObjectSerializer.deserialize(body, "UserResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -4192,7 +4192,7 @@ export class VerificationApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public listAccountNumbers (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: AccountNumbers;  }> {
+    public listAccountNumbers (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: AccountNumbersResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/account_numbers'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -4235,12 +4235,12 @@ export class VerificationApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: AccountNumbers;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AccountNumbersResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "AccountNumbers");
+                    body = ObjectSerializer.deserialize(body, "AccountNumbersResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -4256,7 +4256,7 @@ export class VerificationApi {
      * @param accountGuid The unique identifier for an &#x60;account&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public listAccountNumbersByAccount (accountGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: AccountNumbers;  }> {
+    public listAccountNumbersByAccount (accountGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: AccountNumbersResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/accounts/{account_guid}/account_numbers'
             .replace('{' + 'account_guid' + '}', encodeURIComponent(String(accountGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -4299,12 +4299,12 @@ export class VerificationApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: AccountNumbers;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: AccountNumbersResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "AccountNumbers");
+                    body = ObjectSerializer.deserialize(body, "AccountNumbersResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -4320,7 +4320,7 @@ export class VerificationApi {
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
      */
-    public verifyMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: Member;  }> {
+    public verifyMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/verify'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -4363,12 +4363,12 @@ export class VerificationApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.IncomingMessage; body: Member;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Member");
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

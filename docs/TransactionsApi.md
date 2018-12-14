@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **cleanseAndCategorizeTransactions**
-> TransactionsCleanseAndCategorize cleanseAndCategorizeTransactions(body)
+> TransactionsCleanseAndCategorizeResponseBody cleanseAndCategorizeTransactions(body)
 
 Categorize transactions
 
@@ -37,12 +37,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionsCleanseAndCategorize**](TransactionsCleanseAndCategorize.md)
+[**TransactionsCleanseAndCategorizeResponseBody**](TransactionsCleanseAndCategorizeResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listUserTransactions**
-> Transactions listUserTransactions(userGuid, page, fromDate, recordsPerPage, toDate)
+> TransactionsResponseBody listUserTransactions(userGuid, page, fromDate, recordsPerPage, toDate)
 
 List transactions for a user
 
@@ -79,12 +79,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Transactions**](Transactions.md)
+[**TransactionsResponseBody**](TransactionsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **readTransaction**
-> Transaction readTransaction(transactionGuid, userGuid)
+> TransactionResponseBody readTransaction(transactionGuid, userGuid)
 
 Read a transaction
 
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Transaction**](Transaction.md)
+[**TransactionResponseBody**](TransactionResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **listAccountNumbers**
-> AccountNumbers listAccountNumbers(memberGuid, userGuid)
+> AccountNumbersResponseBody listAccountNumbers(memberGuid, userGuid)
 
 Read account numbers
 
@@ -39,12 +39,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountNumbers**](AccountNumbers.md)
+[**AccountNumbersResponseBody**](AccountNumbersResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listAccountNumbersByAccount**
-> AccountNumbers listAccountNumbersByAccount(accountGuid, userGuid)
+> AccountNumbersResponseBody listAccountNumbersByAccount(accountGuid, userGuid)
 
 Read account numbers by account GUID
 
@@ -75,12 +75,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountNumbers**](AccountNumbers.md)
+[**AccountNumbersResponseBody**](AccountNumbersResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **verifyMember**
-> Member verifyMember(memberGuid, userGuid)
+> MemberResponseBody verifyMember(memberGuid, userGuid)
 
 Verify
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Member**](Member.md)
+[**MemberResponseBody**](MemberResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

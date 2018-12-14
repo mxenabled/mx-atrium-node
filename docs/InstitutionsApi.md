@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **listInstitutions**
-> Institutions listInstitutions(name, page, recordsPerPage)
+> InstitutionsResponseBody listInstitutions(name, page, recordsPerPage)
 
 List institutions
 
@@ -41,12 +41,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Institutions**](Institutions.md)
+[**InstitutionsResponseBody**](InstitutionsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **readInstitution**
-> Institution readInstitution(institutionCode)
+> InstitutionResponseBody readInstitution(institutionCode)
 
 Read institution
 
@@ -75,12 +75,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Institution**](Institution.md)
+[**InstitutionResponseBody**](InstitutionResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **readInstitutionCredentials**
-> Credentials readInstitutionCredentials(institutionCode)
+> CredentialsResponseBody readInstitutionCredentials(institutionCode)
 
 Read institution credentials
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Credentials**](Credentials.md)
+[**CredentialsResponseBody**](CredentialsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

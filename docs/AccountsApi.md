@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **listAccountTransactions**
-> Transactions listAccountTransactions(accountGuid, userGuid, fromDate, toDate, page, recordsPerPage)
+> TransactionsResponseBody listAccountTransactions(accountGuid, userGuid, fromDate, toDate, page, recordsPerPage)
 
 List account transactions
 
@@ -48,12 +48,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Transactions**](Transactions.md)
+[**TransactionsResponseBody**](TransactionsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listUserAccounts**
-> Accounts listUserAccounts(userGuid, page, recordsPerPage)
+> AccountsResponseBody listUserAccounts(userGuid, page, recordsPerPage)
 
 List accounts for a user
 
@@ -86,12 +86,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Accounts**](Accounts.md)
+[**AccountsResponseBody**](AccountsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **readAccount**
-> Account readAccount(accountGuid, userGuid)
+> AccountResponseBody readAccount(accountGuid, userGuid)
 
 Read an account
 
@@ -122,12 +122,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Account**](Account.md)
+[**AccountResponseBody**](AccountResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **readAccountByMemberGUID**
-> Account readAccountByMemberGUID(accountGuid, memberGuid, userGuid)
+> AccountResponseBody readAccountByMemberGUID(accountGuid, memberGuid, userGuid)
 
 Read an account
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Account**](Account.md)
+[**AccountResponseBody**](AccountResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
