@@ -17,15 +17,15 @@ This endpoint allows you to see every transaction that belongs to a specific acc
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
-var fromDate = "fromDate_example"; // string | Filter transactions from this date. (optional)
-var toDate = "toDate_example"; // string | Filter transactions to this date. (optional)
-var page = 12; // number | Specify current page. (optional)
+var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var fromDate = "2016-09-20"; // string | Filter transactions from this date. (optional)
+var toDate = "2016-10-20"; // string | Filter transactions to this date. (optional)
+var page = 1; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
 var response = client.accounts.listAccountTransactions(accountGuid, userGuid, fromDate, toDate, page, recordsPerPage);
@@ -61,12 +61,12 @@ Use this endpoint to view information about every account that belongs to a user
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
-var page = 12; // number | Specify current page. (optional)
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var page = 1; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
 var response = client.accounts.listUserAccounts(userGuid, page, recordsPerPage);
@@ -99,12 +99,12 @@ Reading an account allows you to get information about a specific account that b
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
+var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
 var response = client.accounts.readAccount(accountGuid, userGuid);
 
@@ -135,13 +135,13 @@ Reading an account allows you to get information about a specific account that b
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
-var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
+var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
 var response = client.accounts.readAccountByMemberGUID(accountGuid, memberGuid, userGuid);
 

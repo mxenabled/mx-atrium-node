@@ -16,12 +16,12 @@ Use this endpoint to check whether account and routing numbers are available for
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
 var response = client.verification.listAccountNumbers(memberGuid, userGuid);
 
@@ -52,12 +52,12 @@ Use this endpoint to check whether account and routing numbers are available for
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
+var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
 var response = client.verification.listAccountNumbersByAccount(accountGuid, userGuid);
 
@@ -88,12 +88,12 @@ The verify endpoint begins a verification process for a member.
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
 var response = client.verification.verifyMember(memberGuid, userGuid);
 

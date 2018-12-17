@@ -16,11 +16,11 @@ Use this endpoint to categorize, cleanse, and classify transactions. These trans
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var body = {json object}; // TransactionsCleanseAndCategorizeRequestBody | User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
+var body = new atrium.TransactionsCleanseAndCategorizeRequestBody(); // TransactionsCleanseAndCategorizeRequestBody | User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
 
 var response = client.transactions.cleanseAndCategorizeTransactions(body);
 
@@ -50,15 +50,15 @@ Use this endpoint to get all transactions that belong to a specific user, across
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
-var page = 12; // number | Specify current page. (optional)
-var fromDate = "fromDate_example"; // string | Filter transactions from this date. (optional)
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var page = 1; // number | Specify current page. (optional)
+var fromDate = "2016-09-20"; // string | Filter transactions from this date. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
-var toDate = "toDate_example"; // string | Filter transactions to this date. (optional)
+var toDate = "2016-10-20"; // string | Filter transactions to this date. (optional)
 
 var response = client.transactions.listUserTransactions(userGuid, page, fromDate, recordsPerPage, toDate);
 
@@ -92,12 +92,12 @@ This endpoint allows you to view information about a specific transaction that b
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var transactionGuid = "transactionGuid_example"; // string | The unique identifier for a `transaction`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
+var transactionGuid = "TRN-123"; // string | The unique identifier for a `transaction`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
 var response = client.transactions.readTransaction(transactionGuid, userGuid);
 

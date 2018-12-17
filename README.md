@@ -12,7 +12,7 @@ npm install @types/node --save
 
 ### Generate JavaScript file
 ```sh
-tsc --target es5 api.ts
+tsc --target es5 atrium.ts
 ```
 
 ## Example Usage
@@ -20,15 +20,15 @@ tsc --target es5 api.ts
 Please see `docs` directory for additional endpoint examples
 
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var accountGuid = "accountGuid_example"; // string | The unique identifier for an `account`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
-var fromDate = "fromDate_example"; // string | Filter transactions from this date. (optional)
-var toDate = "toDate_example"; // string | Filter transactions to this date. (optional)
-var page = 12; // number | Specify current page. (optional)
+var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var fromDate = "2016-09-20"; // string | Filter transactions from this date. (optional)
+var toDate = "2016-10-20"; // string | Filter transactions to this date. (optional)
+var page = 1; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
 var response = client.accounts.listAccountTransactions(accountGuid, userGuid, fromDate, toDate, page, recordsPerPage);

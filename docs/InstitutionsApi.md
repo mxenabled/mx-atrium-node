@@ -16,12 +16,12 @@ This endpoint allows you to see what institutions are available for connection. 
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var name = "name_example"; // string | This will list only institutions in which the appended string appears. (optional)
-var page = 12; // number | Specify current page. (optional)
+var name = name_example; // string | This will list only institutions in which the appended string appears. (optional)
+var page = 1; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
 
 var response = client.institutions.listInstitutions(name, page, recordsPerPage);
@@ -54,11 +54,11 @@ This endpoint allows you to see information for a specific institution.
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var institutionCode = "institutionCode_example"; // string | The institution_code of the institution.
+var institutionCode = "example_institution_code"; // string | The institution_code of the institution.
 
 var response = client.institutions.readInstitution(institutionCode);
 
@@ -88,11 +88,11 @@ Use this endpoint to see which credentials will be needed to create a member for
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var institutionCode = "institutionCode_example"; // string | The institution_code of the institution.
+var institutionCode = "example_institution_code"; // string | The institution_code of the institution.
 
 var response = client.institutions.readInstitutionCredentials(institutionCode);
 

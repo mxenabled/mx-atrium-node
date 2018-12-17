@@ -4380,7 +4380,7 @@ export class VerificationApi {
     }
 }
 
-export class Client {
+export class AtriumClient {
     constructor(apiKey, clientID) { 
         this.mount('accounts', new AccountsApi(), apiKey, clientID);
         this.mount('connectWidget', new ConnectWidgetApi(), apiKey, clientID);

@@ -15,12 +15,12 @@ The identify endpoint begins an identification process for an already-existing m
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
 var response = client.identity.identifyMember(memberGuid, userGuid);
 
@@ -51,12 +51,12 @@ This endpoint returns an array with information about every account associated w
 
 ### Example
 ```javascript
-var api = require('./api.js');
+var atrium = require('./atrium.js');
 
-var client = new api.Client("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
-var memberGuid = "memberGuid_example"; // string | The unique identifier for a `member`.
-var userGuid = "userGuid_example"; // string | The unique identifier for a `user`.
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
 var response = client.identity.listAccountOwners(memberGuid, userGuid);
 
