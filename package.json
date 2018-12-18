@@ -1,22 +1,27 @@
 {
-  "name": "mx-atrium",
-  "version": "0.0.10",
-  "description": "Node wrapper for the MX Atrium API",
-  "main": "index.js",
-  "scripts": {
-    "test": "eslint index.js"
-  },
-  "author": "MX",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mxenabled/mx-atrium-node/issues"
-  },
-  "homepage": "https://github.com/mxenabled/mx-atrium-node",
-  "dependencies": {
-    "es6-promise": "^4.0.5",
-    "isomorphic-fetch": "^2.2.1"
-  },
-  "devDependencies": {
-    "eslint": "^3.7.1"
-  }
+    "name": "mx-atrium-node",
+    "version": "2.0.0",
+    "description": "NodeJS client for mx-atrium-node",
+    "repository": "GIT_USER_ID/GIT_REPO_ID",
+    "main": "api.js",
+    "types": "api.d.ts",
+    "scripts": {
+        "clean": "rm -Rf node_modules/ *.js",
+        "build": "tsc",
+        "test": "npm run build && node client.js"
+    },
+    "author": "MX",
+    "license": "MIT",
+    "dependencies": {
+        "bluebird": "^3.5.0",
+        "request": "^2.81.0",
+        "@types/bluebird": "*",
+        "@types/request": "*"
+    },
+    "devDependencies": {
+        "typescript": "^2.4.2"
+    },
+    "publishConfig":{
+        "registry":"https://atrium.mx.com"
+    }
 }
