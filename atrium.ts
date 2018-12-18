@@ -1200,6 +1200,70 @@ export class MembersResponseBody {
     }
 }
 
+export class Merchant {
+    'createdAt'?: string;
+    'guid'?: string;
+    'logoUrl'?: string;
+    'name'?: string;
+    'updatedAt'?: string;
+    'websiteUrl'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "createdAt",
+            "baseName": "created_at",
+            "type": "string"
+        },
+        {
+            "name": "guid",
+            "baseName": "guid",
+            "type": "string"
+        },
+        {
+            "name": "logoUrl",
+            "baseName": "logo_url",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updated_at",
+            "type": "string"
+        },
+        {
+            "name": "websiteUrl",
+            "baseName": "website_url",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Merchant.attributeTypeMap;
+    }
+}
+
+export class MerchantResponseBody {
+    'merchant'?: Merchant;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "merchant",
+            "baseName": "merchant",
+            "type": "Merchant"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MerchantResponseBody.attributeTypeMap;
+    }
+}
+
 export class Pagination {
     'currentPage'?: number;
     'perPage'?: number;
@@ -1775,6 +1839,8 @@ let typeMap: {[index: string]: any} = {
     "MemberUpdateRequest": MemberUpdateRequest,
     "MemberUpdateRequestBody": MemberUpdateRequestBody,
     "MembersResponseBody": MembersResponseBody,
+    "Merchant": Merchant,
+    "MerchantResponseBody": MerchantResponseBody,
     "Pagination": Pagination,
     "Transaction": Transaction,
     "TransactionCleanseAndCategorizeRequest": TransactionCleanseAndCategorizeRequest,
@@ -3553,6 +3619,112 @@ export class MembersApi {
         });
     }
 }
+export enum MerchantsApiApiKeys {
+    apiKey,
+    clientID,
+}
+
+export class MerchantsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiKey': new ApiKeyAuth('header', 'MX-API-Key'),
+        'clientID': new ApiKeyAuth('header', 'MX-Client-ID'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: MerchantsApiApiKeys, value: string) {
+        (this.authentications as any)[MerchantsApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * Returns information about a particular merchant, such as a logo, name, and website.
+     * @summary Read merchant
+     * @param merchantGuid The unique identifier for a &#x60;merchant&#x60;.
+     */
+    public readMerchant (merchantGuid: string) : Promise<{ response: http.IncomingMessage; body: MerchantResponseBody;  }> {
+        const localVarPath = this.basePath + '/merchants/{merchant_guid}'
+            .replace('{' + 'merchant_guid' + '}', encodeURIComponent(String(merchantGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'merchantGuid' is not null or undefined
+        if (merchantGuid === null || merchantGuid === undefined) {
+            throw new Error('Required parameter merchantGuid was null or undefined when calling readMerchant.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MerchantResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MerchantResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum TransactionsApiApiKeys {
     apiKey,
     clientID,
@@ -4387,6 +4559,7 @@ export class AtriumClient {
         this.mount('identity', new IdentityApi(), apiKey, clientID);
         this.mount('institutions', new InstitutionsApi(), apiKey, clientID);
         this.mount('members', new MembersApi(), apiKey, clientID);
+        this.mount('merchants', new MerchantsApi(), apiKey, clientID);
         this.mount('transactions', new TransactionsApi(), apiKey, clientID);
         this.mount('users', new UsersApi(), apiKey, clientID);
         this.mount('verification', new VerificationApi(), apiKey, clientID);
