@@ -776,6 +776,153 @@ export class CredentialsResponseBody {
     }
 }
 
+export class Holding {
+    'accountGuid'?: string;
+    'costBasis'?: number;
+    'createdAt'?: string;
+    'currencyCode'?: string;
+    'cusip'?: string;
+    'dailyChange'?: number;
+    'description'?: string;
+    'guid'?: string;
+    'holdingType'?: string;
+    'marketValue'?: number;
+    'memberGuid'?: string;
+    'purchasePrice'?: number;
+    'shares'?: number;
+    'symbol'?: string;
+    'updatedAt'?: string;
+    'userGuid'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "accountGuid",
+            "baseName": "account_guid",
+            "type": "string"
+        },
+        {
+            "name": "costBasis",
+            "baseName": "cost_basis",
+            "type": "number"
+        },
+        {
+            "name": "createdAt",
+            "baseName": "created_at",
+            "type": "string"
+        },
+        {
+            "name": "currencyCode",
+            "baseName": "currency_code",
+            "type": "string"
+        },
+        {
+            "name": "cusip",
+            "baseName": "cusip",
+            "type": "string"
+        },
+        {
+            "name": "dailyChange",
+            "baseName": "daily_change",
+            "type": "number"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "guid",
+            "baseName": "guid",
+            "type": "string"
+        },
+        {
+            "name": "holdingType",
+            "baseName": "holding_type",
+            "type": "string"
+        },
+        {
+            "name": "marketValue",
+            "baseName": "market_value",
+            "type": "number"
+        },
+        {
+            "name": "memberGuid",
+            "baseName": "member_guid",
+            "type": "string"
+        },
+        {
+            "name": "purchasePrice",
+            "baseName": "purchase_price",
+            "type": "number"
+        },
+        {
+            "name": "shares",
+            "baseName": "shares",
+            "type": "number"
+        },
+        {
+            "name": "symbol",
+            "baseName": "symbol",
+            "type": "string"
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updated_at",
+            "type": "string"
+        },
+        {
+            "name": "userGuid",
+            "baseName": "user_guid",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Holding.attributeTypeMap;
+    }
+}
+
+export class HoldingResponseBody {
+    'holding'?: Holding;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "holding",
+            "baseName": "holding",
+            "type": "Holding"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HoldingResponseBody.attributeTypeMap;
+    }
+}
+
+export class HoldingsResponseBody {
+    'holdings'?: Array<Holding>;
+    'pagination'?: Pagination;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "holdings",
+            "baseName": "holdings",
+            "type": "Array<Holding>"
+        },
+        {
+            "name": "pagination",
+            "baseName": "pagination",
+            "type": "Pagination"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return HoldingsResponseBody.attributeTypeMap;
+    }
+}
+
 export class Institution {
     'code'?: string;
     'mediumLogoUrl'?: string;
@@ -1825,6 +1972,9 @@ let typeMap: {[index: string]: any} = {
     "CredentialRequest": CredentialRequest,
     "CredentialResponse": CredentialResponse,
     "CredentialsResponseBody": CredentialsResponseBody,
+    "Holding": Holding,
+    "HoldingResponseBody": HoldingResponseBody,
+    "HoldingsResponseBody": HoldingsResponseBody,
     "Institution": Institution,
     "InstitutionResponseBody": InstitutionResponseBody,
     "InstitutionsResponseBody": InstitutionsResponseBody,
@@ -2346,6 +2496,304 @@ export class ConnectWidgetApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "ConnectWidgetResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum HoldingsApiApiKeys {
+    apiKey,
+    clientID,
+}
+
+export class HoldingsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiKey': new ApiKeyAuth('header', 'MX-API-Key'),
+        'clientID': new ApiKeyAuth('header', 'MX-Client-ID'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: HoldingsApiApiKeys, value: string) {
+        (this.authentications as any)[HoldingsApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * Use this endpoint to read all holdings associated with a specific user.
+     * @summary List holdings
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     */
+    public listHoldings (userGuid: string) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/holdings'
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling listHoldings.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "HoldingsResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Use this endpoint to read all holdings associated with a specific account.
+     * @summary List holdings by account
+     * @param accountGuid The unique identifier for an &#x60;account&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     */
+    public listHoldingsByAccount (accountGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/accounts/{account_guid}/holdings'
+            .replace('{' + 'account_guid' + '}', encodeURIComponent(String(accountGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'accountGuid' is not null or undefined
+        if (accountGuid === null || accountGuid === undefined) {
+            throw new Error('Required parameter accountGuid was null or undefined when calling listHoldingsByAccount.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling listHoldingsByAccount.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "HoldingsResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Use this endpoint to read all holdings associated with a specific member.
+     * @summary List holdings by member
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     */
+    public listHoldingsByMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/holdings'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling listHoldingsByMember.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling listHoldingsByMember.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "HoldingsResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Use this endpoint to read the attributes of a specific holding.
+     * @summary Read holding
+     * @param holdingGuid The unique identifier for a &#x60;holding&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     */
+    public readHolding (holdingGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: HoldingResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/holdings/{holding_guid}'
+            .replace('{' + 'holding_guid' + '}', encodeURIComponent(String(holdingGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'holdingGuid' is not null or undefined
+        if (holdingGuid === null || holdingGuid === undefined) {
+            throw new Error('Required parameter holdingGuid was null or undefined when calling readHolding.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling readHolding.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: HoldingResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "HoldingResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -4556,6 +5004,7 @@ export class AtriumClient {
     constructor(apiKey, clientID) { 
         this.mount('accounts', new AccountsApi(), apiKey, clientID);
         this.mount('connectWidget', new ConnectWidgetApi(), apiKey, clientID);
+        this.mount('holdings', new HoldingsApi(), apiKey, clientID);
         this.mount('identity', new IdentityApi(), apiKey, clientID);
         this.mount('institutions', new InstitutionsApi(), apiKey, clientID);
         this.mount('members', new MembersApi(), apiKey, clientID);
