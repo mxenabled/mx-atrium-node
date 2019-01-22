@@ -1019,7 +1019,7 @@ export class InstitutionsResponseBody {
 export class Member {
     'aggregatedAt'?: string;
     'connectionStatus'?: string;
-    'guid'?: boolean;
+    'guid'?: string;
     'identifier'?: string;
     'institutionCode'?: string;
     'isBeingAggregated'?: boolean;
@@ -1045,7 +1045,7 @@ export class Member {
         {
             "name": "guid",
             "baseName": "guid",
-            "type": "boolean"
+            "type": "string"
         },
         {
             "name": "identifier",
@@ -1097,7 +1097,7 @@ export class MemberConnectionStatus {
     'aggregatedAt'?: string;
     'challenges'?: Array<Challenge>;
     'connectionStatus'?: string;
-    'guid'?: boolean;
+    'guid'?: string;
     'hasProcessedAccounts'?: boolean;
     'hasProcessedTransactions'?: boolean;
     'isBeingAggregated'?: boolean;
@@ -1125,7 +1125,7 @@ export class MemberConnectionStatus {
         {
             "name": "guid",
             "baseName": "guid",
-            "type": "boolean"
+            "type": "string"
         },
         {
             "name": "hasProcessedAccounts",
