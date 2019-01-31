@@ -1,6 +1,6 @@
 {
     "name": "mx-atrium-node",
-    "version": "2.1.1",
+    "version": "2.3.0",
     "description": "NodeJS client for mx-atrium-node",
     "repository": "GIT_USER_ID/GIT_REPO_ID",
     "main": "api.js",

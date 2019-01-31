@@ -929,7 +929,9 @@ export class Institution {
     'name'?: string;
     'smallLogoUrl'?: string;
     'supportsAccountIdentification'?: boolean;
+    'supportsAccountStatement'?: boolean;
     'supportsAccountVerification'?: boolean;
+    'supportsTransactionHistory'?: boolean;
     'url'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -961,8 +963,18 @@ export class Institution {
             "type": "boolean"
         },
         {
+            "name": "supportsAccountStatement",
+            "baseName": "supports_account_statement",
+            "type": "boolean"
+        },
+        {
             "name": "supportsAccountVerification",
             "baseName": "supports_account_verification",
+            "type": "boolean"
+        },
+        {
+            "name": "supportsTransactionHistory",
+            "baseName": "supports_transaction_history",
             "type": "boolean"
         },
         {
@@ -1443,6 +1455,121 @@ export class Pagination {
 
     static getAttributeTypeMap() {
         return Pagination.attributeTypeMap;
+    }
+}
+
+export class Statement {
+    /**
+    * The unique identifier for the `account` associated with the `statement`. Defined by MX.
+    */
+    'accountGuid'?: string;
+    /**
+    * The date and time the `statement` was created.
+    */
+    'createdAt'?: string;
+    /**
+    * An SHA-256 hash value of the statement's byte payload, used as a unique identifier.
+    */
+    'contentHash'?: string;
+    /**
+    * The date and time the `statement` was deleted. Statements are automatically deleted when an `account` is deleted.
+    */
+    'deletedAt'?: string;
+    /**
+    * The unique identifier for the `statement`. Defined by MX.
+    */
+    'guid'?: string;
+    /**
+    * This indicates whether the `statement` has been deleted. Statements are automatically deleted when an `account` is deleted.
+    */
+    'isDeleted'?: boolean;
+    /**
+    * The date and time at which the `statement` was last updated.
+    */
+    'updatedAt'?: string;
+    /**
+    * A URI for accessing the byte payload of the `statement`.
+    */
+    'uri'?: string;
+    /**
+    * The unique identifier for the `user` associated with the `statement`.  Defined by MX.
+    */
+    'userGuid'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "accountGuid",
+            "baseName": "account_guid",
+            "type": "string"
+        },
+        {
+            "name": "createdAt",
+            "baseName": "created_at",
+            "type": "string"
+        },
+        {
+            "name": "contentHash",
+            "baseName": "content_hash",
+            "type": "string"
+        },
+        {
+            "name": "deletedAt",
+            "baseName": "deleted_at",
+            "type": "string"
+        },
+        {
+            "name": "guid",
+            "baseName": "guid",
+            "type": "string"
+        },
+        {
+            "name": "isDeleted",
+            "baseName": "is_deleted",
+            "type": "boolean"
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updated_at",
+            "type": "string"
+        },
+        {
+            "name": "uri",
+            "baseName": "uri",
+            "type": "string"
+        },
+        {
+            "name": "userGuid",
+            "baseName": "user_guid",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Statement.attributeTypeMap;
+    }
+}
+
+export class StatementsResponseBody {
+    'statements'?: Array<Statement>;
+    'pagination'?: Pagination;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "statements",
+            "baseName": "statements",
+            "type": "Array<Statement>"
+        },
+        {
+            "name": "pagination",
+            "baseName": "pagination",
+            "type": "Pagination"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StatementsResponseBody.attributeTypeMap;
     }
 }
 
@@ -1992,6 +2119,8 @@ let typeMap: {[index: string]: any} = {
     "Merchant": Merchant,
     "MerchantResponseBody": MerchantResponseBody,
     "Pagination": Pagination,
+    "Statement": Statement,
+    "StatementsResponseBody": StatementsResponseBody,
     "Transaction": Transaction,
     "TransactionCleanseAndCategorizeRequest": TransactionCleanseAndCategorizeRequest,
     "TransactionCleanseAndCategorizeResponse": TransactionCleanseAndCategorizeResponse,
@@ -3035,8 +3164,12 @@ export class InstitutionsApi {
      * @param name This will list only institutions in which the appended string appears.
      * @param page Specify current page.
      * @param recordsPerPage Specify records per page.
+     * @param supportsAccountIdentification Filter only institutions which support account identification.
+     * @param supportsAccountStatement Filter only institutions which support account statements.
+     * @param supportsAccountVerification Filter only institutions which support account verification.
+     * @param supportsTransactionHistory Filter only institutions which support extended transaction history.
      */
-    public listInstitutions (name?: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: InstitutionsResponseBody;  }> {
+    public listInstitutions (name?: string, page?: number, recordsPerPage?: number, supportsAccountIdentification?: boolean, supportsAccountStatement?: boolean, supportsAccountVerification?: boolean, supportsTransactionHistory?: boolean) : Promise<{ response: http.IncomingMessage; body: InstitutionsResponseBody;  }> {
         const localVarPath = this.basePath + '/institutions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3052,6 +3185,22 @@ export class InstitutionsApi {
 
         if (recordsPerPage !== undefined) {
             localVarQueryParameters['records_per_page'] = ObjectSerializer.serialize(recordsPerPage, "number");
+        }
+
+        if (supportsAccountIdentification !== undefined) {
+            localVarQueryParameters['supports_account_identification'] = ObjectSerializer.serialize(supportsAccountIdentification, "boolean");
+        }
+
+        if (supportsAccountStatement !== undefined) {
+            localVarQueryParameters['supports_account_statement'] = ObjectSerializer.serialize(supportsAccountStatement, "boolean");
+        }
+
+        if (supportsAccountVerification !== undefined) {
+            localVarQueryParameters['supports_account_verification'] = ObjectSerializer.serialize(supportsAccountVerification, "boolean");
+        }
+
+        if (supportsTransactionHistory !== undefined) {
+            localVarQueryParameters['supports_transaction_history'] = ObjectSerializer.serialize(supportsTransactionHistory, "boolean");
         }
 
 
@@ -3262,8 +3411,9 @@ export class MembersApi {
      * @summary Aggregate member
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     * @param type An optional parameter which determines the type of aggregation to be peformed. Possible values are &#x60;statement&#x60; and &#x60;history&#x60;.
      */
-    public aggregateMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
+    public aggregateMember (memberGuid: string, userGuid: string, type?: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/aggregate'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3279,6 +3429,10 @@ export class MembersApi {
         // verify required parameter 'userGuid' is not null or undefined
         if (userGuid === null || userGuid === undefined) {
             throw new Error('Required parameter userGuid was null or undefined when calling aggregateMember.');
+        }
+
+        if (type !== undefined) {
+            localVarQueryParameters['type'] = ObjectSerializer.serialize(type, "string");
         }
 
 
@@ -3641,6 +3795,80 @@ export class MembersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "ChallengesResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Certain institutions in Atrium allow developers to access account statements associated with a particular `member`. Use this endpoint to get an array of available statements.  Before this endpoint can be used, an aggregation of type `statement` should be performed on the relevant `member`. 
+     * @summary List member statements
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     * @param page Specify current page.
+     * @param recordsPerPage Specify records per page.
+     */
+    public listMemberStatements (memberGuid: string, userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: StatementsResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/statements'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling listMemberStatements.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling listMemberStatements.');
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (recordsPerPage !== undefined) {
+            localVarQueryParameters['records_per_page'] = ObjectSerializer.serialize(recordsPerPage, "number");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: StatementsResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "StatementsResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

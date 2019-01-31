@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **listInstitutions**
-> InstitutionsResponseBody listInstitutions(name, page, recordsPerPage)
+> InstitutionsResponseBody listInstitutions(name, page, recordsPerPage, supportsAccountIdentification, supportsAccountStatement, supportsAccountVerification, supportsTransactionHistory)
 
 List institutions
 
@@ -23,8 +23,12 @@ var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 var name = name_example; // string | This will list only institutions in which the appended string appears. (optional)
 var page = 1; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
+var supportsAccountIdentification = true; // boolean | Filter only institutions which support account identification. (optional)
+var supportsAccountStatement = true; // boolean | Filter only institutions which support account statements. (optional)
+var supportsAccountVerification = true; // boolean | Filter only institutions which support account verification. (optional)
+var supportsTransactionHistory = true; // boolean | Filter only institutions which support extended transaction history. (optional)
 
-var response = client.institutions.listInstitutions(name, page, recordsPerPage);
+var response = client.institutions.listInstitutions(name, page, recordsPerPage, supportsAccountIdentification, supportsAccountStatement, supportsAccountVerification, supportsTransactionHistory);
 
 response.then(function(value) {
   console.log(value);
@@ -38,6 +42,10 @@ Name | Type | Description  | Notes
  **name** | **string**| This will list only institutions in which the appended string appears. | [optional] 
  **page** | **number**| Specify current page. | [optional] 
  **recordsPerPage** | **number**| Specify records per page. | [optional] 
+ **supportsAccountIdentification** | **boolean**| Filter only institutions which support account identification. | [optional] 
+ **supportsAccountStatement** | **boolean**| Filter only institutions which support account statements. | [optional] 
+ **supportsAccountVerification** | **boolean**| Filter only institutions which support account verification. | [optional] 
+ **supportsTransactionHistory** | **boolean**| Filter only institutions which support extended transaction history. | [optional] 
 
 ### Return type
 
