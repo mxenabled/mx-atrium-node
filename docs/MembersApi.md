@@ -5,10 +5,10 @@ Method | HTTP request | Description
 [**aggregateMember**](MembersApi.md#aggregateMember) | **POST** /users/{user_guid}/members/{member_guid}/aggregate | Aggregate member
 [**createMember**](MembersApi.md#createMember) | **POST** /users/{user_guid}/members | Create member
 [**deleteMember**](MembersApi.md#deleteMember) | **DELETE** /users/{user_guid}/members/{member_guid} | Delete member
+[**extendHistory**](MembersApi.md#extendHistory) | **POST** /users/{user_guid}/members/{member_guid}/extend_history | Extend history
 [**listMemberAccounts**](MembersApi.md#listMemberAccounts) | **GET** /users/{user_guid}/members/{member_guid}/accounts | List member accounts
 [**listMemberCredentials**](MembersApi.md#listMemberCredentials) | **GET** /users/{user_guid}/members/{member_guid}/credentials | List member credentials
 [**listMemberMFAChallenges**](MembersApi.md#listMemberMFAChallenges) | **GET** /users/{user_guid}/members/{member_guid}/challenges | List member MFA challenges
-[**listMemberStatements**](MembersApi.md#listMemberStatements) | **GET** /users/{user_guid}/members/{member_guid}/statements | List member statements
 [**listMemberTransactions**](MembersApi.md#listMemberTransactions) | **GET** /users/{user_guid}/members/{member_guid}/transactions | List member transactions
 [**listMembers**](MembersApi.md#listMembers) | **GET** /users/{user_guid}/members | List members
 [**readMember**](MembersApi.md#readMember) | **GET** /users/{user_guid}/members/{member_guid} | Read member
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **aggregateMember**
-> MemberResponseBody aggregateMember(memberGuid, userGuid, type)
+> MemberResponseBody aggregateMember(memberGuid, userGuid)
 
 Aggregate member
 
@@ -32,9 +32,8 @@ var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
-var type = "history"; // string | An optional parameter which determines the type of aggregation to be peformed. Possible values are `statement` and `history`. (optional)
 
-var response = client.members.aggregateMember(memberGuid, userGuid, type);
+var response = client.members.aggregateMember(memberGuid, userGuid);
 
 response.then(function(value) {
   console.log(value);
@@ -47,7 +46,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
  **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
- **type** | **string**| An optional parameter which determines the type of aggregation to be peformed. Possible values are &#x60;statement&#x60; and &#x60;history&#x60;. | [optional] 
 
 ### Return type
 
@@ -124,6 +122,42 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **extendHistory**
+> MemberResponseBody extendHistory(memberGuid, userGuid)
+
+Extend history
+
+The extend_history endpoint begins the process of fetching up to 24 months of data associated with a particular `member`.
+
+### Example
+```javascript
+var atrium = require('./atrium.js');
+
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+
+var response = client.members.extendHistory(memberGuid, userGuid);
+
+response.then(function(value) {
+  console.log(value);
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+ **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+
+### Return type
+
+[**MemberResponseBody**](MemberResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -236,46 +270,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ChallengesResponseBody**](ChallengesResponseBody.md)
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **listMemberStatements**
-> StatementsResponseBody listMemberStatements(memberGuid, userGuid, page, recordsPerPage)
-
-List member statements
-
-Certain institutions in Atrium allow developers to access account statements associated with a particular `member`. Use this endpoint to get an array of available statements.  Before this endpoint can be used, an aggregation of type `statement` should be performed on the relevant `member`. 
-
-### Example
-```javascript
-var atrium = require('./atrium.js');
-
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
-
-var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
-var userGuid = "USR-123"; // string | The unique identifier for a `user`.
-var page = 1; // number | Specify current page. (optional)
-var recordsPerPage = 12; // number | Specify records per page. (optional)
-
-var response = client.members.listMemberStatements(memberGuid, userGuid, page, recordsPerPage);
-
-response.then(function(value) {
-  console.log(value);
-});
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
- **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
- **page** | **number**| Specify current page. | [optional] 
- **recordsPerPage** | **number**| Specify records per page. | [optional] 
-
-### Return type
-
-[**StatementsResponseBody**](StatementsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
