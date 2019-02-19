@@ -1,8 +1,8 @@
 {
-    "name": "mx-atrium-node",
-    "version": "2.4.0",
+    "name": "mx-atrium",
+    "version": "2.4.1",
     "description": "NodeJS client for mx-atrium-node",
-    "repository": "GIT_USER_ID/GIT_REPO_ID",
+    "repository": "mxenabled/mx-atrium-node",
     "main": "api.js",
     "types": "api.d.ts",
     "scripts": {
@@ -21,7 +21,7 @@
     "devDependencies": {
         "typescript": "^2.4.2"
     },
-    "publishConfig":{
-        "registry":"https://atrium.mx.com"
+    "publishConfig": {
+        "registry": "https://atrium.mx.com"
     }
 }
