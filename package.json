@@ -1,6 +1,6 @@
 {
     "name": "mx-atrium",
-    "version": "2.4.1",
+    "version": "2.4.2",
     "description": "NodeJS client for mx-atrium-node",
     "repository": "mxenabled/mx-atrium-node",
     "main": "api.js",
@@ -22,6 +22,6 @@
         "typescript": "^2.4.2"
     },
     "publishConfig": {
-        "registry": "https://atrium.mx.com"
+        "registry": "https://registry.npmjs.org/"
     }
 }
