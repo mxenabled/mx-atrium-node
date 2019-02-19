@@ -3,16 +3,14 @@ The MX Atrium API supports over 48,000 data connections to thousands of financia
 
 ## Installation & Usage
 
-### Install Required npm Packages
+### Install dependencies
 ```sh
-npm install request --save
-npm install bluebird --save
-npm install @types/node --save
+npm install
 ```
 
 ### Generate JavaScript file
 ```sh
-tsc --target es5 atrium.ts
+npm run build
 ```
 
 ## Example Usage
