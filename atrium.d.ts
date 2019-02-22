@@ -637,12 +637,27 @@ export declare class Pagination {
 }
 export declare class Statement {
     'accountGuid'?: string;
+    'contentHash'?: string;
     'createdAt'?: string;
     'guid'?: string;
     'memberGuid'?: string;
     'uri'?: string;
     'userGuid'?: string;
     'updatedAt'?: string;
+    static discriminator: string | undefined;
+    static attributeTypeMap: Array<{
+        name: string;
+        baseName: string;
+        type: string;
+    }>;
+    static getAttributeTypeMap(): {
+        name: string;
+        baseName: string;
+        type: string;
+    }[];
+}
+export declare class StatementResponseBody {
+    'user'?: Statement;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;
@@ -1175,6 +1190,10 @@ export declare class StatementsApi {
     basePath: string;
     setDefaultAuthentication(auth: Authentication): void;
     setApiKey(key: StatementsApiApiKeys, value: string): void;
+    downloadStatementPdf(memberGuid: string, userGuid: string, statementGuid: string): Promise<{
+        response: http.IncomingMessage;
+        body: Buffer;
+    }>;
     fetchStatements(memberGuid: string, userGuid: string): Promise<{
         response: http.IncomingMessage;
         body: MemberResponseBody;
@@ -1182,6 +1201,10 @@ export declare class StatementsApi {
     listMemberStatements(memberGuid: string, userGuid: string, page?: number, recordsPerPage?: number): Promise<{
         response: http.IncomingMessage;
         body: StatementsResponseBody;
+    }>;
+    readMemberStatement(memberGuid: string, userGuid: string, statementGuid: string): Promise<{
+        response: http.IncomingMessage;
+        body: StatementResponseBody;
     }>;
 }
 export declare enum TransactionsApiApiKeys {

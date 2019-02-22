@@ -2,9 +2,49 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**downloadStatementPdf**](StatementsApi.md#downloadStatementPdf) | **GET** /users/{user_guid}/members/{member_guid}/statements/{statement_guid}.pdf | Download statement PDF
 [**fetchStatements**](StatementsApi.md#fetchStatements) | **POST** /users/{user_guid}/members/{member_guid}/fetch_statements | Fetch statements
 [**listMemberStatements**](StatementsApi.md#listMemberStatements) | **GET** /users/{user_guid}/members/{member_guid}/statements | List member statements
+[**readMemberStatement**](StatementsApi.md#readMemberStatement) | **GET** /users/{user_guid}/members/{member_guid}/statements/{statement_guid} | Read statement JSON
 
+
+# **downloadStatementPdf**
+> Buffer downloadStatementPdf(memberGuid, userGuid, statementGuid)
+
+Download statement PDF
+
+Use this endpoint to download a specified statement. The endpoint URL is the same as the URI given in each `statement` object. 
+
+### Example
+```javascript
+var atrium = require('./atrium.js');
+
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var statementGuid = "STA-123"; // string | The unique identifier for an `statement`.
+
+var response = client.statements.downloadStatementPdf(memberGuid, userGuid, statementGuid);
+
+response.then(function(value) {
+  console.log(value);
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+ **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+ **statementGuid** | **string**| The unique identifier for an &#x60;statement&#x60;. | 
+
+### Return type
+
+[**Buffer**](Buffer.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fetchStatements**
 > MemberResponseBody fetchStatements(memberGuid, userGuid)
@@ -79,6 +119,44 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**StatementsResponseBody**](StatementsResponseBody.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **readMemberStatement**
+> StatementResponseBody readMemberStatement(memberGuid, userGuid, statementGuid)
+
+Read statement JSON
+
+Use this endpoint to download a specified statement. The endpoint URL is the same as the URI given in each `statement` object. 
+
+### Example
+```javascript
+var atrium = require('./atrium.js');
+
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var statementGuid = "STA-123"; // string | The unique identifier for an `statement`.
+
+var response = client.statements.readMemberStatement(memberGuid, userGuid, statementGuid);
+
+response.then(function(value) {
+  console.log(value);
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+ **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+ **statementGuid** | **string**| The unique identifier for an &#x60;statement&#x60;. | 
+
+### Return type
+
+[**StatementResponseBody**](StatementResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

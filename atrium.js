@@ -1345,6 +1345,11 @@ var Statement = (function () {
             "type": "string"
         },
         {
+            "name": "contentHash",
+            "baseName": "content_hash",
+            "type": "string"
+        },
+        {
             "name": "createdAt",
             "baseName": "created_at",
             "type": "string"
@@ -1378,6 +1383,23 @@ var Statement = (function () {
     return Statement;
 }());
 exports.Statement = Statement;
+var StatementResponseBody = (function () {
+    function StatementResponseBody() {
+    }
+    StatementResponseBody.getAttributeTypeMap = function () {
+        return StatementResponseBody.attributeTypeMap;
+    };
+    StatementResponseBody.discriminator = undefined;
+    StatementResponseBody.attributeTypeMap = [
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "Statement"
+        }
+    ];
+    return StatementResponseBody;
+}());
+exports.StatementResponseBody = StatementResponseBody;
 var StatementsResponseBody = (function () {
     function StatementsResponseBody() {
     }
@@ -1894,6 +1916,7 @@ var typeMap = {
     "MerchantResponseBody": MerchantResponseBody,
     "Pagination": Pagination,
     "Statement": Statement,
+    "StatementResponseBody": StatementResponseBody,
     "StatementsResponseBody": StatementsResponseBody,
     "Transaction": Transaction,
     "TransactionCleanseAndCategorizeRequest": TransactionCleanseAndCategorizeRequest,
@@ -3812,6 +3835,60 @@ var StatementsApi = (function () {
     StatementsApi.prototype.setApiKey = function (key, value) {
         this.authentications[StatementsApiApiKeys[key]].apiKey = value;
     };
+    StatementsApi.prototype.downloadStatementPdf = function (memberGuid, userGuid, statementGuid) {
+        var localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/statements/{statement_guid}.pdf'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)))
+            .replace('{' + 'statement_guid' + '}', encodeURIComponent(String(statementGuid)));
+        var localVarQueryParameters = {};
+        var localVarHeaderParams = Object.assign({}, this.defaultHeaders);
+        var localVarFormParams = {};
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling downloadStatementPdf.');
+        }
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling downloadStatementPdf.');
+        }
+        if (statementGuid === null || statementGuid === undefined) {
+            throw new Error('Required parameter statementGuid was null or undefined when calling downloadStatementPdf.');
+        }
+        var localVarUseFormData = false;
+        var localVarRequestOptions = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                localVarRequestOptions.formData = localVarFormParams;
+            }
+            else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise(function (resolve, reject) {
+            localVarRequest(localVarRequestOptions, function (error, response, body) {
+                if (error) {
+                    reject(error);
+                }
+                else {
+                    body = ObjectSerializer.deserialize(body, "Buffer");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    }
+                    else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    };
     StatementsApi.prototype.fetchStatements = function (memberGuid, userGuid) {
         var localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/fetch_statements'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
@@ -3908,6 +3985,60 @@ var StatementsApi = (function () {
                 }
                 else {
                     body = ObjectSerializer.deserialize(body, "StatementsResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    }
+                    else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    };
+    StatementsApi.prototype.readMemberStatement = function (memberGuid, userGuid, statementGuid) {
+        var localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/statements/{statement_guid}'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)))
+            .replace('{' + 'statement_guid' + '}', encodeURIComponent(String(statementGuid)));
+        var localVarQueryParameters = {};
+        var localVarHeaderParams = Object.assign({}, this.defaultHeaders);
+        var localVarFormParams = {};
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling readMemberStatement.');
+        }
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling readMemberStatement.');
+        }
+        if (statementGuid === null || statementGuid === undefined) {
+            throw new Error('Required parameter statementGuid was null or undefined when calling readMemberStatement.');
+        }
+        var localVarUseFormData = false;
+        var localVarRequestOptions = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                localVarRequestOptions.formData = localVarFormParams;
+            }
+            else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise(function (resolve, reject) {
+            localVarRequest(localVarRequestOptions, function (error, response, body) {
+                if (error) {
+                    reject(error);
+                }
+                else {
+                    body = ObjectSerializer.deserialize(body, "StatementResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     }

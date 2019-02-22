@@ -1464,6 +1464,10 @@ export class Statement {
     */
     'accountGuid'?: string;
     /**
+    * SHA256 digest of the pdf payload
+    */
+    'contentHash'?: string;
+    /**
     * The date and time the `statement` was created.
     */
     'createdAt'?: string;
@@ -1494,6 +1498,11 @@ export class Statement {
         {
             "name": "accountGuid",
             "baseName": "account_guid",
+            "type": "string"
+        },
+        {
+            "name": "contentHash",
+            "baseName": "content_hash",
             "type": "string"
         },
         {
@@ -1529,6 +1538,23 @@ export class Statement {
 
     static getAttributeTypeMap() {
         return Statement.attributeTypeMap;
+    }
+}
+
+export class StatementResponseBody {
+    'user'?: Statement;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "user",
+            "baseName": "user",
+            "type": "Statement"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StatementResponseBody.attributeTypeMap;
     }
 }
 
@@ -2102,6 +2128,7 @@ let typeMap: {[index: string]: any} = {
     "MerchantResponseBody": MerchantResponseBody,
     "Pagination": Pagination,
     "Statement": Statement,
+    "StatementResponseBody": StatementResponseBody,
     "StatementsResponseBody": StatementsResponseBody,
     "Transaction": Transaction,
     "TransactionCleanseAndCategorizeRequest": TransactionCleanseAndCategorizeRequest,
@@ -4417,6 +4444,77 @@ export class StatementsApi {
         (this.authentications as any)[StatementsApiApiKeys[key]].apiKey = value;
     }
     /**
+     * Use this endpoint to download a specified statement. The endpoint URL is the same as the URI given in each `statement` object. 
+     * @summary Download statement PDF
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     * @param statementGuid The unique identifier for an &#x60;statement&#x60;.
+     */
+    public downloadStatementPdf (memberGuid: string, userGuid: string, statementGuid: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/statements/{statement_guid}.pdf'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)))
+            .replace('{' + 'statement_guid' + '}', encodeURIComponent(String(statementGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling downloadStatementPdf.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling downloadStatementPdf.');
+        }
+
+        // verify required parameter 'statementGuid' is not null or undefined
+        if (statementGuid === null || statementGuid === undefined) {
+            throw new Error('Required parameter statementGuid was null or undefined when calling downloadStatementPdf.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: Buffer;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Buffer");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * The fetch statements endpoint begins fetching statements for a member.
      * @summary Fetch statements
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
@@ -4545,6 +4643,77 @@ export class StatementsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "StatementsResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Use this endpoint to download a specified statement. The endpoint URL is the same as the URI given in each `statement` object. 
+     * @summary Read statement JSON
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     * @param statementGuid The unique identifier for an &#x60;statement&#x60;.
+     */
+    public readMemberStatement (memberGuid: string, userGuid: string, statementGuid: string) : Promise<{ response: http.IncomingMessage; body: StatementResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/statements/{statement_guid}'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)))
+            .replace('{' + 'statement_guid' + '}', encodeURIComponent(String(statementGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling readMemberStatement.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling readMemberStatement.');
+        }
+
+        // verify required parameter 'statementGuid' is not null or undefined
+        if (statementGuid === null || statementGuid === undefined) {
+            throw new Error('Required parameter statementGuid was null or undefined when calling readMemberStatement.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: StatementResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "StatementResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
