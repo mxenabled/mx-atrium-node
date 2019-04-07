@@ -3,7 +3,7 @@
     "version": "2.5.0",
     "description": "NodeJS client for mx-atrium-node",
     "repository": "mxenabled/mx-atrium-node",
-    "main": "api.js",
+    "main": "atrium.js",
     "types": "api.d.ts",
     "scripts": {
         "clean": "rm -Rf node_modules/ *.js",
