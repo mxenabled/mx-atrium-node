@@ -139,15 +139,20 @@ export class Account {
     'availableBalance'?: number;
     'availableCredit'?: number;
     'balance'?: number;
+    'cashBalance'?: number;
+    'cashSurrenderValue'?: number;
     'createdAt'?: string;
     'creditLimit'?: number;
     'currencyCode'?: string;
     'dayPaymentIsDue'?: number;
+    'deathBenefit'?: number;
     'guid'?: string;
+    'holdingsValue'?: number;
     'institutionCode'?: string;
     'interestRate'?: number;
     'isClosed'?: boolean;
     'lastPayment'?: number;
+    'loanAmount'?: number;
     'maturesOn'?: string;
     'memberGuid'?: string;
     'minimumBalance'?: number;
@@ -192,6 +197,16 @@ export class Account {
             "type": "number"
         },
         {
+            "name": "cashBalance",
+            "baseName": "cash_balance",
+            "type": "number"
+        },
+        {
+            "name": "cashSurrenderValue",
+            "baseName": "cash_surrender_value",
+            "type": "number"
+        },
+        {
             "name": "createdAt",
             "baseName": "created_at",
             "type": "string"
@@ -212,9 +227,19 @@ export class Account {
             "type": "number"
         },
         {
+            "name": "deathBenefit",
+            "baseName": "death_benefit",
+            "type": "number"
+        },
+        {
             "name": "guid",
             "baseName": "guid",
             "type": "string"
+        },
+        {
+            "name": "holdingsValue",
+            "baseName": "holdings_value",
+            "type": "number"
         },
         {
             "name": "institutionCode",
@@ -234,6 +259,11 @@ export class Account {
         {
             "name": "lastPayment",
             "baseName": "last_payment",
+            "type": "number"
+        },
+        {
+            "name": "loanAmount",
+            "baseName": "loan_amount",
             "type": "number"
         },
         {
@@ -4778,7 +4808,7 @@ export class TransactionsApi {
      * @param body User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
      */
     public cleanseAndCategorizeTransactions (body: TransactionsCleanseAndCategorizeRequestBody) : Promise<{ response: http.IncomingMessage; body: TransactionsCleanseAndCategorizeResponseBody;  }> {
-        const localVarPath = this.basePath + '/cleanse_and_categorize';
+        const localVarPath = this.basePath + '/transactions/cleanse_and_categorize';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
