@@ -1,0 +1,40 @@
+# Account
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**apr** | **number** |  | [optional] 
+**apy** | **number** |  | [optional] 
+**availableBalance** | **number** |  | [optional] 
+**availableCredit** | **number** |  | [optional] 
+**balance** | **number** |  | [optional] 
+**cashBalance** | **number** |  | [optional] 
+**cashSurrenderValue** | **number** |  | [optional] 
+**createdAt** | **string** |  | [optional] 
+**creditLimit** | **number** |  | [optional] 
+**currencyCode** | **string** |  | [optional] 
+**dayPaymentIsDue** | **number** |  | [optional] 
+**deathBenefit** | **number** |  | [optional] 
+**guid** | **string** |  | [optional] 
+**holdingsValue** | **number** |  | [optional] 
+**institutionCode** | **string** |  | [optional] 
+**interestRate** | **number** |  | [optional] 
+**isClosed** | **boolean** |  | [optional] 
+**lastPayment** | **number** |  | [optional] 
+**loanAmount** | **number** |  | [optional] 
+**maturesOn** | **string** |  | [optional] 
+**memberGuid** | **string** |  | [optional] 
+**minimumBalance** | **number** |  | [optional] 
+**minimumPayment** | **number** |  | [optional] 
+**name** | **string** |  | [optional] 
+**originalBalance** | **number** |  | [optional] 
+**paymentDueAt** | **string** |  | [optional] 
+**payoffBalance** | **number** |  | [optional] 
+**startedOn** | **string** |  | [optional] 
+**subtype** | **string** |  | [optional] 
+**totalAccountValue** | **number** |  | [optional] 
+**type** | **string** |  | [optional] 
+**updatedAt** | **string** |  | [optional] 
+**userGuid** | **string** |  | [optional] 
+
+

@@ -156,6 +156,16 @@ var Account = (function () {
             "type": "number"
         },
         {
+            "name": "cashBalance",
+            "baseName": "cash_balance",
+            "type": "number"
+        },
+        {
+            "name": "cashSurrenderValue",
+            "baseName": "cash_surrender_value",
+            "type": "number"
+        },
+        {
             "name": "createdAt",
             "baseName": "created_at",
             "type": "string"
@@ -176,9 +186,19 @@ var Account = (function () {
             "type": "number"
         },
         {
+            "name": "deathBenefit",
+            "baseName": "death_benefit",
+            "type": "number"
+        },
+        {
             "name": "guid",
             "baseName": "guid",
             "type": "string"
+        },
+        {
+            "name": "holdingsValue",
+            "baseName": "holdings_value",
+            "type": "number"
         },
         {
             "name": "institutionCode",
@@ -198,6 +218,11 @@ var Account = (function () {
         {
             "name": "lastPayment",
             "baseName": "last_payment",
+            "type": "number"
+        },
+        {
+            "name": "loanAmount",
+            "baseName": "loan_amount",
             "type": "number"
         },
         {
@@ -4102,7 +4127,7 @@ var TransactionsApi = (function () {
         this.authentications[TransactionsApiApiKeys[key]].apiKey = value;
     };
     TransactionsApi.prototype.cleanseAndCategorizeTransactions = function (body) {
-        var localVarPath = this.basePath + '/cleanse_and_categorize';
+        var localVarPath = this.basePath + '/transactions/cleanse_and_categorize';
         var localVarQueryParameters = {};
         var localVarHeaderParams = Object.assign({}, this.defaultHeaders);
         var localVarFormParams = {};
