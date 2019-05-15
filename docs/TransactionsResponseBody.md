@@ -1,4 +1,4 @@
-# ::TransactionsResponseBody
+# TransactionsResponseBody
 
 ## Properties
 Name | Type | Description | Notes

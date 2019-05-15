@@ -1,4 +1,4 @@
-# ::CredentialOption
+# CredentialOption
 
 ## Properties
 Name | Type | Description | Notes

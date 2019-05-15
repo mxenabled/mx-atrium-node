@@ -1,4 +1,4 @@
-# ::StatementResponseBody
+# StatementResponseBody
 
 ## Properties
 Name | Type | Description | Notes

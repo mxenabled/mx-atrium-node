@@ -1,4 +1,4 @@
-# ::UserResponseBody
+# UserResponseBody
 
 ## Properties
 Name | Type | Description | Notes

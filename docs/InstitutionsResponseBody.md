@@ -1,4 +1,4 @@
-# ::InstitutionsResponseBody
+# InstitutionsResponseBody
 
 ## Properties
 Name | Type | Description | Notes

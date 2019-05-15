@@ -1,4 +1,4 @@
-# ::MemberResumeRequest
+# MemberResumeRequest
 
 ## Properties
 Name | Type | Description | Notes

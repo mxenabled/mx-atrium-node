@@ -1,4 +1,4 @@
-# ::Holding
+# Holding
 
 ## Properties
 Name | Type | Description | Notes

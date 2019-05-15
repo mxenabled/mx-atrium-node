@@ -1,4 +1,4 @@
-# ::CredentialRequest
+# CredentialRequest
 
 ## Properties
 Name | Type | Description | Notes

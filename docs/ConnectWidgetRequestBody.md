@@ -1,4 +1,4 @@
-# ::ConnectWidgetRequestBody
+# ConnectWidgetRequestBody
 
 ## Properties
 Name | Type | Description | Notes

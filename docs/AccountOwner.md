@@ -1,4 +1,4 @@
-# ::AccountOwner
+# AccountOwner
 
 ## Properties
 Name | Type | Description | Notes

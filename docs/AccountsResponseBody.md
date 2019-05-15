@@ -1,4 +1,4 @@
-# ::AccountsResponseBody
+# AccountsResponseBody
 
 ## Properties
 Name | Type | Description | Notes

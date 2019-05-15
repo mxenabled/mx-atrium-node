@@ -1,4 +1,4 @@
-# ::AccountNumber
+# AccountNumber
 
 ## Properties
 Name | Type | Description | Notes

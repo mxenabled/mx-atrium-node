@@ -1,4 +1,4 @@
-# ::UserUpdateRequestBody
+# UserUpdateRequestBody
 
 ## Properties
 Name | Type | Description | Notes

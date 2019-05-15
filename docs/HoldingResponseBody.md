@@ -1,4 +1,4 @@
-# ::HoldingResponseBody
+# HoldingResponseBody
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# ::UserCreateRequestBody
+# UserCreateRequestBody
 
 ## Properties
 Name | Type | Description | Notes

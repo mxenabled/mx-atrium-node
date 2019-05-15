@@ -1,4 +1,4 @@
-# ::ConnectWidget
+# ConnectWidget
 
 ## Properties
 Name | Type | Description | Notes

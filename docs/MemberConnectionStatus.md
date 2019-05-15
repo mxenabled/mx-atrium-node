@@ -1,4 +1,4 @@
-# ::MemberConnectionStatus
+# MemberConnectionStatus
 
 ## Properties
 Name | Type | Description | Notes

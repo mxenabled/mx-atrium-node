@@ -1,4 +1,4 @@
-# ::MemberUpdateRequestBody
+# MemberUpdateRequestBody
 
 ## Properties
 Name | Type | Description | Notes

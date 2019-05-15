@@ -1,4 +1,4 @@
-# ::CredentialResponse
+# CredentialResponse
 
 ## Properties
 Name | Type | Description | Notes

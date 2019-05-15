@@ -1,4 +1,4 @@
-# ::MerchantResponseBody
+# MerchantResponseBody
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# ::MemberConnectionStatusResponseBody
+# MemberConnectionStatusResponseBody
 
 ## Properties
 Name | Type | Description | Notes

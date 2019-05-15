@@ -1,4 +1,4 @@
-# ::ChallengesResponseBody
+# ChallengesResponseBody
 
 ## Properties
 Name | Type | Description | Notes

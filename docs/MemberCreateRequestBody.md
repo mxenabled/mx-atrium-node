@@ -1,4 +1,4 @@
-# ::MemberCreateRequestBody
+# MemberCreateRequestBody
 
 ## Properties
 Name | Type | Description | Notes

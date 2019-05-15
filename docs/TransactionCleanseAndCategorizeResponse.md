@@ -1,4 +1,4 @@
-# ::TransactionCleanseAndCategorizeResponse
+# TransactionCleanseAndCategorizeResponse
 
 ## Properties
 Name | Type | Description | Notes

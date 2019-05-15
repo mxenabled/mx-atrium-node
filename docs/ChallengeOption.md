@@ -1,4 +1,4 @@
-# ::ChallengeOption
+# ChallengeOption
 
 ## Properties
 Name | Type | Description | Notes

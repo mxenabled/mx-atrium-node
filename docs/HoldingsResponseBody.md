@@ -1,4 +1,4 @@
-# ::HoldingsResponseBody
+# HoldingsResponseBody
 
 ## Properties
 Name | Type | Description | Notes

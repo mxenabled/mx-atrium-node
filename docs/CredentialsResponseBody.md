@@ -1,4 +1,4 @@
-# ::CredentialsResponseBody
+# CredentialsResponseBody
 
 ## Properties
 Name | Type | Description | Notes

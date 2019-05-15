@@ -1,4 +1,4 @@
-# ::ConnectWidgetResponseBody
+# ConnectWidgetResponseBody
 
 ## Properties
 Name | Type | Description | Notes

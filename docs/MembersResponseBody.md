@@ -1,4 +1,4 @@
-# ::MembersResponseBody
+# MembersResponseBody
 
 ## Properties
 Name | Type | Description | Notes
