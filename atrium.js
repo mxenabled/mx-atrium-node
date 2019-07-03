@@ -1571,6 +1571,11 @@ var Transaction = (function () {
             "type": "number"
         },
         {
+            "name": "merchantGuid",
+            "baseName": "merchant_guid",
+            "type": "string"
+        },
+        {
             "name": "originalDescription",
             "baseName": "original_description",
             "type": "string"

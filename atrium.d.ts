@@ -714,6 +714,7 @@ export declare class Transaction {
     'memberGuid'?: string;
     'memo'?: string;
     'merchantCategoryCode'?: number;
+    'merchantGuid'?: string;
     'originalDescription'?: string;
     'postedAt'?: string;
     'status'?: string;
