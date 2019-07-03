@@ -1635,6 +1635,7 @@ export class Transaction {
     'memberGuid'?: string;
     'memo'?: string;
     'merchantCategoryCode'?: number;
+    'merchantGuid'?: string;
     'originalDescription'?: string;
     'postedAt'?: string;
     'status'?: string;
@@ -1761,6 +1762,11 @@ export class Transaction {
             "name": "merchantCategoryCode",
             "baseName": "merchant_category_code",
             "type": "number"
+        },
+        {
+            "name": "merchantGuid",
+            "baseName": "merchant_guid",
+            "type": "string"
         },
         {
             "name": "originalDescription",
