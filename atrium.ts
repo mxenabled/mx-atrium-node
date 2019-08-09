@@ -1222,6 +1222,7 @@ export class MemberCreateRequest {
     'identifier'?: string;
     'institutionCode': string;
     'metadata'?: string;
+    'skipAggregation'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -1245,6 +1246,11 @@ export class MemberCreateRequest {
             "name": "metadata",
             "baseName": "metadata",
             "type": "string"
+        },
+        {
+            "name": "skipAggregation",
+            "baseName": "skip_aggregation",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

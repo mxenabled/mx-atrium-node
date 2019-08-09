@@ -477,6 +477,7 @@ export declare class MemberCreateRequest {
     'identifier'?: string;
     'institutionCode': string;
     'metadata'?: string;
+    'skipAggregation'?: boolean;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;
