@@ -1126,6 +1126,11 @@ var MemberCreateRequest = (function () {
             "name": "metadata",
             "baseName": "metadata",
             "type": "string"
+        },
+        {
+            "name": "skipAggregation",
+            "baseName": "skip_aggregation",
+            "type": "boolean"
         }
     ];
     return MemberCreateRequest;
