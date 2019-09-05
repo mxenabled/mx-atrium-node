@@ -5613,4 +5613,16 @@ export class AtriumClient {
         val.setApiKey(1, clientID);
         this[label] = val;
     }
+
+    accounts: AccountsApi = new AccountsApi()
+    connectWidget: ConnectWidgetApi = new ConnectWidgetApi()
+    holdings: HoldingsApi = new HoldingsApi()
+    identity: IdentityApi = new IdentityApi()
+    institutions: InstitutionsApi = new InstitutionsApi()
+    members: MembersApi = new MembersApi()
+    merchants: MerchantsApi = new MerchantsApi()
+    statements: StatementsApi = new StatementsApi()
+    transactions: TransactionsApi = new TransactionsApi()
+    users: UsersApi = new UsersApi()
+    verification: VerificationApi = new VerificationApi()
 }
