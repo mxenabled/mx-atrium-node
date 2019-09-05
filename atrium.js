@@ -4781,6 +4781,17 @@ var VerificationApi = (function () {
 exports.VerificationApi = VerificationApi;
 var AtriumClient = (function () {
     function AtriumClient(apiKey, clientID) {
+        this.accounts = new AccountsApi();
+        this.connectWidget = new ConnectWidgetApi();
+        this.holdings = new HoldingsApi();
+        this.identity = new IdentityApi();
+        this.institutions = new InstitutionsApi();
+        this.members = new MembersApi();
+        this.merchants = new MerchantsApi();
+        this.statements = new StatementsApi();
+        this.transactions = new TransactionsApi();
+        this.users = new UsersApi();
+        this.verification = new VerificationApi();
         this.mount('accounts', new AccountsApi(), apiKey, clientID);
         this.mount('connectWidget', new ConnectWidgetApi(), apiKey, clientID);
         this.mount('holdings', new HoldingsApi(), apiKey, clientID);
