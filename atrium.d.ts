@@ -1318,4 +1318,15 @@ export declare class VerificationApi {
 export declare class AtriumClient {
     constructor(apiKey: any, clientID: any);
     mount(label: any, val: any, apiKey: any, clientID: any): void;
+    accounts: AccountsApi
+    connectWidget: ConnectWidgetApi
+    holdings: HoldingsApi
+    identity: IdentityApi
+    institutions: InstitutionsApi
+    members: MembersApi
+    merchants: MerchantsApi
+    statements: StatementsApi
+    transactions: TransactionsApi
+    users: UsersApi
+    verification: VerificationApi
 }
