@@ -1316,8 +1316,8 @@ export declare class VerificationApi {
     }>;
 }
 export declare class AtriumClient {
-    constructor(apiKey: any, clientID: any);
-    mount(label: any, val: any, apiKey: any, clientID: any): void;
+    constructor(apiKey: string, clientID: string);
+    mount(label: keyof AtriumClient, val: any, apiKey: string, clientID: string): void;
     accounts: AccountsApi;
     connectWidget: ConnectWidgetApi;
     holdings: HoldingsApi;
