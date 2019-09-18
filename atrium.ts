@@ -5594,7 +5594,7 @@ export class VerificationApi {
 }
 
 export class AtriumClient {
-    constructor(apiKey, clientID) { 
+    constructor(apiKey: string, clientID: string) {
         this.mount('accounts', new AccountsApi(), apiKey, clientID);
         this.mount('connectWidget', new ConnectWidgetApi(), apiKey, clientID);
         this.mount('holdings', new HoldingsApi(), apiKey, clientID);
@@ -5608,7 +5608,7 @@ export class AtriumClient {
         this.mount('verification', new VerificationApi(), apiKey, clientID);
     }
 
-    mount(label, val, apiKey, clientID) {
+    mount(label: keyof AtriumClient, val: any, apiKey: string, clientID: string) {
         val.setApiKey(0, apiKey);
         val.setApiKey(1, clientID);
         this[label] = val;

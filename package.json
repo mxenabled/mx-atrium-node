@@ -6,9 +6,10 @@
     "main": "atrium.js",
     "types": "api.d.ts",
     "scripts": {
-        "clean": "rm -Rf node_modules/ *.js",
+        "clean": "rm -rf node_modules/ *.js",
         "build": "tsc",
-        "test": "npm run build && node client.js"
+        "test": "npm run build && node client.js",
+        "prepublish": "rm **/**/*.ts"
     },
     "author": "MX",
     "license": "MIT",
