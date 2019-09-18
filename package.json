@@ -8,9 +8,15 @@
     "scripts": {
         "clean": "rm -rf node_modules/ *.js",
         "build": "tsc",
-        "test": "npm run build && node client.js",
-        "prepublish": "rm **/**/*.ts"
+        "test": "npm run build && node client.js"
     },
+    "files": [
+        "atrium.d.ts",
+        "atrium.js",
+        "atrium.js.map",
+        "LICENSE",
+        "README.md"
+    ],
     "author": "MX",
     "license": "MIT",
     "dependencies": {
