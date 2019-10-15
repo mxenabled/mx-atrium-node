@@ -654,6 +654,7 @@ export class ConnectWidgetRequestBody {
     'isMobileWebview'?: boolean;
     'currentInstitutionCode'?: string;
     'currentMemberGuid'?: string;
+    'uiMessageVersion'?: number;
     'updateCredentials'?: boolean;
 
     static discriminator: string | undefined = undefined;
@@ -673,6 +674,11 @@ export class ConnectWidgetRequestBody {
             "name": "currentMemberGuid",
             "baseName": "current_member_guid",
             "type": "string"
+        },
+        {
+            "name": "uiMessageVersion",
+            "baseName": "ui_message_version",
+            "type": "number"
         },
         {
             "name": "updateCredentials",
@@ -3479,6 +3485,70 @@ export class MembersApi {
         // verify required parameter 'userGuid' is not null or undefined
         if (userGuid === null || userGuid === undefined) {
             throw new Error('Required parameter userGuid was null or undefined when calling aggregateMember.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * This endpoint operates much like the _aggregate member_ endpoint except that it gathers only account balance information; it does not gather any transaction data at all.
+     * @summary Aggregate member account balances
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     */
+    public aggregateMemberBalances (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/balance'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling aggregateMemberBalances.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling aggregateMemberBalances.');
         }
 
 

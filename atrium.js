@@ -608,6 +608,11 @@ var ConnectWidgetRequestBody = (function () {
             "type": "string"
         },
         {
+            "name": "uiMessageVersion",
+            "baseName": "ui_message_version",
+            "type": "number"
+        },
+        {
             "name": "updateCredentials",
             "baseName": "update_credentials",
             "type": "boolean"
@@ -3058,6 +3063,56 @@ var MembersApi = (function () {
         }
         if (userGuid === null || userGuid === undefined) {
             throw new Error('Required parameter userGuid was null or undefined when calling aggregateMember.');
+        }
+        var localVarUseFormData = false;
+        var localVarRequestOptions = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                localVarRequestOptions.formData = localVarFormParams;
+            }
+            else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise(function (resolve, reject) {
+            localVarRequest(localVarRequestOptions, function (error, response, body) {
+                if (error) {
+                    reject(error);
+                }
+                else {
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    }
+                    else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    };
+    MembersApi.prototype.aggregateMemberBalances = function (memberGuid, userGuid) {
+        var localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/balance'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        var localVarQueryParameters = {};
+        var localVarHeaderParams = Object.assign({}, this.defaultHeaders);
+        var localVarFormParams = {};
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling aggregateMemberBalances.');
+        }
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling aggregateMemberBalances.');
         }
         var localVarUseFormData = false;
         var localVarRequestOptions = {

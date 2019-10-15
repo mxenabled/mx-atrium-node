@@ -214,6 +214,7 @@ export declare class ConnectWidgetRequestBody {
     'isMobileWebview'?: boolean;
     'currentInstitutionCode'?: string;
     'currentMemberGuid'?: string;
+    'uiMessageVersion'?: number;
     'updateCredentials'?: boolean;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
@@ -1104,6 +1105,10 @@ export declare class MembersApi {
     setDefaultAuthentication(auth: Authentication): void;
     setApiKey(key: MembersApiApiKeys, value: string): void;
     aggregateMember(memberGuid: string, userGuid: string): Promise<{
+        response: http.IncomingMessage;
+        body: MemberResponseBody;
+    }>;
+    aggregateMemberBalances(memberGuid: string, userGuid: string): Promise<{
         response: http.IncomingMessage;
         body: MemberResponseBody;
     }>;
