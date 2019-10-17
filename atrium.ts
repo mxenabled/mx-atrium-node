@@ -1148,6 +1148,7 @@ export class MemberConnectionStatus {
     'guid'?: string;
     'hasProcessedAccounts'?: boolean;
     'hasProcessedTransactions'?: boolean;
+    'isAuthenticated'?: boolean;
     'isBeingAggregated'?: boolean;
     'status'?: string;
     'successfullyAggregatedAt'?: string;
@@ -1183,6 +1184,11 @@ export class MemberConnectionStatus {
         {
             "name": "hasProcessedTransactions",
             "baseName": "has_processed_transactions",
+            "type": "boolean"
+        },
+        {
+            "name": "isAuthenticated",
+            "baseName": "is_authenticated",
             "type": "boolean"
         },
         {
