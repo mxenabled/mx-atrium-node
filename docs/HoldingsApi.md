@@ -19,7 +19,7 @@ Use this endpoint to read all holdings associated with a specific user.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
@@ -53,7 +53,7 @@ Use this endpoint to read all holdings associated with a specific account.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -89,7 +89,7 @@ Use this endpoint to read all holdings associated with a specific member.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -125,7 +125,7 @@ Use this endpoint to read the attributes of a specific holding.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var holdingGuid = "HOL-123"; // string | The unique identifier for a `holding`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.

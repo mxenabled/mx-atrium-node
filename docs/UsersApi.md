@@ -20,7 +20,7 @@ Call this endpoint to create a new user. Atrium will respond with the newly-crea
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var body = new atrium.UserCreateRequestBody(); // UserCreateRequestBody | User object to be created with optional parameters (identifier, is_disabled, metadata)
 
@@ -54,7 +54,7 @@ Calling this endpoint will permanently delete a user from Atrium. If successful,
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
@@ -88,7 +88,7 @@ Use this endpoint to list every user you've created in Atrium.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var page = 1; // number | Specify current page. (optional)
 var recordsPerPage = 12; // number | Specify records per page. (optional)
@@ -124,7 +124,7 @@ Use this endpoint to read the attributes of a specific user.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 
@@ -158,7 +158,7 @@ Use this endpoint to update the attributes of a specific user. Atrium will respo
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 var body = new atrium.UserUpdateRequestBody(); // UserUpdateRequestBody | User object to be updated with optional parameters (identifier, is_disabled, metadata) (optional)

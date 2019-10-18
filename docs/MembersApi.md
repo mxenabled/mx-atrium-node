@@ -29,7 +29,7 @@ Calling this endpoint initiates an aggregation event for the member. This brings
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -65,7 +65,7 @@ This endpoint operates much like the _aggregate member_ endpoint except that it 
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -101,7 +101,7 @@ This endpoint allows you to create a new member. Members are created with the re
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 var body = new atrium.MemberCreateRequestBody(); // MemberCreateRequestBody | Member object to be created with optional parameters (identifier and metadata) and required parameters (credentials and institution_code)
@@ -137,7 +137,7 @@ Accessing this endpoint will permanently delete a member.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -173,7 +173,7 @@ The extend_history endpoint begins the process of fetching up to 24 months of da
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -209,7 +209,7 @@ This endpoint returns an array with information about every account associated w
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -249,7 +249,7 @@ This endpoint returns an array which contains information on every non-MFA crede
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -285,7 +285,7 @@ Use this endpoint for information on what multi-factor authentication challenges
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -321,7 +321,7 @@ Use this endpoint to get all transactions from all accounts associated with a sp
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -365,7 +365,7 @@ This endpoint returns an array which contains information on every member associ
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 var page = 1; // number | Specify current page. (optional)
@@ -403,7 +403,7 @@ Use this endpoint to read the attributes of a specific member.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -439,7 +439,7 @@ This endpoint provides the status of the member's most recent aggregation event.
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -475,7 +475,7 @@ This endpoint answers the challenges needed when a member has been challenged by
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -513,7 +513,7 @@ Use this endpoint to update a member's attributes. Only the credentials, identif
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
