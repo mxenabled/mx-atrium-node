@@ -5670,18 +5670,18 @@ export class VerificationApi {
 }
 
 export class AtriumClient {
-    constructor(apiKey: string, clientID: string) {
-        this.mount('accounts', new AccountsApi(), apiKey, clientID);
-        this.mount('connectWidget', new ConnectWidgetApi(), apiKey, clientID);
-        this.mount('holdings', new HoldingsApi(), apiKey, clientID);
-        this.mount('identity', new IdentityApi(), apiKey, clientID);
-        this.mount('institutions', new InstitutionsApi(), apiKey, clientID);
-        this.mount('members', new MembersApi(), apiKey, clientID);
-        this.mount('merchants', new MerchantsApi(), apiKey, clientID);
-        this.mount('statements', new StatementsApi(), apiKey, clientID);
-        this.mount('transactions', new TransactionsApi(), apiKey, clientID);
-        this.mount('users', new UsersApi(), apiKey, clientID);
-        this.mount('verification', new VerificationApi(), apiKey, clientID);
+    constructor(apiKey: string, clientID: string, basePath: string = defaultBasePath) {
+        this.mount('accounts', new AccountsApi(basePath), apiKey, clientID);
+        this.mount('connectWidget', new ConnectWidgetApi(basePath), apiKey, clientID);
+        this.mount('holdings', new HoldingsApi(basePath), apiKey, clientID);
+        this.mount('identity', new IdentityApi(basePath), apiKey, clientID);
+        this.mount('institutions', new InstitutionsApi(basePath), apiKey, clientID);
+        this.mount('members', new MembersApi(basePath), apiKey, clientID);
+        this.mount('merchants', new MerchantsApi(basePath), apiKey, clientID);
+        this.mount('statements', new StatementsApi(basePath), apiKey, clientID);
+        this.mount('transactions', new TransactionsApi(basePath), apiKey, clientID);
+        this.mount('users', new UsersApi(basePath), apiKey, clientID);
+        this.mount('verification', new VerificationApi(basePath), apiKey, clientID);
     }
 
     mount(label: keyof AtriumClient, val: any, apiKey: string, clientID: string) {

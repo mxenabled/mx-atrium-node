@@ -18,7 +18,7 @@ Use this endpoint to categorize, cleanse, and classify transactions. These trans
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var body = new atrium.TransactionsCleanseAndCategorizeRequestBody(); // TransactionsCleanseAndCategorizeRequestBody | User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
 
@@ -52,7 +52,7 @@ Use this endpoint to get all transactions that belong to a specific user, across
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 var page = 1; // number | Specify current page. (optional)
@@ -94,7 +94,7 @@ This endpoint allows you to view information about a specific transaction that b
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var transactionGuid = "TRN-123"; // string | The unique identifier for a `transaction`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.

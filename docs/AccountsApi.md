@@ -19,7 +19,7 @@ This endpoint allows you to see every transaction that belongs to a specific acc
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -63,7 +63,7 @@ Use this endpoint to view information about every account that belongs to a user
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
 var page = 1; // number | Specify current page. (optional)
@@ -101,7 +101,7 @@ Reading an account allows you to get information about a specific account that b
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
@@ -137,7 +137,7 @@ Reading an account allows you to get information about a specific account that b
 ```javascript
 var atrium = require('./atrium.js');
 
-var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID");
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
