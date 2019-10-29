@@ -134,6 +134,7 @@ class ObjectSerializer {
 }
 
 export class Account {
+    'accountNumber'?: string;
     'apr'?: number;
     'apy'?: number;
     'availableBalance'?: number;
@@ -171,6 +172,11 @@ export class Account {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "accountNumber",
+            "baseName": "account_number",
+            "type": "string"
+        },
         {
             "name": "apr",
             "baseName": "apr",
