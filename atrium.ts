@@ -544,6 +544,7 @@ export class Challenge {
     'fieldName'?: string;
     'guid'?: string;
     'imageData'?: string;
+    'imageOptions'?: Array<ChallengeImageOption>;
     'label'?: string;
     'options'?: Array<ChallengeOption>;
     'type'?: string;
@@ -567,6 +568,11 @@ export class Challenge {
             "type": "string"
         },
         {
+            "name": "imageOptions",
+            "baseName": "image_options",
+            "type": "Array<ChallengeImageOption>"
+        },
+        {
             "name": "label",
             "baseName": "label",
             "type": "string"
@@ -587,8 +593,8 @@ export class Challenge {
     }
 }
 
-export class ChallengeOption {
-    'imageData'?: string;
+export class ChallengeImageOption {
+    'dataUri'?: string;
     'label'?: string;
     'value'?: string;
 
@@ -596,10 +602,33 @@ export class ChallengeOption {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "imageData",
-            "baseName": "image_data",
+            "name": "dataUri",
+            "baseName": "data_uri",
             "type": "string"
         },
+        {
+            "name": "label",
+            "baseName": "label",
+            "type": "string"
+        },
+        {
+            "name": "value",
+            "baseName": "value",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ChallengeImageOption.attributeTypeMap;
+    }
+}
+
+export class ChallengeOption {
+    'label'?: string;
+    'value'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "label",
             "baseName": "label",
@@ -2158,6 +2187,7 @@ let typeMap: {[index: string]: any} = {
     "AccountResponseBody": AccountResponseBody,
     "AccountsResponseBody": AccountsResponseBody,
     "Challenge": Challenge,
+    "ChallengeImageOption": ChallengeImageOption,
     "ChallengeOption": ChallengeOption,
     "ChallengesResponseBody": ChallengesResponseBody,
     "ConnectWidget": ConnectWidget,
