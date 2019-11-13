@@ -689,6 +689,8 @@ export class ConnectWidgetRequestBody {
     'isMobileWebview'?: boolean;
     'currentInstitutionCode'?: string;
     'currentMemberGuid'?: string;
+    'disableInstitutionSearch'?: boolean;
+    'mode'?: string;
     'uiMessageVersion'?: number;
     'updateCredentials'?: boolean;
 
@@ -708,6 +710,16 @@ export class ConnectWidgetRequestBody {
         {
             "name": "currentMemberGuid",
             "baseName": "current_member_guid",
+            "type": "string"
+        },
+        {
+            "name": "disableInstitutionSearch",
+            "baseName": "disable_institution_search",
+            "type": "boolean"
+        },
+        {
+            "name": "mode",
+            "baseName": "mode",
             "type": "string"
         },
         {
