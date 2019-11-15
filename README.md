@@ -5,12 +5,7 @@ The MX Atrium API supports over 48,000 data connections to thousands of financia
 
 ### Install dependencies
 ```sh
-npm install
-```
-
-### Generate JavaScript file
-```sh
-npm run build
+npm install mx-atrium
 ```
 
 ## Example Usage
@@ -18,7 +13,7 @@ npm run build
 Please see `docs` directory for additional endpoint examples
 
 ```javascript
-var atrium = require('./atrium.js');
+var atrium = require('mx-atrium');
 
 var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
@@ -35,3 +30,17 @@ response.then(function(value) {
   console.log(value);
 });
 ```
+
+## Development
+
+### Install dependencies
+```sh
+npm install
+```
+
+### Generate JavaScript file
+```sh
+npm run build
+```
+
+This will generate `atrium.js` and `atrium.d.ts`
