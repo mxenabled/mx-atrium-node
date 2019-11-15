@@ -4,7 +4,7 @@
     "description": "NodeJS client for mx-atrium-node",
     "repository": "mxenabled/mx-atrium-node",
     "main": "atrium.js",
-    "types": "api.d.ts",
+    "types": "atrium.d.ts",
     "scripts": {
         "clean": "rm -rf node_modules/ *.js",
         "build": "tsc",
