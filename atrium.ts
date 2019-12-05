@@ -1883,6 +1883,7 @@ export class TransactionCleanseAndCategorizeRequest {
     'amount'?: number;
     'description'?: string;
     'identifier'?: string;
+    'merchantCategoryCode'?: number;
     'type'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -1902,6 +1903,11 @@ export class TransactionCleanseAndCategorizeRequest {
             "name": "identifier",
             "baseName": "identifier",
             "type": "string"
+        },
+        {
+            "name": "merchantCategoryCode",
+            "baseName": "merchant_category_code",
+            "type": "number"
         },
         {
             "name": "type",
@@ -1928,6 +1934,9 @@ export class TransactionCleanseAndCategorizeResponse {
     'isInternational'?: boolean;
     'isOverdraftFee'?: boolean;
     'isPayrollAdvance'?: boolean;
+    'merchantCategoryCode'?: number;
+    'merchantGuid'?: string;
+    'originalDescription'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1996,6 +2005,21 @@ export class TransactionCleanseAndCategorizeResponse {
             "name": "isPayrollAdvance",
             "baseName": "is_payroll_advance",
             "type": "boolean"
+        },
+        {
+            "name": "merchantCategoryCode",
+            "baseName": "merchant_category_code",
+            "type": "number"
+        },
+        {
+            "name": "merchantGuid",
+            "baseName": "merchant_guid",
+            "type": "string"
+        },
+        {
+            "name": "originalDescription",
+            "baseName": "original_description",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
