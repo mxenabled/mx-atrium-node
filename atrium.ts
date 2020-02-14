@@ -143,10 +143,13 @@ export class Account {
     'cashBalance'?: number;
     'cashSurrenderValue'?: number;
     'createdAt'?: string;
+    'creditCardProductGuid'?: string;
     'creditLimit'?: number;
     'currencyCode'?: string;
+    'currentRewardLevel'?: string;
     'dayPaymentIsDue'?: number;
     'deathBenefit'?: number;
+    'enrolledInRewardsOn'?: string;
     'guid'?: string;
     'holdingsValue'?: number;
     'institutionCode'?: string;
@@ -159,9 +162,11 @@ export class Account {
     'minimumBalance'?: number;
     'minimumPayment'?: number;
     'name'?: string;
+    'nextRewardLevel'?: string;
     'originalBalance'?: number;
     'paymentDueAt'?: string;
     'payoffBalance'?: number;
+    'primaryRewardUnit'?: string;
     'startedOn'?: string;
     'subtype'?: string;
     'totalAccountValue'?: number;
@@ -218,6 +223,11 @@ export class Account {
             "type": "string"
         },
         {
+            "name": "creditCardProductGuid",
+            "baseName": "credit_card_product_guid",
+            "type": "string"
+        },
+        {
             "name": "creditLimit",
             "baseName": "credit_limit",
             "type": "number"
@@ -225,6 +235,11 @@ export class Account {
         {
             "name": "currencyCode",
             "baseName": "currency_code",
+            "type": "string"
+        },
+        {
+            "name": "currentRewardLevel",
+            "baseName": "current_reward_level",
             "type": "string"
         },
         {
@@ -236,6 +251,11 @@ export class Account {
             "name": "deathBenefit",
             "baseName": "death_benefit",
             "type": "number"
+        },
+        {
+            "name": "enrolledInRewardsOn",
+            "baseName": "enrolled_in_rewards_on",
+            "type": "string"
         },
         {
             "name": "guid",
@@ -298,6 +318,11 @@ export class Account {
             "type": "string"
         },
         {
+            "name": "nextRewardLevel",
+            "baseName": "next_reward_level",
+            "type": "string"
+        },
+        {
             "name": "originalBalance",
             "baseName": "original_balance",
             "type": "number"
@@ -311,6 +336,11 @@ export class Account {
             "name": "payoffBalance",
             "baseName": "payoff_balance",
             "type": "number"
+        },
+        {
+            "name": "primaryRewardUnit",
+            "baseName": "primary_reward_unit",
+            "type": "string"
         },
         {
             "name": "startedOn",
@@ -856,6 +886,76 @@ export class CredentialsResponseBody {
 
     static getAttributeTypeMap() {
         return CredentialsResponseBody.attributeTypeMap;
+    }
+}
+
+export class CreditCardProduct {
+    'guid'?: string;
+    'name'?: string;
+    'annualFee'?: number;
+    'hasCashbackRewards'?: boolean;
+    'hasTravelRewards'?: boolean;
+    'isSmallBusinessCard'?: boolean;
+    'hasZeroPercentIntroductoryRate'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "guid",
+            "baseName": "guid",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "annualFee",
+            "baseName": "annual_fee",
+            "type": "number"
+        },
+        {
+            "name": "hasCashbackRewards",
+            "baseName": "has_cashback_rewards",
+            "type": "boolean"
+        },
+        {
+            "name": "hasTravelRewards",
+            "baseName": "has_travel_rewards",
+            "type": "boolean"
+        },
+        {
+            "name": "isSmallBusinessCard",
+            "baseName": "is_small_business_card",
+            "type": "boolean"
+        },
+        {
+            "name": "hasZeroPercentIntroductoryRate",
+            "baseName": "has_zero_percent_introductory_rate",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreditCardProduct.attributeTypeMap;
+    }
+}
+
+export class CreditCardProductResponseBody {
+    'creditCardProduct'?: CreditCardProduct;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "creditCardProduct",
+            "baseName": "credit_card_product",
+            "type": "CreditCardProduct"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreditCardProductResponseBody.attributeTypeMap;
     }
 }
 
@@ -1553,6 +1653,117 @@ export class Pagination {
     }
 }
 
+export class Reward {
+    'accountGuid'?: string;
+    'balance'?: number;
+    'balanceType'?: string;
+    'createdAt'?: string;
+    'description'?: string;
+    'expiresOn'?: string;
+    'guid'?: string;
+    'memberGuid'?: string;
+    'unitType'?: string;
+    'updatedAt'?: string;
+    'userGuid'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "accountGuid",
+            "baseName": "account_guid",
+            "type": "string"
+        },
+        {
+            "name": "balance",
+            "baseName": "balance",
+            "type": "number"
+        },
+        {
+            "name": "balanceType",
+            "baseName": "balance_type",
+            "type": "string"
+        },
+        {
+            "name": "createdAt",
+            "baseName": "created_at",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "expiresOn",
+            "baseName": "expires_on",
+            "type": "string"
+        },
+        {
+            "name": "guid",
+            "baseName": "guid",
+            "type": "string"
+        },
+        {
+            "name": "memberGuid",
+            "baseName": "member_guid",
+            "type": "string"
+        },
+        {
+            "name": "unitType",
+            "baseName": "unit_type",
+            "type": "string"
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updated_at",
+            "type": "string"
+        },
+        {
+            "name": "userGuid",
+            "baseName": "user_guid",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Reward.attributeTypeMap;
+    }
+}
+
+export class RewardResponseBody {
+    'reward'?: Reward;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "reward",
+            "baseName": "reward",
+            "type": "Reward"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RewardResponseBody.attributeTypeMap;
+    }
+}
+
+export class RewardsResponseBody {
+    'rewards'?: Array<Reward>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "rewards",
+            "baseName": "rewards",
+            "type": "Array<Reward>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return RewardsResponseBody.attributeTypeMap;
+    }
+}
+
 export class Statement {
     /**
     * The unique identifier for the `account` associated with the `statement`. Defined by MX.
@@ -2233,6 +2444,8 @@ let typeMap: {[index: string]: any} = {
     "CredentialRequest": CredentialRequest,
     "CredentialResponse": CredentialResponse,
     "CredentialsResponseBody": CredentialsResponseBody,
+    "CreditCardProduct": CreditCardProduct,
+    "CreditCardProductResponseBody": CreditCardProductResponseBody,
     "Holding": Holding,
     "HoldingResponseBody": HoldingResponseBody,
     "HoldingsResponseBody": HoldingsResponseBody,
@@ -2253,6 +2466,9 @@ let typeMap: {[index: string]: any} = {
     "Merchant": Merchant,
     "MerchantResponseBody": MerchantResponseBody,
     "Pagination": Pagination,
+    "Reward": Reward,
+    "RewardResponseBody": RewardResponseBody,
+    "RewardsResponseBody": RewardsResponseBody,
     "Statement": Statement,
     "StatementResponseBody": StatementResponseBody,
     "StatementsResponseBody": StatementsResponseBody,
@@ -2760,6 +2976,112 @@ export class ConnectWidgetApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "ConnectWidgetResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum CreditCardProductsApiApiKeys {
+    apiKey,
+    clientID,
+}
+
+export class CreditCardProductsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiKey': new ApiKeyAuth('header', 'MX-API-Key'),
+        'clientID': new ApiKeyAuth('header', 'MX-Client-ID'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: CreditCardProductsApiApiKeys, value: string) {
+        (this.authentications as any)[CreditCardProductsApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * Use this endpoint to read the attributes of a credit card product.
+     * @summary Read credit card product
+     * @param creditCardProductGuid The unique identifier for a &#x60;credit card product&#x60;.
+     */
+    public readCreditCardProduct (creditCardProductGuid: string) : Promise<{ response: http.IncomingMessage; body: CreditCardProductResponseBody;  }> {
+        const localVarPath = this.basePath + '/credit_card_products/{credit_card_product_guid}'
+            .replace('{' + 'credit_card_product_guid' + '}', encodeURIComponent(String(creditCardProductGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'creditCardProductGuid' is not null or undefined
+        if (creditCardProductGuid === null || creditCardProductGuid === undefined) {
+            throw new Error('Required parameter creditCardProductGuid was null or undefined when calling readCreditCardProduct.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: CreditCardProductResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "CreditCardProductResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -4585,6 +4907,254 @@ export class MerchantsApi {
         });
     }
 }
+export enum RewardsApiApiKeys {
+    apiKey,
+    clientID,
+}
+
+export class RewardsApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiKey': new ApiKeyAuth('header', 'MX-API-Key'),
+        'clientID': new ApiKeyAuth('header', 'MX-Client-ID'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: RewardsApiApiKeys, value: string) {
+        (this.authentications as any)[RewardsApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * The fetch rewards endpoint begins fetching rewards for a member.
+     * @summary Fetch rewards
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     */
+    public fetchRewards (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/fetch_rewards'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling fetchRewards.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling fetchRewards.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * List rewards for a given account.
+     * @summary List rewards
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     */
+    public listRewards (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: RewardsResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/rewards'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling listRewards.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling listRewards.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RewardsResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RewardsResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Read a reward.
+     * @summary Read reward
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param rewardGuid The unique identifier for a &#x60;reward&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     */
+    public readReward (memberGuid: string, rewardGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: RewardResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/rewards/{reward_guid}'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'reward_guid' + '}', encodeURIComponent(String(rewardGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling readReward.');
+        }
+
+        // verify required parameter 'rewardGuid' is not null or undefined
+        if (rewardGuid === null || rewardGuid === undefined) {
+            throw new Error('Required parameter rewardGuid was null or undefined when calling readReward.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling readReward.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: RewardResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "RewardResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum StatementsApiApiKeys {
     apiKey,
     clientID,
@@ -5745,11 +6315,13 @@ export class AtriumClient {
     constructor(apiKey: string, clientID: string, basePath: string = defaultBasePath) {
         this.mount('accounts', new AccountsApi(basePath), apiKey, clientID);
         this.mount('connectWidget', new ConnectWidgetApi(basePath), apiKey, clientID);
+        this.mount('creditCardProducts', new CreditCardProductsApi(basePath), apiKey, clientID);
         this.mount('holdings', new HoldingsApi(basePath), apiKey, clientID);
         this.mount('identity', new IdentityApi(basePath), apiKey, clientID);
         this.mount('institutions', new InstitutionsApi(basePath), apiKey, clientID);
         this.mount('members', new MembersApi(basePath), apiKey, clientID);
         this.mount('merchants', new MerchantsApi(basePath), apiKey, clientID);
+        this.mount('rewards', new RewardsApi(basePath), apiKey, clientID);
         this.mount('statements', new StatementsApi(basePath), apiKey, clientID);
         this.mount('transactions', new TransactionsApi(basePath), apiKey, clientID);
         this.mount('users', new UsersApi(basePath), apiKey, clientID);
@@ -5764,11 +6336,13 @@ export class AtriumClient {
 
     accounts: AccountsApi = new AccountsApi()
     connectWidget: ConnectWidgetApi = new ConnectWidgetApi()
+    creditCardProducts: CreditCardProductsApi = new CreditCardProductsApi()
     holdings: HoldingsApi = new HoldingsApi()
     identity: IdentityApi = new IdentityApi()
     institutions: InstitutionsApi = new InstitutionsApi()
     members: MembersApi = new MembersApi()
     merchants: MerchantsApi = new MerchantsApi()
+    rewards: RewardsApi = new RewardsApi()
     statements: StatementsApi = new StatementsApi()
     transactions: TransactionsApi = new TransactionsApi()
     users: UsersApi = new UsersApi()
