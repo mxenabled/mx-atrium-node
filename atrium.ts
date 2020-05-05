@@ -351,8 +351,10 @@ export class Account {
 export class AccountNumber {
     'accountGuid'?: string;
     'accountNumber'?: string;
+    'institutionNumber'?: string;
     'memberGuid'?: string;
     'routingNumber'?: string;
+    'transitNumber'?: string;
     'userGuid'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -369,6 +371,11 @@ export class AccountNumber {
             "type": "string"
         },
         {
+            "name": "institutionNumber",
+            "baseName": "institution_number",
+            "type": "string"
+        },
+        {
             "name": "memberGuid",
             "baseName": "member_guid",
             "type": "string"
@@ -376,6 +383,11 @@ export class AccountNumber {
         {
             "name": "routingNumber",
             "baseName": "routing_number",
+            "type": "string"
+        },
+        {
+            "name": "transitNumber",
+            "baseName": "transit_number",
             "type": "string"
         },
         {
@@ -1501,6 +1513,117 @@ export class Merchant {
     }
 }
 
+export class MerchantLocation {
+    'city'?: string;
+    'guid'?: string;
+    'latitude'?: number;
+    'longitude'?: number;
+    'merchantGuid'?: string;
+    'phoneNumber'?: string;
+    'postalCode'?: string;
+    'state'?: string;
+    'storeNumber'?: string;
+    'streetAddress'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "city",
+            "baseName": "city",
+            "type": "string"
+        },
+        {
+            "name": "guid",
+            "baseName": "guid",
+            "type": "string"
+        },
+        {
+            "name": "latitude",
+            "baseName": "latitude",
+            "type": "number"
+        },
+        {
+            "name": "longitude",
+            "baseName": "longitude",
+            "type": "number"
+        },
+        {
+            "name": "merchantGuid",
+            "baseName": "merchant_guid",
+            "type": "string"
+        },
+        {
+            "name": "phoneNumber",
+            "baseName": "phone_number",
+            "type": "string"
+        },
+        {
+            "name": "postalCode",
+            "baseName": "postal_code",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "baseName": "state",
+            "type": "string"
+        },
+        {
+            "name": "storeNumber",
+            "baseName": "store_number",
+            "type": "string"
+        },
+        {
+            "name": "streetAddress",
+            "baseName": "street_address",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MerchantLocation.attributeTypeMap;
+    }
+}
+
+export class MerchantLocationResponseBody {
+    'merchantLocation'?: MerchantLocation;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "merchantLocation",
+            "baseName": "merchant_location",
+            "type": "MerchantLocation"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MerchantLocationResponseBody.attributeTypeMap;
+    }
+}
+
+export class MerchantLocationsResponseBody {
+    'merchantLocations'?: Array<MerchantLocation>;
+    'pagination'?: Pagination;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "merchantLocations",
+            "baseName": "merchant_locations",
+            "type": "Array<MerchantLocation>"
+        },
+        {
+            "name": "pagination",
+            "baseName": "pagination",
+            "type": "Pagination"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MerchantLocationsResponseBody.attributeTypeMap;
+    }
+}
+
 export class MerchantResponseBody {
     'merchant'?: Merchant;
 
@@ -1515,6 +1638,29 @@ export class MerchantResponseBody {
 
     static getAttributeTypeMap() {
         return MerchantResponseBody.attributeTypeMap;
+    }
+}
+
+export class MerchantsResponseBody {
+    'merchant'?: Array<Merchant>;
+    'pagination'?: Pagination;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "merchant",
+            "baseName": "merchant",
+            "type": "Array<Merchant>"
+        },
+        {
+            "name": "pagination",
+            "baseName": "pagination",
+            "type": "Pagination"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MerchantsResponseBody.attributeTypeMap;
     }
 }
 
@@ -2251,7 +2397,11 @@ let typeMap: {[index: string]: any} = {
     "MemberUpdateRequestBody": MemberUpdateRequestBody,
     "MembersResponseBody": MembersResponseBody,
     "Merchant": Merchant,
+    "MerchantLocation": MerchantLocation,
+    "MerchantLocationResponseBody": MerchantLocationResponseBody,
+    "MerchantLocationsResponseBody": MerchantLocationsResponseBody,
     "MerchantResponseBody": MerchantResponseBody,
+    "MerchantsResponseBody": MerchantsResponseBody,
     "Pagination": Pagination,
     "Statement": Statement,
     "StatementResponseBody": StatementResponseBody,
@@ -4528,6 +4678,113 @@ export class MerchantsApi {
         (this.authentications as any)[MerchantsApiApiKeys[key]].apiKey = value;
     }
     /**
+     * Returns a list of all the merchant locations associated with a merchant, including physical location, latitude, longitude, etc.
+     * @summary List merchant locations
+     * @param merchantGuid The unique identifier for a &#x60;merchant&#x60;.
+     */
+    public listMerchantLocations (merchantGuid: string) : Promise<{ response: http.IncomingMessage; body: MerchantLocationsResponseBody;  }> {
+        const localVarPath = this.basePath + '/merchants/{merchant_guid}/merchant_locations'
+            .replace('{' + 'merchant_guid' + '}', encodeURIComponent(String(merchantGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'merchantGuid' is not null or undefined
+        if (merchantGuid === null || merchantGuid === undefined) {
+            throw new Error('Required parameter merchantGuid was null or undefined when calling listMerchantLocations.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MerchantLocationsResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MerchantLocationsResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Returns a list of merchnants.
+     * @summary List merchants
+     */
+    public listMerchants () : Promise<{ response: http.IncomingMessage; body: MerchantsResponseBody;  }> {
+        const localVarPath = this.basePath + '/merchants';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MerchantsResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MerchantsResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Returns information about a particular merchant, such as a logo, name, and website.
      * @summary Read merchant
      * @param merchantGuid The unique identifier for a &#x60;merchant&#x60;.
@@ -4575,6 +4832,70 @@ export class MerchantsApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "MerchantResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retuns a specific location associated with a merchant, including physical location, latitude, longitude, etc.
+     * @summary Read merchant location
+     * @param merchantGuid The unique identifier for a &#x60;merchant&#x60;.
+     * @param merchantLocationGuid The unique identifier for a &#x60;merchant_location&#x60;.
+     */
+    public readMerchantLocation (merchantGuid: string, merchantLocationGuid: string) : Promise<{ response: http.IncomingMessage; body: MerchantLocationResponseBody;  }> {
+        const localVarPath = this.basePath + '/merchants/{merchant_guid}/merchant_locations/{merchant_location_guid}'
+            .replace('{' + 'merchant_guid' + '}', encodeURIComponent(String(merchantGuid)))
+            .replace('{' + 'merchant_location_guid' + '}', encodeURIComponent(String(merchantLocationGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'merchantGuid' is not null or undefined
+        if (merchantGuid === null || merchantGuid === undefined) {
+            throw new Error('Required parameter merchantGuid was null or undefined when calling readMerchantLocation.');
+        }
+
+        // verify required parameter 'merchantLocationGuid' is not null or undefined
+        if (merchantLocationGuid === null || merchantLocationGuid === undefined) {
+            throw new Error('Required parameter merchantLocationGuid was null or undefined when calling readMerchantLocation.');
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MerchantLocationResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MerchantLocationResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
