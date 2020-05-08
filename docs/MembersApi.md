@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**listMembers**](MembersApi.md#listMembers) | **GET** /users/{user_guid}/members | List members
 [**readMember**](MembersApi.md#readMember) | **GET** /users/{user_guid}/members/{member_guid} | Read member
 [**readMemberStatus**](MembersApi.md#readMemberStatus) | **GET** /users/{user_guid}/members/{member_guid}/status | Read member connection status
+[**readOAuthWindowURI**](MembersApi.md#readOAuthWindowURI) | **GET** /users/{user_guid}/members/{member_guid}/oauth_window_uri | Read OAuth Window URI
 [**resumeMember**](MembersApi.md#resumeMember) | **PUT** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
 [**updateMember**](MembersApi.md#updateMember) | **PUT** /users/{user_guid}/members/{member_guid} | Update member
 
@@ -461,6 +462,46 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MemberConnectionStatusResponseBody**](MemberConnectionStatusResponseBody.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **readOAuthWindowURI**
+> MemberResponseBody readOAuthWindowURI(memberGuid, userGuid, referralSource, uiMessageWebviewUrlScheme)
+
+Read OAuth Window URI
+
+This endpoint will generate an `oauth_window_uri` for the specified `member`.
+
+### Example
+```javascript
+var atrium = require('./atrium.js');
+
+var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
+
+var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
+var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var referralSource = "BROWSER"; // string | Should be either BROWSER or APP depending on the implementation. (optional)
+var uiMessageWebviewUrlScheme = "ui_message_webview_url_scheme_example"; // string | A scheme for routing the user back to the application state they were previously in. (optional)
+
+var response = client.members.readOAuthWindowURI(memberGuid, userGuid, referralSource, uiMessageWebviewUrlScheme);
+
+response.then(function(value) {
+  console.log(value);
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+ **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+ **referralSource** | **string**| Should be either BROWSER or APP depending on the implementation. | [optional] 
+ **uiMessageWebviewUrlScheme** | **string**| A scheme for routing the user back to the application state they were previously in. | [optional] 
+
+### Return type
+
+[**MemberResponseBody**](MemberResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

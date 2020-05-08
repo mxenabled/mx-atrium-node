@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **disableInstitutionSearch** | **boolean** |  | [optional] 
 **mode** | **string** |  | [optional] 
 **uiMessageVersion** | **number** |  | [optional] 
+**uiMessageWebviewUrlScheme** | **string** |  | [optional] 
 **updateCredentials** | **boolean** |  | [optional] 
 
 

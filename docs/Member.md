@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **isBeingAggregated** | **boolean** |  | [optional] 
 **metadata** | **string** |  | [optional] 
 **name** | **string** |  | [optional] 
+**oauthWindowUri** | **string** |  | [optional] 
 **status** | **string** |  | [optional] 
 **successfullyAggregatedAt** | **string** |  | [optional] 
 **userGuid** | **string** |  | [optional] 
