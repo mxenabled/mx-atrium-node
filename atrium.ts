@@ -704,6 +704,7 @@ export class ConnectWidgetRequestBody {
     'disableInstitutionSearch'?: boolean;
     'mode'?: string;
     'uiMessageVersion'?: number;
+    'uiMessageWebviewUrlScheme'?: string;
     'updateCredentials'?: boolean;
 
     static discriminator: string | undefined = undefined;
@@ -738,6 +739,11 @@ export class ConnectWidgetRequestBody {
             "name": "uiMessageVersion",
             "baseName": "ui_message_version",
             "type": "number"
+        },
+        {
+            "name": "uiMessageWebviewUrlScheme",
+            "baseName": "ui_message_webview_url_scheme",
+            "type": "string"
         },
         {
             "name": "updateCredentials",
@@ -1132,6 +1138,7 @@ export class Member {
     'isBeingAggregated'?: boolean;
     'metadata'?: string;
     'name'?: string;
+    'oauthWindowUri'?: string;
     'status'?: string;
     'successfullyAggregatedAt'?: string;
     'userGuid'?: string;
@@ -1177,6 +1184,11 @@ export class Member {
         {
             "name": "name",
             "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "oauthWindowUri",
+            "baseName": "oauth_window_uri",
             "type": "string"
         },
         {
@@ -1289,11 +1301,14 @@ export class MemberConnectionStatusResponseBody {
 }
 
 export class MemberCreateRequest {
-    'credentials': Array<CredentialRequest>;
+    'credentials'?: Array<CredentialRequest>;
     'identifier'?: string;
+    'isOauth'?: boolean;
     'institutionCode': string;
     'metadata'?: string;
+    'referralSource'?: string;
     'skipAggregation'?: boolean;
+    'uiMessageWebviewUrlScheme'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1309,6 +1324,11 @@ export class MemberCreateRequest {
             "type": "string"
         },
         {
+            "name": "isOauth",
+            "baseName": "is_oauth",
+            "type": "boolean"
+        },
+        {
             "name": "institutionCode",
             "baseName": "institution_code",
             "type": "string"
@@ -1319,9 +1339,19 @@ export class MemberCreateRequest {
             "type": "string"
         },
         {
+            "name": "referralSource",
+            "baseName": "referral_source",
+            "type": "string"
+        },
+        {
             "name": "skipAggregation",
             "baseName": "skip_aggregation",
             "type": "boolean"
+        },
+        {
+            "name": "uiMessageWebviewUrlScheme",
+            "baseName": "ui_message_webview_url_scheme",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4482,6 +4512,80 @@ export class MembersApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "MemberConnectionStatusResponseBody");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * This endpoint will generate an `oauth_window_uri` for the specified `member`.
+     * @summary Read OAuth Window URI
+     * @param memberGuid The unique identifier for a &#x60;member&#x60;.
+     * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     * @param referralSource Should be either BROWSER or APP depending on the implementation.
+     * @param uiMessageWebviewUrlScheme A scheme for routing the user back to the application state they were previously in.
+     */
+    public readOAuthWindowURI (memberGuid: string, userGuid: string, referralSource?: string, uiMessageWebviewUrlScheme?: string) : Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }> {
+        const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/oauth_window_uri'
+            .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
+            .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberGuid' is not null or undefined
+        if (memberGuid === null || memberGuid === undefined) {
+            throw new Error('Required parameter memberGuid was null or undefined when calling readOAuthWindowURI.');
+        }
+
+        // verify required parameter 'userGuid' is not null or undefined
+        if (userGuid === null || userGuid === undefined) {
+            throw new Error('Required parameter userGuid was null or undefined when calling readOAuthWindowURI.');
+        }
+
+        if (referralSource !== undefined) {
+            localVarQueryParameters['referral_source'] = ObjectSerializer.serialize(referralSource, "string");
+        }
+
+        if (uiMessageWebviewUrlScheme !== undefined) {
+            localVarQueryParameters['ui_message_webview_url_scheme'] = ObjectSerializer.serialize(uiMessageWebviewUrlScheme, "string");
+        }
+
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.clientID.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.IncomingMessage; body: MemberResponseBody;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "MemberResponseBody");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
