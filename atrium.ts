@@ -1672,15 +1672,15 @@ export class MerchantResponseBody {
 }
 
 export class MerchantsResponseBody {
-    'merchant'?: Array<Merchant>;
+    'merchants'?: Array<Merchant>;
     'pagination'?: Pagination;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "merchant",
-            "baseName": "merchant",
+            "name": "merchants",
+            "baseName": "merchants",
             "type": "Array<Merchant>"
         },
         {
