@@ -1871,6 +1871,7 @@ export class Transaction {
     'isInternational'?: boolean;
     'isOverdraftFee'?: boolean;
     'isPayrollAdvance'?: boolean;
+    'isSubscription'?: boolean;
     'latitude'?: number;
     'longitude'?: number;
     'memberGuid'?: string;
@@ -1977,6 +1978,11 @@ export class Transaction {
         {
             "name": "isPayrollAdvance",
             "baseName": "is_payroll_advance",
+            "type": "boolean"
+        },
+        {
+            "name": "isSubscription",
+            "baseName": "is_subscription",
             "type": "boolean"
         },
         {
