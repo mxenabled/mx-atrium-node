@@ -149,6 +149,7 @@ export class Account {
     'deathBenefit'?: number;
     'guid'?: string;
     'holdingsValue'?: number;
+    'insuredName'?: string;
     'institutionCode'?: string;
     'interestRate'?: number;
     'isClosed'?: boolean;
@@ -162,6 +163,8 @@ export class Account {
     'originalBalance'?: number;
     'paymentDueAt'?: string;
     'payoffBalance'?: number;
+    'payOutAmount'?: number;
+    'premiumAmount'?: number;
     'startedOn'?: string;
     'subtype'?: string;
     'totalAccountValue'?: number;
@@ -248,6 +251,11 @@ export class Account {
             "type": "number"
         },
         {
+            "name": "insuredName",
+            "baseName": "insured_name",
+            "type": "string"
+        },
+        {
             "name": "institutionCode",
             "baseName": "institution_code",
             "type": "string"
@@ -310,6 +318,16 @@ export class Account {
         {
             "name": "payoffBalance",
             "baseName": "payoff_balance",
+            "type": "number"
+        },
+        {
+            "name": "payOutAmount",
+            "baseName": "pay_out_amount",
+            "type": "number"
+        },
+        {
+            "name": "premiumAmount",
+            "baseName": "premium_amount",
             "type": "number"
         },
         {
@@ -699,13 +717,16 @@ export class ConnectWidget {
 
 export class ConnectWidgetRequestBody {
     'isMobileWebview'?: boolean;
+    'colorScheme'?: string;
     'currentInstitutionCode'?: string;
     'currentMemberGuid'?: string;
     'disableInstitutionSearch'?: boolean;
+    'includeTransactions'?: boolean;
     'mode'?: string;
     'uiMessageVersion'?: number;
     'uiMessageWebviewUrlScheme'?: string;
     'updateCredentials'?: boolean;
+    'waitForFullAggregation'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -714,6 +735,11 @@ export class ConnectWidgetRequestBody {
             "name": "isMobileWebview",
             "baseName": "is_mobile_webview",
             "type": "boolean"
+        },
+        {
+            "name": "colorScheme",
+            "baseName": "color_scheme",
+            "type": "string"
         },
         {
             "name": "currentInstitutionCode",
@@ -728,6 +754,11 @@ export class ConnectWidgetRequestBody {
         {
             "name": "disableInstitutionSearch",
             "baseName": "disable_institution_search",
+            "type": "boolean"
+        },
+        {
+            "name": "includeTransactions",
+            "baseName": "include_transactions",
             "type": "boolean"
         },
         {
@@ -748,6 +779,11 @@ export class ConnectWidgetRequestBody {
         {
             "name": "updateCredentials",
             "baseName": "update_credentials",
+            "type": "boolean"
+        },
+        {
+            "name": "waitForFullAggregation",
+            "baseName": "wait_for_full_aggregation",
             "type": "boolean"
         }    ];
 
