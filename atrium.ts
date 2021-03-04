@@ -154,6 +154,7 @@ export class Account {
     'interestRate'?: number;
     'isClosed'?: boolean;
     'lastPayment'?: number;
+    'lastPaymentAt'?: string;
     'loanAmount'?: number;
     'maturesOn'?: string;
     'memberGuid'?: string;
@@ -274,6 +275,11 @@ export class Account {
             "name": "lastPayment",
             "baseName": "last_payment",
             "type": "number"
+        },
+        {
+            "name": "lastPaymentAt",
+            "baseName": "last_payment_at",
+            "type": "string"
         },
         {
             "name": "loanAmount",
