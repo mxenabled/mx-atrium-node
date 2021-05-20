@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **supportsAccountIdentification** | **boolean** |  | [optional] 
 **supportsAccountStatement** | **boolean** |  | [optional] 
 **supportsAccountVerification** | **boolean** |  | [optional] 
+**supportsOauth** | **boolean** |  | [optional] 
 **supportsTransactionHistory** | **boolean** |  | [optional] 
 **url** | **string** |  | [optional] 
 

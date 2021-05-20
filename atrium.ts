@@ -1074,6 +1074,7 @@ export class Institution {
     'supportsAccountIdentification'?: boolean;
     'supportsAccountStatement'?: boolean;
     'supportsAccountVerification'?: boolean;
+    'supportsOauth'?: boolean;
     'supportsTransactionHistory'?: boolean;
     'url'?: string;
 
@@ -1113,6 +1114,11 @@ export class Institution {
         {
             "name": "supportsAccountVerification",
             "baseName": "supports_account_verification",
+            "type": "boolean"
+        },
+        {
+            "name": "supportsOauth",
+            "baseName": "supports_oauth",
             "type": "boolean"
         },
         {
@@ -1178,6 +1184,7 @@ export class Member {
     'identifier'?: string;
     'institutionCode'?: string;
     'isBeingAggregated'?: boolean;
+    'isOauth'?: boolean;
     'metadata'?: string;
     'name'?: string;
     'oauthWindowUri'?: string;
@@ -1216,6 +1223,11 @@ export class Member {
         {
             "name": "isBeingAggregated",
             "baseName": "is_being_aggregated",
+            "type": "boolean"
+        },
+        {
+            "name": "isOauth",
+            "baseName": "is_oauth",
             "type": "boolean"
         },
         {

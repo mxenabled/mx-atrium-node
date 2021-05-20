@@ -1,6 +1,6 @@
 {
     "name": "mx-atrium",
-    "version": "2.11.4",
+    "version": "2.11.5",
     "description": "NodeJS client for mx-atrium-node",
     "repository": "mxenabled/mx-atrium-node",
     "main": "atrium.js",
