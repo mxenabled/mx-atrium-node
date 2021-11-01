@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **listHoldings**
-> HoldingsResponseBody listHoldings(userGuid)
+> HoldingsResponseBody listHoldings(userGuid, page, recordsPerPage)
 
 List holdings
 
@@ -22,8 +22,10 @@ var atrium = require('./atrium.js');
 var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var page = 1; // number | Specify current page. (optional)
+var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.holdings.listHoldings(userGuid);
+var response = client.holdings.listHoldings(userGuid, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -35,6 +37,8 @@ response.then(function(value) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+ **page** | **number**| Specify current page. | [optional] 
+ **recordsPerPage** | **number**| Specify records per page. | [optional] 
 
 ### Return type
 
@@ -43,7 +47,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listHoldingsByAccount**
-> HoldingsResponseBody listHoldingsByAccount(accountGuid, userGuid)
+> HoldingsResponseBody listHoldingsByAccount(accountGuid, userGuid, page, recordsPerPage)
 
 List holdings by account
 
@@ -57,8 +61,10 @@ var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://
 
 var accountGuid = "ACT-123"; // string | The unique identifier for an `account`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var page = 1; // number | Specify current page. (optional)
+var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.holdings.listHoldingsByAccount(accountGuid, userGuid);
+var response = client.holdings.listHoldingsByAccount(accountGuid, userGuid, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -71,6 +77,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountGuid** | **string**| The unique identifier for an &#x60;account&#x60;. | 
  **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+ **page** | **number**| Specify current page. | [optional] 
+ **recordsPerPage** | **number**| Specify records per page. | [optional] 
 
 ### Return type
 
@@ -79,7 +87,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listHoldingsByMember**
-> HoldingsResponseBody listHoldingsByMember(memberGuid, userGuid)
+> HoldingsResponseBody listHoldingsByMember(memberGuid, userGuid, page, recordsPerPage)
 
 List holdings by member
 
@@ -93,8 +101,10 @@ var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://
 
 var memberGuid = "MBR-123"; // string | The unique identifier for a `member`.
 var userGuid = "USR-123"; // string | The unique identifier for a `user`.
+var page = 1; // number | Specify current page. (optional)
+var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.holdings.listHoldingsByMember(memberGuid, userGuid);
+var response = client.holdings.listHoldingsByMember(memberGuid, userGuid, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -107,6 +117,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
  **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+ **page** | **number**| Specify current page. | [optional] 
+ **recordsPerPage** | **number**| Specify records per page. | [optional] 
 
 ### Return type
 

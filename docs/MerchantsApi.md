@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **listMerchantLocations**
-> MerchantLocationsResponseBody listMerchantLocations(merchantGuid)
+> MerchantLocationsResponseBody listMerchantLocations(merchantGuid, page, recordsPerPage)
 
 List merchant locations
 
@@ -22,8 +22,10 @@ var atrium = require('./atrium.js');
 var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
 var merchantGuid = "MCH-123"; // string | The unique identifier for a `merchant`.
+var page = 1; // number | Specify current page. (optional)
+var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.merchants.listMerchantLocations(merchantGuid);
+var response = client.merchants.listMerchantLocations(merchantGuid, page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -35,6 +37,8 @@ response.then(function(value) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **merchantGuid** | **string**| The unique identifier for a &#x60;merchant&#x60;. | 
+ **page** | **number**| Specify current page. | [optional] 
+ **recordsPerPage** | **number**| Specify records per page. | [optional] 
 
 ### Return type
 
@@ -43,7 +47,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listMerchants**
-> MerchantsResponseBody listMerchants()
+> MerchantsResponseBody listMerchants(page, recordsPerPage)
 
 List merchants
 
@@ -55,8 +59,10 @@ var atrium = require('./atrium.js');
 
 var client = new atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID", "https://vestibule.mx.com");
 
+var page = 1; // number | Specify current page. (optional)
+var recordsPerPage = 12; // number | Specify records per page. (optional)
 
-var response = client.merchants.listMerchants();
+var response = client.merchants.listMerchants(page, recordsPerPage);
 
 response.then(function(value) {
   console.log(value);
@@ -64,7 +70,11 @@ response.then(function(value) {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **number**| Specify current page. | [optional] 
+ **recordsPerPage** | **number**| Specify records per page. | [optional] 
 
 ### Return type
 
