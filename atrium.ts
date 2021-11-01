@@ -3062,8 +3062,10 @@ export class HoldingsApi {
      * Use this endpoint to read all holdings associated with a specific user.
      * @summary List holdings
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     * @param page Specify current page.
+     * @param recordsPerPage Specify records per page.
      */
-    public listHoldings (userGuid: string) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
+    public listHoldings (userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/holdings'
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
         let localVarQueryParameters: any = {};
@@ -3073,6 +3075,14 @@ export class HoldingsApi {
         // verify required parameter 'userGuid' is not null or undefined
         if (userGuid === null || userGuid === undefined) {
             throw new Error('Required parameter userGuid was null or undefined when calling listHoldings.');
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (recordsPerPage !== undefined) {
+            localVarQueryParameters['records_per_page'] = ObjectSerializer.serialize(recordsPerPage, "number");
         }
 
 
@@ -3120,8 +3130,10 @@ export class HoldingsApi {
      * @summary List holdings by account
      * @param accountGuid The unique identifier for an &#x60;account&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     * @param page Specify current page.
+     * @param recordsPerPage Specify records per page.
      */
-    public listHoldingsByAccount (accountGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
+    public listHoldingsByAccount (accountGuid: string, userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/accounts/{account_guid}/holdings'
             .replace('{' + 'account_guid' + '}', encodeURIComponent(String(accountGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3137,6 +3149,14 @@ export class HoldingsApi {
         // verify required parameter 'userGuid' is not null or undefined
         if (userGuid === null || userGuid === undefined) {
             throw new Error('Required parameter userGuid was null or undefined when calling listHoldingsByAccount.');
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (recordsPerPage !== undefined) {
+            localVarQueryParameters['records_per_page'] = ObjectSerializer.serialize(recordsPerPage, "number");
         }
 
 
@@ -3184,8 +3204,10 @@ export class HoldingsApi {
      * @summary List holdings by member
      * @param memberGuid The unique identifier for a &#x60;member&#x60;.
      * @param userGuid The unique identifier for a &#x60;user&#x60;.
+     * @param page Specify current page.
+     * @param recordsPerPage Specify records per page.
      */
-    public listHoldingsByMember (memberGuid: string, userGuid: string) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
+    public listHoldingsByMember (memberGuid: string, userGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: HoldingsResponseBody;  }> {
         const localVarPath = this.basePath + '/users/{user_guid}/members/{member_guid}/holdings'
             .replace('{' + 'member_guid' + '}', encodeURIComponent(String(memberGuid)))
             .replace('{' + 'user_guid' + '}', encodeURIComponent(String(userGuid)));
@@ -3201,6 +3223,14 @@ export class HoldingsApi {
         // verify required parameter 'userGuid' is not null or undefined
         if (userGuid === null || userGuid === undefined) {
             throw new Error('Required parameter userGuid was null or undefined when calling listHoldingsByMember.');
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (recordsPerPage !== undefined) {
+            localVarQueryParameters['records_per_page'] = ObjectSerializer.serialize(recordsPerPage, "number");
         }
 
 
@@ -4845,8 +4875,10 @@ export class MerchantsApi {
      * Returns a list of all the merchant locations associated with a merchant, including physical location, latitude, longitude, etc.
      * @summary List merchant locations
      * @param merchantGuid The unique identifier for a &#x60;merchant&#x60;.
+     * @param page Specify current page.
+     * @param recordsPerPage Specify records per page.
      */
-    public listMerchantLocations (merchantGuid: string) : Promise<{ response: http.IncomingMessage; body: MerchantLocationsResponseBody;  }> {
+    public listMerchantLocations (merchantGuid: string, page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: MerchantLocationsResponseBody;  }> {
         const localVarPath = this.basePath + '/merchants/{merchant_guid}/merchant_locations'
             .replace('{' + 'merchant_guid' + '}', encodeURIComponent(String(merchantGuid)));
         let localVarQueryParameters: any = {};
@@ -4856,6 +4888,14 @@ export class MerchantsApi {
         // verify required parameter 'merchantGuid' is not null or undefined
         if (merchantGuid === null || merchantGuid === undefined) {
             throw new Error('Required parameter merchantGuid was null or undefined when calling listMerchantLocations.');
+        }
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (recordsPerPage !== undefined) {
+            localVarQueryParameters['records_per_page'] = ObjectSerializer.serialize(recordsPerPage, "number");
         }
 
 
@@ -4901,12 +4941,22 @@ export class MerchantsApi {
     /**
      * Returns a list of merchnants.
      * @summary List merchants
+     * @param page Specify current page.
+     * @param recordsPerPage Specify records per page.
      */
-    public listMerchants () : Promise<{ response: http.IncomingMessage; body: MerchantsResponseBody;  }> {
+    public listMerchants (page?: number, recordsPerPage?: number) : Promise<{ response: http.IncomingMessage; body: MerchantsResponseBody;  }> {
         const localVarPath = this.basePath + '/merchants';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (page !== undefined) {
+            localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (recordsPerPage !== undefined) {
+            localVarQueryParameters['records_per_page'] = ObjectSerializer.serialize(recordsPerPage, "number");
+        }
 
 
         let localVarUseFormData = false;
